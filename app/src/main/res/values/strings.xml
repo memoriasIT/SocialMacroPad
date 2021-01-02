@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SocialMacroPad</string>
+    <string name="login">Log in</string>
+    <string name="signup">Sign up</string>
+    <string name="language">Language</string>
+</resources>

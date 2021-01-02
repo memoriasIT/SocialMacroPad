@@ -2,10 +2,13 @@ package com.example.socialmacropad;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -23,14 +26,23 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         catch (NullPointerException e){}
 
         setContentView(R.layout.activity_main);
-
-
-
         Spinner spin = (Spinner) findViewById(R.id.languageSpinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
         spin.setOnItemSelectedListener(this);
+
+
+        Button learnMore = (Button)findViewById(R.id.learnmore);
+        learnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Intent code for open new activity through intent.
+                Intent intent = new Intent(MainActivity.this, ListaDeActividades.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

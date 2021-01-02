@@ -3,4 +3,8 @@
     <string name="login">Log in</string>
     <string name="signup">Sign up</string>
     <string name="language">Language</string>
+    <string name="title_activity_lista_de_actividades">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_discover">Discover</string>
+    <string name="title_saved">Saved</string>
 </resources>

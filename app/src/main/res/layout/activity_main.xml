@@ -64,7 +64,7 @@
             tools:layout_editor_absoluteY="442dp" />
 
         <Button
-            android:id="@+id/outlinedButton3"
+            android:id="@+id/learnmore"
             android:layout_width="322dp"
             android:layout_height="63dp"
             android:backgroundTint="#0E4DA4"

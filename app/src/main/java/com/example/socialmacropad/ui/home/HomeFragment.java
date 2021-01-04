@@ -2,6 +2,7 @@ package com.example.socialmacropad.ui.home;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.socialmacropad.DeviceListActivity;
 import com.example.socialmacropad.R;
 
 public class HomeFragment extends Fragment {
@@ -52,12 +54,15 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(getActivity()).setTitle(R.string.text_disconnect).setMessage(R.string.text_disconnect_confirm).setPositiveButton(getString(R.string.text_yes_confirm), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "Botón de conexión", Toast.LENGTH_SHORT);
-                    }
-                }).setNegativeButton(getString(R.string.text_cancel), null).show();
+//                new AlertDialog.Builder(getActivity()).setTitle(R.string.text_disconnect).setMessage(R.string.text_disconnect_confirm).setPositiveButton(getString(R.string.text_yes_confirm), new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Toast.makeText(getActivity(), "Botón de conexión", Toast.LENGTH_SHORT);
+//                    }
+//                }).setNegativeButton(getString(R.string.text_cancel), null).show();
+
+                Intent intent = new Intent(getActivity(), DeviceListActivity.class);
+                startActivity(intent);
 
             }
         });

@@ -4,4 +4,9 @@
     <string name="login">Iniciar sesión</string>
     <string name="signup">Registrarse</string>
     <string name="language">Idioma</string>
+    <string name="username">Nombre de usuario</string>
+    <string name="email">Correo electrónico</string>
+    <string name="phoneNumber">Número de teléfono</string>
+    <string name="password">Contraseña</string>
+    <string name="teachMe">Enséñame como usarlo</string>
 </resources>

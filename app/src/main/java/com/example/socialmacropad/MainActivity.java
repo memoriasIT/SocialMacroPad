@@ -43,6 +43,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
 
+        Button signUp = (Button)findViewById(R.id.signup);
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Intent code for open new activity through intent.
+                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button logIn = (Button)findViewById(R.id.login);
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Intent code for open new activity through intent.
+                Intent intent = new Intent(MainActivity.this, LogInActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 

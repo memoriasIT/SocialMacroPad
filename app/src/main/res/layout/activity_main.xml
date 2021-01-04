@@ -38,22 +38,22 @@
             android:layout_height="40dp" />
 
         <Button
-            android:id="@+id/outlinedButton"
+            android:id="@+id/signup"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="322dp"
             android:layout_height="63dp"
-            android:text="Sign Up"
+            android:text="@string/signup"
             android:textColor="#000000"
             app:iconTint="#000000"
             app:strokeColor="#000000"
             tools:ignore="MissingConstraints" />
 
         <Button
-            android:id="@+id/outlinedButton2"
+            android:id="@+id/login"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="322dp"
             android:layout_height="63dp"
-            android:text="Login"
+            android:text="@string/login"
             android:textColor="#000000"
             app:iconTint="#000000"
             app:layout_constraintEnd_toEndOf="parent"
@@ -68,7 +68,7 @@
             android:layout_width="322dp"
             android:layout_height="63dp"
             android:backgroundTint="#0E4DA4"
-            android:text="Teach me how to use it"
+            android:text="@string/teachMe"
             android:textColor="#FFFFFF"
             app:iconTint="#000000"
             app:layout_constraintEnd_toEndOf="parent"
@@ -103,7 +103,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
-                android:text="Language"></Spinner>
+                android:text="@string/language"></Spinner>
 
 
         </LinearLayout>

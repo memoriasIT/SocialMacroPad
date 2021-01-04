@@ -7,4 +7,9 @@
     <string name="title_home">Home</string>
     <string name="title_discover">Discover</string>
     <string name="title_saved">Saved</string>
+    <string name="username">Username</string>
+    <string name="email">E-mail</string>
+    <string name="phoneNumber">Phone number</string>
+    <string name="password">Password</string>
+    <string name="teachMe">Teach me how to use it</string>
 </resources>

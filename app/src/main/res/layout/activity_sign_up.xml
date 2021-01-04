@@ -84,11 +84,13 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/username">
+            android:hint="@string/username"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="text"
                 android:maxLines="1"
                 android:lines="1"
                 android:singleLine="true"/>
@@ -108,6 +110,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:lines="1"
                 android:singleLine="true"/>
@@ -158,7 +161,7 @@
             android:layout_height="39dp" />
 
         <Button
-            android:id="@+id/outlinedButton"
+            android:id="@+id/signup"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="206dp"
             android:layout_height="63dp"

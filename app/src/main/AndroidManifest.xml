@@ -21,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DeviceListActivity"
+            android:label="@string/text_select_paired_device"
+            android:resizeableActivity="false"
+            android:supportsPictureInPicture="false"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog"
+            ></activity>
     </application>
 
 </manifest>

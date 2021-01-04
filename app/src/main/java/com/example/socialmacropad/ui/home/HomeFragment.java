@@ -1,10 +1,14 @@
 package com.example.socialmacropad.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,5 +35,31 @@ public class HomeFragment extends Fragment {
             }
         });
         return root;
+
+
+
+
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+
+        Button btnConnect = getView().findViewById(R.id.btnConnect);
+        btnConnect.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(getActivity()).setTitle(R.string.text_disconnect).setMessage(R.string.text_disconnect_confirm).setPositiveButton(getString(R.string.text_yes_confirm), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getActivity(), "Botón de conexión", Toast.LENGTH_SHORT);
+                    }
+                }).setNegativeButton(getString(R.string.text_cancel), null).show();
+
+            }
+        });
     }
 }

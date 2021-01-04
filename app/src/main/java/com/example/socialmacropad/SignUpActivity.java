@@ -19,7 +19,7 @@ public class SignUpActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
         TextInputLayout username = (TextInputLayout) findViewById(R.id.outlinedTextFieldUsername);
-        //extraer el texto con username.getEditText().getText().toString();
+        //extraer texto con username.getEditText().getText().toString();
         TextInputLayout  password = (TextInputLayout) findViewById(R.id.outlinedTextFieldPassword);
         TextInputLayout  email = (TextInputLayout) findViewById(R.id.outlinedTextFieldEmail);
         TextInputLayout  phoneNumber = (TextInputLayout) findViewById(R.id.outlinedTextFieldPhone);

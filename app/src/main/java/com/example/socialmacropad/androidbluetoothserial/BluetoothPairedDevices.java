@@ -1,4 +1,4 @@
-package com.example.socialmacropad.service;
+package com.example.socialmacropad.androidbluetoothserial;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;

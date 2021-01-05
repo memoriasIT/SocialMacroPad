@@ -77,7 +77,7 @@
 
 
 
-    <string name="app_name">Bluetooth Serial Interface</string>
+<!--    <string name="app_name">Bluetooth Serial Interface</string>-->
     <string name="messages">Messages:</string>
     <string name="message">Message</string>
     <string name="send">Send</string>

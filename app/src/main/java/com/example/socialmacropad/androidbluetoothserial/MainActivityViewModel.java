@@ -1,6 +1,7 @@
-package com.example.socialmacropad.service;
+package com.example.socialmacropad.androidbluetoothserial;
 
 import android.app.Application;
+import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.widget.Toast;
 
@@ -10,6 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.socialmacropad.R;
 import com.harrysoft.androidbluetoothserial.BluetoothManager;
+
 
 import org.jetbrains.annotations.NotNull;
 
@@ -53,7 +55,7 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     // Called by the activity to request that we refresh the list of paired devices
     public void refreshPairedDevices() {
-        pairedDeviceList.postValue(bluetoothManager.getPairedDevices());
+        pairedDeviceList.postValue(bluetoothManager.getPairedDevicesList());
     }
 
     // Called when the activity finishes - clear up after ourselves.

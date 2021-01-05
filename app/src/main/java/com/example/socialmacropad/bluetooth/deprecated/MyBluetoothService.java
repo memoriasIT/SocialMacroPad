@@ -1,4 +1,4 @@
-package com.example.socialmacropad.service.deprecated;
+package com.example.socialmacropad.bluetooth.deprecated;
 
 import android.bluetooth.BluetoothSocket;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.example.socialmacropad.service;
+package com.example.socialmacropad.androidbluetoothserial;
 
 import android.app.Application;
 import android.text.TextUtils;
@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.socialmacropad.R;
 import com.harrysoft.androidbluetoothserial.BluetoothManager;
 import com.harrysoft.androidbluetoothserial.SimpleBluetoothDeviceInterface;
 

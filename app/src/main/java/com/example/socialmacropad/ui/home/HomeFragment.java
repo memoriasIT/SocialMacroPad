@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.socialmacropad.activities.DeviceListActivity;
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.androidbluetoothserial.BluetoothPairedDevices;
 import com.example.socialmacropad.event.UIToastEvent;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
 import com.example.socialmacropad.util.Config;
@@ -72,7 +73,8 @@ public class HomeFragment extends Fragment {
 //                    }
 //                }).setNegativeButton(getString(R.string.text_cancel), null).show();
 
-                Intent intent = new Intent(getActivity(), DeviceListActivity.class);
+//                Intent intent = new Intent(getActivity(), DeviceListActivity.class);
+                Intent intent = new Intent(getActivity(), BluetoothPairedDevices.class);
                 startActivityForResult(intent, Constants.CONNECT_DEVICE_SECURE);
             }
         });

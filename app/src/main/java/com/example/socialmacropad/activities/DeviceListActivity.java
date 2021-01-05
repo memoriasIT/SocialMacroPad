@@ -45,7 +45,7 @@ public class DeviceListActivity  extends Activity {
         ArrayAdapter<String> pairedDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.list_item);
 
         // Vinculamos nuestro adaptador a nuestra lista
-        ListView pairedListView = findViewById(R.id.paired_devices);
+        ListView pairedListView = null;
         pairedListView.setAdapter(pairedDevicesArrayAdapter);
         pairedListView.setOnItemClickListener(mDeviceClickListener);
 
@@ -53,7 +53,7 @@ public class DeviceListActivity  extends Activity {
         Set<BluetoothDevice> pairedDevices = Collections.emptySet();
         try {
             //Obtenermos la lista de dispositivos BT sincronizados
-            pairedDevices = mBtAdapter.getBondedDevices();
+//            pairedDevices = mBtAdapter.getBondedDevices();
         }catch (Exception e){
             EventBus.getDefault().post(new UIToastEvent(getString(R.string.text_bluetooth_adaptor_error), true, true));
             finish();
@@ -62,7 +62,7 @@ public class DeviceListActivity  extends Activity {
         if (pairedDevices.size() > 0) {
             //Barremos la lista de dispositivos sincronizados
             for (BluetoothDevice device : pairedDevices) {
-                pairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+//                pairedDevicesArrayAdapter.add(device.getName() + "\n" + device.getAddress());
             }
         } else {
             pairedDevicesArrayAdapter.add(getString(R.string.text_no_paired_devices));
@@ -73,7 +73,7 @@ public class DeviceListActivity  extends Activity {
     private final AdapterView.OnItemClickListener mDeviceClickListener = new AdapterView.OnItemClickListener() {
 
         public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
-            mBtAdapter.cancelDiscovery();
+//            mBtAdapter.cancelDiscovery();
 
             String info = ((TextView) v).getText().toString();
 
@@ -96,7 +96,7 @@ public class DeviceListActivity  extends Activity {
         super.onDestroy();
 
         if (mBtAdapter != null) {
-            mBtAdapter.cancelDiscovery();
+//            mBtAdapter.cancelDiscovery();
         }
     }
 

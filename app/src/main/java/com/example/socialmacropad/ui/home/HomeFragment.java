@@ -19,6 +19,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.socialmacropad.DeviceListActivity;
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.event.UIToastEvent;
+import com.example.socialmacropad.util.Config;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class HomeFragment extends Fragment {
 
@@ -51,7 +57,6 @@ public class HomeFragment extends Fragment {
 
         Button btnConnect = getView().findViewById(R.id.btnConnect);
         btnConnect.setOnClickListener(new View.OnClickListener(){
-
             @Override
             public void onClick(View v) {
 //                new AlertDialog.Builder(getActivity()).setTitle(R.string.text_disconnect).setMessage(R.string.text_disconnect_confirm).setPositiveButton(getString(R.string.text_yes_confirm), new DialogInterface.OnClickListener() {
@@ -63,8 +68,36 @@ public class HomeFragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), DeviceListActivity.class);
                 startActivity(intent);
-
             }
         });
+
+
+        Button btnAction1 = getView().findViewById(R.id.btnAction1);
+        btnAction1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EventBus.getDefault().post(new UIToastEvent("Ejemplo", true, true));
+            }
+        });
+    }
+
+// ///////////////////////////////////////////////
+//    EVENT BUS!
+// ///////////////////////////////////////////////
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUIToastEvent(UIToastEvent event) {
+        Config.Mensaje(getActivity(), event.getMessage(), event.getLongToast(), event.getIsWarning());
     }
 }

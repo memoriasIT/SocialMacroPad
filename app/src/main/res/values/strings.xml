@@ -14,7 +14,6 @@
     <string name="teachMe">Teach me how to use it</string>
 
 
-
     <string name="text_bluetooth_adapter_error">Error Bluetooth Adapter, porfavor reinicia tu telefono</string>
     <string name="text_unknown_error">Unknown error: porfavor reinicia la aplicación</string>
     <string name="text_no_bluetooth_permission">No se puede iniciar bluetooth, revise sus permisos</string>
@@ -47,4 +46,22 @@
     <string name="text_bt_not_enabled">Bluetooth no está habilitado!</string>
     <string name="preference_update_pool_interval">preference_update_pool_interval</string>
     <string name="preference_last_connected_device">last_connected_device</string>
+    <string name="req_username_password">4-30 characters (A-Z, a-z, 0-9 only)</string>
+    <string name="req_email">e. g. name@mail.com</string>
+    <string name="req_phone">e. g. +34612387954</string>
+    <string name="user_registred">Registered user successfully</string>
+    <string name="non_valid_username">The username entered is invalid</string>
+    <string name="non_valid_password">The password entered is invalid</string>
+    <string name="user_not_found">The username and password you entered did not match our records. Please double-check and try again.</string>
+    <string name="group_of_activities_add_new">Groups of Activities > Add New</string>
+    <string name="add_new">Add New</string>
+    <string name="name">Name</string>
+    <string name="general" translatable="false">General</string>
+    <string name="description">Description</string>
+    <string name="color">Colour</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="orange">Orange</string>
+    <string name="grey">Grey</string>
+    <string name="save_group">Save Group</string>
 </resources>

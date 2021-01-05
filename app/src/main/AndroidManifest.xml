@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialMacroPad">
-        <activity android:name=".LogInActivity"></activity>
+        <activity android:name=".AddNewGroupActivity"></activity>
+        <activity android:name=".LogInActivity" />
         <activity android:name=".SignUpActivity" />
         <activity
             android:name=".ListaDeActividades"
@@ -21,12 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DeviceListActivity"
+        <activity
+            android:name=".DeviceListActivity"
             android:label="@string/text_select_paired_device"
             android:resizeableActivity="false"
             android:supportsPictureInPicture="false"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog"
-            ></activity>
+            android:theme="@android:style/Theme.DeviceDefault.Dialog" />
     </application>
 
 </manifest>

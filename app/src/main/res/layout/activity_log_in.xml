@@ -67,17 +67,31 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="291dp"
-        android:layout_height="312dp"
+        android:layout_width="319dp"
+        android:layout_height="396dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
         tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textViewError"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:gravity="center"
+            android:text="@string/user_not_found"
+            android:textColor="#FD0000"
+            android:textStyle="normal"
+            tools:ignore="MissingConstraints" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextFieldUsername"
@@ -89,9 +103,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1"
                 android:lines="1"
-                android:singleLine="true"/>
+                android:maxLines="1"
+                android:singleLine="true" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <Space
@@ -109,9 +124,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:maxLines="1"
                 android:lines="1"
-                android:singleLine="true"/>
+                android:maxLines="1"
+                android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Space
@@ -120,7 +135,7 @@
 
 
         <Button
-            android:id="@+id/outlinedButton"
+            android:id="@+id/login"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="206dp"
             android:layout_height="63dp"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
+    tools:context=".AddNewGroupActivity">
 
     <LinearLayout
         android:layout_width="364dp"
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="@string/signup"
+            android:text="@string/group_of_activities_add_new"
             android:textColor="#000000"
             android:textSize="14sp"
             android:textStyle="normal"
@@ -32,7 +32,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="29dp" />
+            android:layout_height="16dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,16 +49,24 @@
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:layout_width="199dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/signup"
+                android:text="@string/add_new"
                 android:textColor="#000000"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="170dp" />
+
+            <ImageButton
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:background="@null"
+                app:srcCompat="@drawable/delete" />
         </LinearLayout>
 
 
@@ -66,8 +74,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="302dp"
-        android:layout_height="458dp"
+        android:layout_width="342dp"
+        android:layout_height="554dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
@@ -76,125 +84,108 @@
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69"
+        app:layout_constraintVertical_bias="0.914"
         tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textViewGeneral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/general"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="11dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextFieldUsername"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/username">
+            android:hint="@string/name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_width="323dp"
+                android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/reqUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/req_username_password" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="14dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextFieldEmail"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/reqEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/req_email" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="14dp" />
+            android:layout_height="13dp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextFieldPassword"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password">
+            android:hint="@string/description">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:layout_width="323dp"
+                android:layout_height="100dp" />
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/reqPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/req_username_password" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="14dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextFieldPhone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/phoneNumber">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="25dp" />
 
         <TextView
-            android:id="@+id/reqPhone"
+            android:id="@+id/textViewColour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/req_phone" />
+            android:text="@string/color"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
 
-        <Space
+        <RadioGroup
+            android:id="@+id/radioGroupColour"
             android:layout_width="match_parent"
-            android:layout_height="14dp" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <RadioButton
+                android:id="@+id/option_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/green" />
+
+            <RadioButton
+                android:id="@+id/option_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/blue" />
+
+            <RadioButton
+                android:id="@+id/option_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orange" />
+
+            <RadioButton
+                android:id="@+id/option_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grey" />
+        </RadioGroup>
 
         <Button
-            android:id="@+id/signup"
+            android:id="@+id/saveGroup"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="206dp"
             android:layout_height="63dp"
-            android:text="@string/signup"
+            android:text="@string/save_group"
             android:textColor="#000000"
             app:iconTint="#000000"
             app:strokeColor="#000000"
             tools:ignore="MissingConstraints" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

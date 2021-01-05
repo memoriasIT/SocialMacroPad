@@ -9,4 +9,21 @@
     <string name="phoneNumber">Número de teléfono</string>
     <string name="password">Contraseña</string>
     <string name="teachMe">Enséñame como usarlo</string>
+    <string name="req_username_password">4-30 carácteres (A-Z, a-z, 0-9 sólo)</string>
+    <string name="req_email">p. ej. nombre@mail.com</string>
+    <string name="user_registred">Usuario registrado con éxito</string>
+    <string name="non_valid_username">El nombre de usuario introducido no es válido</string>
+    <string name="non_valid_password">La contraseña introducida no es válida</string>
+    <string name="user_not_found">El nombre de usuario y la contraseña que ingresaste no coinciden con nuestros registros. Por favor, revisa e inténtalo de nuevo.</string>
+    <string name="req_phone">p. ej. +34612387954</string>
+    <string name="group_of_activities_add_new">Grupos de Actividades > Añadir Nuevo</string>
+    <string name="add_new">Añadir Nuevo</string>
+    <string name="name">Nombre</string>
+    <string name="description">Descripción</string>
+    <string name="color">Color</string>
+    <string name="green">Verde</string>
+    <string name="blue">Azul</string>
+    <string name="orange">Naranja</string>
+    <string name="grey">Gris</string>
+    <string name="save_group">Guardar Grupo</string>
 </resources>

@@ -1,20 +1,16 @@
 package com.example.socialmacropad.activities;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -24,7 +20,6 @@ import com.example.socialmacropad.event.UIToastEvent;
 import org.greenrobot.eventbus.EventBus;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Set;
 
 public class DeviceListActivity  extends Activity {
@@ -47,7 +42,7 @@ public class DeviceListActivity  extends Activity {
             finish();
         }
 
-        ArrayAdapter<String> pairedDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.item_device_name);
+        ArrayAdapter<String> pairedDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.list_item);
 
         // Vinculamos nuestro adaptador a nuestra lista
         ListView pairedListView = findViewById(R.id.paired_devices);

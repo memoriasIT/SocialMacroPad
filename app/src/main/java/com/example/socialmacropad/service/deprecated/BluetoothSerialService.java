@@ -1,10 +1,12 @@
-package com.example.socialmacropad.service;
+package com.example.socialmacropad.service.deprecated;
 
+import android.app.Notification;
 import android.app.Service;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -13,14 +15,18 @@ import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.example.socialmacropad.R;
+import com.example.socialmacropad.event.UIToastEvent;
 import com.example.socialmacropad.util.Constants;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-
+@Deprecated
 public class BluetoothSerialService extends Service {
     private static final String TAG = BluetoothSerialService.class.getSimpleName();
     public static final String KEY_MAC_ADDRESS = "KEY_MAC_ADDRESS";
@@ -35,6 +41,58 @@ public class BluetoothSerialService extends Service {
     private ConnectedThread mConnectedThread;
 
 
+    private final IBinder mBinder = new MySerialServiceBinder();
+    private long statusUpdatePoolInterval = Constants.STATUS_UPDATE_INTERVAL;
+
+
+
+    public long getStatusUpdatePoolInterval() {
+        return statusUpdatePoolInterval;
+    }
+
+    public void setStatusUpdatePoolInterval(long statusUpdatePoolInterval) {
+        this.statusUpdatePoolInterval = statusUpdatePoolInterval;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (mAdapter == null){
+            EventBus.getDefault().post(new UIToastEvent(getString(R.string.text_bluetooth_adapter_error), true, false));
+            stopSelf();
+        } else {
+            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1){
+                startForeground(Constants.BLUETOOTH_SERVICE_NOTIFICATION_ID, new Notification());
+            }
+        }
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        this.start();
+
+        if(intent != null) {
+            String deviceAddress = intent.getStringExtra(KEY_MAC_ADDRESS);
+            if (deviceAddress != null){
+                try{
+                    BluetoothDevice device = mAdapter.getRemoteDevice(deviceAddress.toUpperCase());
+                    this.connect(device, false);
+                } catch (IllegalArgumentException e){
+                    EventBus.getDefault().post(new UIToastEvent(e.getMessage(), true, true));
+                    disconnectService()
+                }
+            }
+        }
+
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    private void connect(BluetoothDevice device, boolean b) {
+    }
+
+    private void start() {
+    }
 
     @Nullable
     @Override

@@ -64,4 +64,5 @@
     <string name="orange">Orange</string>
     <string name="grey">Grey</string>
     <string name="save_group">Save Group</string>
+    <string name="sharedPreferencesKey">a</string>
 </resources>

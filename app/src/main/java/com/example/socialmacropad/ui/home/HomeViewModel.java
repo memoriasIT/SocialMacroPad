@@ -1,5 +1,6 @@
 package com.example.socialmacropad.ui.home;
 
+import android.bluetooth.BluetoothAdapter;
 import android.view.View;
 
 import androidx.lifecycle.LiveData;
@@ -10,6 +11,7 @@ import com.example.socialmacropad.R;
 
 public class HomeViewModel extends ViewModel {
 
+    BluetoothAdapter bluetoothAdapter = null;
     private MutableLiveData<String> mText;
 
     public HomeViewModel() {
@@ -17,7 +19,9 @@ public class HomeViewModel extends ViewModel {
         mText.setValue("This is home fragment");
 
 
+
     }
+
 
 
 

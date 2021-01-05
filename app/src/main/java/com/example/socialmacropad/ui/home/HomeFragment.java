@@ -1,9 +1,14 @@
 package com.example.socialmacropad.ui.home;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -20,15 +27,22 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.socialmacropad.DeviceListActivity;
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.event.UIToastEvent;
+import com.example.socialmacropad.helper.EnhancedSharedPreferences;
+import com.example.socialmacropad.helper.NotificationHelper;
 import com.example.socialmacropad.util.Config;
+import com.example.socialmacropad.util.Constants;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.Objects;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
+    private BluetoothAdapter bluetoothAdapter = null;
+    private EnhancedSharedPreferences sharedPreferences;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,7 +60,6 @@ public class HomeFragment extends Fragment {
 
 
 
-
     }
 
 
@@ -54,6 +67,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        sharedPreferences = EnhancedSharedPreferences.getInstance(getActivity(), getString(R.string.sharedPreferencesKey));
 
         Button btnConnect = getView().findViewById(R.id.btnConnect);
         btnConnect.setOnClickListener(new View.OnClickListener(){
@@ -67,7 +81,7 @@ public class HomeFragment extends Fragment {
 //                }).setNegativeButton(getString(R.string.text_cancel), null).show();
 
                 Intent intent = new Intent(getActivity(), DeviceListActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, Constants.CONNECT_DEVICE_SECURE);
             }
         });
 
@@ -76,12 +90,59 @@ public class HomeFragment extends Fragment {
         btnAction1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventBus.getDefault().post(new UIToastEvent("Ejemplo", true, true));
+                String macAddress = sharedPreferences.getString(getString(R.string.preference_last_connected_device), "");
+                EventBus.getDefault().post(new UIToastEvent("ULTIMO DISPOSITIVO " + macAddress, true, true));
             }
         });
+
+
+
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }
 
-// ///////////////////////////////////////////////
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+
+
+//        Activamos bluetooth
+        if(!bluetoothAdapter.isEnabled()){
+            Thread thread = new Thread(){
+                @Override
+                public void run() {
+                    try {
+                        bluetoothAdapter.enable();
+                    } catch (RuntimeException e ){
+                        EventBus.getDefault().post(new UIToastEvent(getString(R.string.text_no_bluetooth_permission), true, true));
+                    }
+                }
+            };
+            thread.start();
+        }
+    }
+
+
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case Constants.CONNECT_DEVICE_INSECURE:
+            case Constants.CONNECT_DEVICE_SECURE:
+                if (resultCode == Activity.RESULT_OK) {
+                    String macAddress = Objects.requireNonNull(data.getExtras()).getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+                    sharedPreferences.edit().putString(getString(R.string.preference_last_connected_device), macAddress).apply();
+                    Log.e("MAC_ADDRESS: ", macAddress);
+                }
+
+        }
+    }
+
+    // ///////////////////////////////////////////////
 //    EVENT BUS!
 // ///////////////////////////////////////////////
     @Override
@@ -100,4 +161,6 @@ public class HomeFragment extends Fragment {
     public void onUIToastEvent(UIToastEvent event) {
         Config.Mensaje(getActivity(), event.getMessage(), event.getLongToast(), event.getIsWarning());
     }
+
+
 }

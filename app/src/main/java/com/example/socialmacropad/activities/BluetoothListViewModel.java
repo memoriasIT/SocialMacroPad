@@ -1,4 +1,4 @@
-package com.example.socialmacropad.androidbluetoothserial;
+package com.example.socialmacropad.activities;
 
 import android.app.Application;
 import android.bluetooth.BluetoothAdapter;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-public class MainActivityViewModel extends AndroidViewModel {
+public class BluetoothListViewModel extends AndroidViewModel {
 
     // Our BluetoothManager!
     private BluetoothManager bluetoothManager;
@@ -29,7 +29,7 @@ public class MainActivityViewModel extends AndroidViewModel {
     private boolean viewModelSetup = false;
 
     // Called by the system, this is just a constructor that matches AndroidViewModel.
-    public MainActivityViewModel(@NotNull Application application) {
+    public BluetoothListViewModel(@NotNull Application application) {
         super(application);
     }
 

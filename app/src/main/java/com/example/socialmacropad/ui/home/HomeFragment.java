@@ -1,10 +1,8 @@
 package com.example.socialmacropad.ui.home;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +15,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.socialmacropad.activities.BluetoothList;
 import com.example.socialmacropad.activities.DeviceListActivity;
 import com.example.socialmacropad.R;
-import com.example.socialmacropad.androidbluetoothserial.BluetoothPairedDevices;
 import com.example.socialmacropad.event.UIToastEvent;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
 import com.example.socialmacropad.util.Config;
@@ -29,8 +27,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.Objects;
-
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
@@ -39,8 +35,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -50,9 +45,6 @@ public class HomeFragment extends Fragment {
             }
         });
         return root;
-
-
-
     }
 
 
@@ -73,8 +65,8 @@ public class HomeFragment extends Fragment {
 //                    }
 //                }).setNegativeButton(getString(R.string.text_cancel), null).show();
 
-//                Intent intent = new Intent(getActivity(), DeviceListActivity.class);
-                Intent intent = new Intent(getActivity(), BluetoothPairedDevices.class);
+//                Intent intent = new Intent(getActivity(), CommunicateActivity.class);
+                Intent intent = new Intent(getActivity(), BluetoothList.class);
                 startActivityForResult(intent, Constants.CONNECT_DEVICE_SECURE);
             }
         });
@@ -91,7 +83,6 @@ public class HomeFragment extends Fragment {
 
 
 
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }
 
 
@@ -99,46 +90,27 @@ public class HomeFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-
-
-//        Activamos bluetooth
-        if(!bluetoothAdapter.isEnabled()){
-            Thread thread = new Thread(){
-                @Override
-                public void run() {
-                    try {
-                        bluetoothAdapter.enable();
-                    } catch (RuntimeException e ){
-                        EventBus.getDefault().post(new UIToastEvent(getString(R.string.text_no_bluetooth_permission), true, true));
-                    }
-                }
-            };
-            thread.start();
-        }
     }
-
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case Constants.CONNECT_DEVICE_INSECURE:
-            case Constants.CONNECT_DEVICE_SECURE:
-                if (resultCode == Activity.RESULT_OK) {
-                    String macAddress = Objects.requireNonNull(data.getExtras()).getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-                    sharedPreferences.edit().putString(getString(R.string.preference_last_connected_device), macAddress).apply();
-                    Log.e("MAC_ADDRESS: ", macAddress);
-                }
-
-        }
+//
+//        switch (requestCode) {
+//            case Constants.CONNECT_DEVICE_INSECURE:
+//            case Constants.CONNECT_DEVICE_SECURE:
+//                if (resultCode == Activity.RESULT_OK) {
+//                    String macAddress = Objects.requireNonNull(data.getExtras()).getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+//                    sharedPreferences.edit().putString(getString(R.string.preference_last_connected_device), macAddress).apply();
+//                    Log.e("MAC_ADDRESS: ", macAddress);
+//                }
+//
+//        }
     }
 
     // ///////////////////////////////////////////////
-//    EVENT BUS!
-// ///////////////////////////////////////////////
+    //    EVENT BUS!
+    // ///////////////////////////////////////////////
     @Override
     public void onStart() {
         super.onStart();

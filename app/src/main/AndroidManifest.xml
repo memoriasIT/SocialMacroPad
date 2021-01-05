@@ -26,12 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.CommunicateActivity"></activity>
         <activity
-            android:name="com.example.socialmacropad.activities.DeviceListActivity"
+            android:name="com.example.socialmacropad.activities.BluetoothList"
             android:label="@string/text_select_paired_device"
             android:resizeableActivity="false"
-            android:supportsPictureInPicture="false"
-            android:theme="@android:style/Theme.DeviceDefault.Dialog" />
+            android:supportsPictureInPicture="false"></activity>
     </application>
 
 </manifest>

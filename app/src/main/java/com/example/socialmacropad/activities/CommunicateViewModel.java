@@ -1,4 +1,4 @@
-package com.example.socialmacropad.androidbluetoothserial;
+package com.example.socialmacropad.activities;
 
 import android.app.Application;
 import android.text.TextUtils;

@@ -1,4 +1,4 @@
-package com.example.socialmacropad.androidbluetoothserial;
+package com.example.socialmacropad.activities;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
@@ -22,9 +22,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 
-public class BluetoothPairedDevices extends AppCompatActivity {
+public class BluetoothList extends AppCompatActivity {
 
-    private MainActivityViewModel viewModel;
+    private BluetoothListViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class BluetoothPairedDevices extends AppCompatActivity {
         setContentView(R.layout.activity_device_list);
 
         // Setup our ViewModel
-        viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        viewModel = ViewModelProviders.of(this).get(BluetoothListViewModel.class);
 
         // This method return false if there is an error, so if it does, we should close.
         if (!viewModel.setupViewModel()) {
@@ -57,7 +57,7 @@ public class BluetoothPairedDevices extends AppCompatActivity {
         });
 
         // Start observing the data sent to us by the ViewModel
-        viewModel.getPairedDeviceList().observe(BluetoothPairedDevices.this, adapter::updateList);
+        viewModel.getPairedDeviceList().observe(BluetoothList.this, adapter::updateList);
 
         // Immediately refresh the paired devices list
         viewModel.refreshPairedDevices();

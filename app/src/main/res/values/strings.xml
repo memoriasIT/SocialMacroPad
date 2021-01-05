@@ -65,6 +65,15 @@
     <string name="grey">Grey</string>
     <string name="save_group">Save Group</string>
     <string name="sharedPreferencesKey">a</string>
+    <string name="error_colour">You have to select a colour</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="error_name">The name can\'t be null</string>
+    <string name="warning_back">All unsaved changes will be lost</string>
+    <string name="new_group_created">New group created</string>
+    <string name="warning_delete_group">This group will be deleted</string>
+    <string name="updated_group">Updated group</string>
 
 
 

@@ -45,6 +45,7 @@ public class LogInActivity extends AppCompatActivity {
         logIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                error.setVisibility(View.GONE);
                 validarDatos();
             }
         });
@@ -67,7 +68,7 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private boolean logIn(String nombre, String contrasena) { //login BD
-        return false;
+        return true;
     }
 
     private boolean esNombreValido(String nombre) {

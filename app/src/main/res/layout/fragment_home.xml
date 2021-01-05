@@ -6,6 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnDisconnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Disconnect" />
+
+        <Button
+            android:id="@+id/btnConnectBluetooth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="connect to bluetooth" />
+
+        <Button
+            android:id="@+id/btnLastDevice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Last connection" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"
@@ -20,20 +44,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnConnect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Connect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnAction1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ejemplo1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="217dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

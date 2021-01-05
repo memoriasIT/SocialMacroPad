@@ -1,9 +1,11 @@
 package com.example.socialmacropad.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,11 +14,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialmacropad.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Pattern;
 
 public class LogInActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+    private String TAG = LogInActivity.class.getSimpleName();
 
     TextInputLayout username;
     TextInputLayout  password;
@@ -27,6 +36,8 @@ public class LogInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         this.getSupportActionBar().hide();
+
+        mAuth = FirebaseAuth.getInstance();
 
         username = (TextInputLayout) findViewById(R.id.outlinedTextFieldUsername);
         password = (TextInputLayout) findViewById(R.id.outlinedTextFieldPassword);
@@ -47,8 +58,20 @@ public class LogInActivity extends AppCompatActivity {
             public void onClick(View v) {
                 error.setVisibility(View.GONE);
                 validarDatos();
+
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // If user is already registered go to home screen
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(LogInActivity.this, ListaDeActividades.class);
+            startActivity(intent);
+        }
     }
 
     private void validarDatos() {
@@ -60,6 +83,9 @@ public class LogInActivity extends AppCompatActivity {
 
         if (a && b) {
             if(logIn(nombre, contrasena)){ //Datos correctos -> iniciar sesion
+                // Go to home screen
+                Intent intent = new Intent(LogInActivity.this, ListaDeActividades.class);
+                startActivity(intent);
 
             }else{
                 error.setVisibility(View.VISIBLE);
@@ -67,12 +93,30 @@ public class LogInActivity extends AppCompatActivity {
         }
     }
 
-    private boolean logIn(String nombre, String contrasena) { //login BD
-        return true;
+    private boolean logIn(String email, String contrasena) {
+        //Login Firebase
+        mAuth.signInWithEmailAndPassword(email, contrasena)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LogInActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+        return mAuth.getCurrentUser() != null;
     }
 
     private boolean esNombreValido(String nombre) {
-        Pattern patron = Pattern.compile("^[a-zA-Z0-9]+$");
+        // Aunque no lo parezca este es un buen regex porque cumple RFC 5322 lol --> emailregex.com
+        Pattern patron = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
         if (!patron.matcher(nombre).matches() || nombre.length() > 30 || nombre.length()<4) {
             username.setError(getString(R.string.non_valid_username));
             return false;

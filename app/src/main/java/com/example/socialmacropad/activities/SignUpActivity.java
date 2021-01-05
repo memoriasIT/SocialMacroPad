@@ -1,11 +1,13 @@
 package com.example.socialmacropad.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +17,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialmacropad.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
+    private static final String TAG = SignUpActivity.class.getSimpleName();
+    private FirebaseAuth mAuth;
 
     TextInputLayout username;
     TextView reqUsername;
@@ -31,11 +40,16 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputLayout  phoneNumber;
     TextView reqPhone;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
         this.getSupportActionBar().hide();
+
+//        Get Firebase instance for singing up users
+        mAuth = FirebaseAuth.getInstance();
 
         username = (TextInputLayout) findViewById(R.id.outlinedTextFieldUsername);
         reqUsername = (TextView)findViewById(R.id.reqUsername);
@@ -65,8 +79,18 @@ public class SignUpActivity extends AppCompatActivity {
                 validarDatos();
             }
         });
+    }
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // If user is already registered go to home screen
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(SignUpActivity.this, ListaDeActividades.class);
+            startActivity(intent);
+        }
     }
 
     private void validarDatos() {
@@ -81,7 +105,9 @@ public class SignUpActivity extends AppCompatActivity {
         boolean d = esContrasenaValida(contrasena);
 
         if (a && b && c && d) {
-            //INSERTAR EN LA BD UN USUARIO CON LOS DATOS
+            // Registrar usuario en firebase
+            registrarUsuario(correo, contrasena);
+
             Toast.makeText(this, getString((R.string.user_registred)), Toast.LENGTH_LONG).show();
             onBackPressed();
         }
@@ -128,4 +154,28 @@ public class SignUpActivity extends AppCompatActivity {
         }
         return true;
     }
+
+    // Registra usuario en Firebase
+    private void registrarUsuario(String email, String password){
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "createUserWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+//                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                            Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+//                            updateUI(null);
+                        }
+
+                    }
+                });
+    }
+
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "396960093058",
+    "project_id": "socialmacropad",
+    "storage_bucket": "socialmacropad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:396960093058:android:66be4b5733ab19b74bf59b",
+        "android_client_info": {
+          "package_name": "com.example.socialmacropad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "396960093058-a4i2c6mpkl6048viplj9euinv8grhei9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAQS5mRbPzGPeIPtOINkFQbuzXj864tKg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "396960093058-a4i2c6mpkl6048viplj9euinv8grhei9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

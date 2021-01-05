@@ -16,12 +16,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.socialmacropad.activities.BluetoothList;
-import com.example.socialmacropad.activities.DeviceListActivity;
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.activities.MainActivity;
 import com.example.socialmacropad.event.UIToastEvent;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
 import com.example.socialmacropad.util.Config;
 import com.example.socialmacropad.util.Constants;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -54,25 +55,27 @@ public class HomeFragment extends Fragment {
 
         sharedPreferences = EnhancedSharedPreferences.getInstance(getActivity(), getString(R.string.sharedPreferencesKey));
 
-        Button btnConnect = getView().findViewById(R.id.btnConnect);
+        Button btnConnect = getView().findViewById(R.id.btnConnectBluetooth);
         btnConnect.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-//                new AlertDialog.Builder(getActivity()).setTitle(R.string.text_disconnect).setMessage(R.string.text_disconnect_confirm).setPositiveButton(getString(R.string.text_yes_confirm), new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        Toast.makeText(getActivity(), "Botón de conexión", Toast.LENGTH_SHORT);
-//                    }
-//                }).setNegativeButton(getString(R.string.text_cancel), null).show();
-
-//                Intent intent = new Intent(getActivity(), CommunicateActivity.class);
                 Intent intent = new Intent(getActivity(), BluetoothList.class);
                 startActivityForResult(intent, Constants.CONNECT_DEVICE_SECURE);
             }
         });
 
+        Button btnLogout = getView().findViewById(R.id.btnDisconnect);
+        btnLogout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
-        Button btnAction1 = getView().findViewById(R.id.btnAction1);
+
+        Button btnAction1 = getView().findViewById(R.id.btnLastDevice);
         btnAction1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

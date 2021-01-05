@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AddNewGroupActivity">
+    tools:context=".activities.EditGroupActivity">
+
 
     <LinearLayout
         android:layout_width="364dp"
@@ -52,7 +53,7 @@
                 android:layout_width="199dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/add_new"
+                android:text="GROUP NAME"
                 android:textColor="#000000"
                 android:textSize="34sp"
                 android:textStyle="bold"
@@ -60,6 +61,13 @@
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="170dp" />
 
+            <ImageButton
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:background="@null"
+                app:srcCompat="@drawable/delete" />
         </LinearLayout>
 
 
@@ -127,40 +135,21 @@
             android:layout_width="match_parent"
             android:layout_height="25dp" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textViewColour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textViewColour"
-                android:layout_width="73dp"
-                android:layout_height="wrap_content"
-                android:text="@string/color"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:ignore="MissingConstraints" />
-
-            <TextView
-                android:id="@+id/textViewErrorColour"
-                android:layout_width="match_parent"
-                android:layout_height="27dp"
-                android:gravity="center"
-                android:text="@string/error_colour"
-                android:textColor="#FD0000"
-                android:textStyle="normal"
-                tools:ignore="MissingConstraints" />
-
-        </LinearLayout>
+            android:text="@string/color"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
 
         <RadioGroup
             android:id="@+id/radioGroupColour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal">
-
-
 
             <RadioButton
                 android:id="@+id/option_green"

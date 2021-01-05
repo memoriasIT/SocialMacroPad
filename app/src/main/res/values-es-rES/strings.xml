@@ -26,4 +26,13 @@
     <string name="orange">Naranja</string>
     <string name="grey">Gris</string>
     <string name="save_group">Guardar Grupo</string>
+    <string name="error_colour">Debes seleccionar un color</string>
+    <string name="are_you_sure">¿Estás seguro?</string>
+    <string name="yes">Si</string>
+    <string name="cancel">Cancelar</string>
+    <string name="error_name">El nombre no puede ser nulo</string>
+    <string name="warning_back">Se pederán todos los cambios no guardados</string>
+    <string name="new_group_created">Nuevo grupo creado</string>
+    <string name="warning_delete_group">Este grupo será borrado</string>
+    <string name="updated_group">Grupo actualizado</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.socialmacropad;
+package com.example.socialmacropad.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.socialmacropad.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;

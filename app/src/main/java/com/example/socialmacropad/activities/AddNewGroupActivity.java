@@ -1,8 +1,10 @@
-package com.example.socialmacropad;
+package com.example.socialmacropad.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.socialmacropad.R;
 
 public class AddNewGroupActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.socialmacropad;
+package com.example.socialmacropad.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.socialmacropad.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

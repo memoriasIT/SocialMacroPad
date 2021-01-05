@@ -1,4 +1,4 @@
-package com.example.socialmacropad;
+package com.example.socialmacropad.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.example.socialmacropad.R;
 import com.example.socialmacropad.event.UIToastEvent;
 
 import org.greenrobot.eventbus.EventBus;

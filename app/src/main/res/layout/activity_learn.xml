@@ -19,9 +19,56 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:statusBarScrim="@color/colorPrimary"
             app:toolbarId="@+id/toolbar">
+
+
+            <LinearLayout
+                android:layout_width="364dp"
+                android:layout_height="114dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.489"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.085">
+
+                <!--        <TextView-->
+                <!--            android:id="@+id/textView"-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:gravity="left"-->
+                <!--            android:text="@string/login"-->
+                <!--            android:textColor="#000000"-->
+                <!--            android:textSize="14sp"-->
+                <!--            android:textStyle="normal"-->
+                <!--            tools:ignore="MissingConstraints"-->
+                <!--            tools:layout_editor_absoluteX="0dp"-->
+                <!--            tools:layout_editor_absoluteY="170dp" />-->
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/backLearn"
+                        style="@android:style/Widget.DeviceDefault.ImageButton"
+                        android:layout_width="69dp"
+                        android:layout_height="61dp"
+                        android:background="@null"
+                        app:srcCompat="@drawable/vector" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -30,18 +77,19 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/Theme.SocialMacroPad.PopupOverlay" />
 
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
     <include layout="@layout/content_scrolling" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        app:layout_anchor="@id/app_bar"
-        app:layout_anchorGravity="bottom|end"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+<!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+<!--        android:id="@+id/fab"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_margin="@dimen/fab_margin"-->
+<!--        app:layout_anchor="@id/app_bar"-->
+<!--        app:layout_anchorGravity="bottom|end"-->
+<!--        app:srcCompat="@android:drawable/ic_dialog_email" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

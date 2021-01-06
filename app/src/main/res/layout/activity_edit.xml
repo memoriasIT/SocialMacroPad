@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LogInActivity">
+    tools:context=".activities.EditActivity">
 
 
     <LinearLayout
@@ -18,22 +18,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.085">
 
-<!--        <TextView-->
-<!--            android:id="@+id/textView"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:gravity="left"-->
-<!--            android:text="@string/login"-->
-<!--            android:textColor="#000000"-->
-<!--            android:textSize="14sp"-->
-<!--            android:textStyle="normal"-->
-<!--            tools:ignore="MissingConstraints"-->
-<!--            tools:layout_editor_absoluteX="0dp"-->
-<!--            tools:layout_editor_absoluteY="170dp" />-->
+        <TextView
+            android:id="@+id/textViewTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text=""
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="170dp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="29dp" />
+            android:layout_height="16dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,96 +49,138 @@
                 app:srcCompat="@drawable/vector" />
 
             <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:id="@+id/textViewActivityName"
+                android:layout_width="199dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/login"
+                android:text=""
                 android:textColor="#000000"
-                android:textSize="34sp"
+                android:textSize="32sp"
                 android:textStyle="bold"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="170dp" />
+
+            <ImageButton
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:background="@null"
+                app:srcCompat="@drawable/delete" />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="319dp"
-        android:layout_height="396dp"
+        android:layout_width="342dp"
+        android:layout_height="554dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498"
+        app:layout_constraintVertical_bias="0.914"
         tools:ignore="MissingConstraints">
 
         <TextView
-            android:id="@+id/textViewError"
+            android:id="@+id/textViewGeneral"
             android:layout_width="match_parent"
-            android:layout_height="59dp"
-            android:gravity="center"
-            android:text="@string/user_not_found"
-            android:textColor="#FD0000"
-            android:textStyle="normal"
+            android:layout_height="wrap_content"
+            android:text="@string/general"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
             tools:ignore="MissingConstraints" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="25dp" />
+            android:layout_height="11dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextFieldEmail"
+            android:id="@+id/outlinedTextFieldName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email">
+            android:hint="@string/name">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:layout_width="323dp"
+                android:layout_height="46dp" />
 
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="13dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/outlinedTextFieldInput"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/input">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="323dp"
+                android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="25dp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextFieldPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <TextView
+            android:id="@+id/textViewColour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password">
+            android:text="@string/color"
+            android:textColor="#000000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:ignore="MissingConstraints" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:lines="1"
-                android:maxLines="1"
-                android:singleLine="true" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Space
+        <RadioGroup
+            android:id="@+id/radioGroupColour"
             android:layout_width="match_parent"
-            android:layout_height="25dp" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
 
+            <RadioButton
+                android:id="@+id/option_green"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/green" />
+
+            <RadioButton
+                android:id="@+id/option_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/blue" />
+
+            <RadioButton
+                android:id="@+id/option_orange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/orange" />
+
+            <RadioButton
+                android:id="@+id/option_grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/grey" />
+        </RadioGroup>
 
         <Button
-            android:id="@+id/login"
+            android:id="@+id/saveActivity"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="206dp"
             android:layout_height="63dp"
-            android:text="@string/login"
+            android:text="@string/save_activity"
             android:textColor="#000000"
             app:iconTint="#000000"
             app:strokeColor="#000000"

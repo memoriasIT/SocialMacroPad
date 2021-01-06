@@ -1,6 +1,5 @@
 package com.example.socialmacropad.activities;
 
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,27 +14,32 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialmacropad.R;
-
 import com.google.android.material.textfield.TextInputLayout;
 
-public class AddNewGroupActivity extends AppCompatActivity {
+public class NewActivity extends AppCompatActivity {
 
     TextInputLayout name;
-    TextInputLayout  description;
+    TextInputLayout  input;
     RadioGroup colour;
+    TextView top;
     TextView errorColour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_new_group);
+        setContentView(R.layout.activity_new);
         this.getSupportActionBar().hide();
 
         name = (TextInputLayout) findViewById(R.id.outlinedTextFieldName);
-        description = (TextInputLayout) findViewById(R.id.outlinedTextFieldDescription);
+        input = (TextInputLayout) findViewById(R.id.outlinedTextFieldInput);
         colour = (RadioGroup) findViewById(R.id.radioGroupColour);
+        top = (TextView)findViewById(R.id.textViewTop);
         errorColour = (TextView)findViewById(R.id.textViewErrorColour);
         errorColour.setVisibility(View.GONE);
+
+
+        //CARGAR VALORES DEL GRUPO SELECCIONADO
+        top.setText("nombre_del_grupo" + " > " + getString(R.string.add_new_activity)); //nombre_del_grupo > Add new activity
 
         ImageButton back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -45,37 +49,41 @@ public class AddNewGroupActivity extends AppCompatActivity {
             }
         });
 
-        Button save = (Button)findViewById(R.id.saveGroup);
+        Button save = (Button)findViewById(R.id.saveActivity);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                errorColour.setVisibility(View.GONE);//elimina el posible mensaje de error anterior 
+                errorColour.setVisibility(View.GONE);//elimina el posible mensaje de error anterior
                 validarDatos();
             }
         });
 
     }
 
-    private void validarDatos() { //Nombre obligatorio, descripcion opcional, color obligatorio
+    private void validarDatos() { //Nombre obligatorio, input obligatorio, color obligatorio
         String nombre = name.getEditText().getText().toString();
-        String descripcion = description.getEditText().getText().toString();
+        String entrada = input.getEditText().getText().toString();
 
         RadioButton green = (RadioButton)findViewById(R.id.option_green);
         RadioButton blue = (RadioButton)findViewById(R.id.option_blue);
         RadioButton orange = (RadioButton)findViewById(R.id.option_orange);
         RadioButton grey = (RadioButton)findViewById(R.id.option_grey);
 
-        boolean a = nombre.length()>0;
-        boolean b = green.isChecked() || blue.isChecked() || orange.isChecked() || grey.isChecked();
-        if(a && b){//Añadir el nuevo grupo a la BD
+        boolean a = nombre.length() > 0;
+        boolean b = entrada.length() > 0;
+        boolean c = green.isChecked() || blue.isChecked() || orange.isChecked() || grey.isChecked();
+        if(a && b && c){//Añadir la nueva actividad a la BD
 
-            Toast.makeText(this, getString((R.string.new_group_created)), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString((R.string.new_activity_created)), Toast.LENGTH_LONG).show();
             onBackPressed();
         }else{
             if(!a){
                 name.setError(getString(R.string.error_name));
             }
             if(!b){
+                input.setError(getString(R.string.error_input));
+            }
+            if(!c){
                 errorColour.setVisibility(View.VISIBLE);
             }
         }

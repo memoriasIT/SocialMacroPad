@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialmacropad.R;
@@ -20,6 +21,8 @@ public class EditGroupActivity extends AppCompatActivity {
     TextInputLayout name;
     TextInputLayout  description;
     RadioGroup colour;
+    TextView top;
+    TextView groupName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,15 @@ public class EditGroupActivity extends AppCompatActivity {
         name = (TextInputLayout) findViewById(R.id.outlinedTextFieldName);
         description = (TextInputLayout) findViewById(R.id.outlinedTextFieldDescription);
         colour = (RadioGroup) findViewById(R.id.radioGroupColour);
+        top = (TextView)findViewById(R.id.textViewTop);
+        groupName = (TextView)findViewById(R.id.textViewGroupName);
+
+        //CARGAR VALORES DEL GRUPO SELECCIONADO
+        top.setText("nombre_del_seleccionado"+ getString(R.string.top_edit));//nombre_del_grupo > Edit
+        groupName.setText("nombre_del_seleccionado");
+        name.getEditText().setText( "nombre_del_seleccionado", TextView.BufferType.EDITABLE);
+        description.getEditText().setText("descripcion_del_seleciconado", TextView.BufferType.EDITABLE);
+        //check al radio button del color correspondiente
 
         ImageButton delete = (ImageButton)findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +71,7 @@ public class EditGroupActivity extends AppCompatActivity {
     private void validarDatos() { //Nombre obligatorio, descripcion opcional, color obligatorio
         String nombre = name.getEditText().getText().toString();
 
-        if(nombre.length()>0){//ACTUALIZAR el grupo a la BD
+        if(nombre.length()>0){//ACTUALIZAR el grupo en la BD
 
             Toast.makeText(this, getString((R.string.updated_group)), Toast.LENGTH_LONG).show();
             onBackPressed();

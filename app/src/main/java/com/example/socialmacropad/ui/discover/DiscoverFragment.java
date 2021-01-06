@@ -41,11 +41,11 @@ public class DiscoverFragment extends Fragment {
         ArrayList<MacroPad> macroPadList = new ArrayList<>();
 
         // EJEMPLOS
-        macroPadList.add(new MacroPad("test", "test" , "name",  new Action("a", "a"), new Action("b", "b"), new Action("c", "c"),
-                new Action("d", "d"), new Action("e", "e"), new Action("f", "f")));
+        macroPadList.add(new MacroPad("test", "test" , "name",  "description", "000000",    new Action("a", "a", "000000"), new Action("b", "b", "000000"), new Action("c", "c", "000000"),
+                new Action("d", "d", "000000"), new Action("e", "e", "000000"), new Action("f", "f", "000000")));
 
-        macroPadList.add(new MacroPad("test", "test" , "name2",  new Action("a", "a"), new Action("b", "b"), new Action("c", "c"),
-                new Action("d", "d"), new Action("e", "e"), new Action("f", "f")));
+        macroPadList.add(new MacroPad("test", "test" , "name2", "descripcion" , "000000", new Action("a", "a", "000000"), new Action("b", "b", "000000"), new Action("c", "c", "000000"),
+                new Action("d", "d", "000000"), new Action("e", "e", "000000"), new Action("f", "f", "000000")));
 
         mAdapter = new MacroPadAdapter(getActivity(), macroPadList);
         listView.setAdapter(mAdapter);

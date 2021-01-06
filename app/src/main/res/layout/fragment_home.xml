@@ -28,6 +28,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Last connection" />
+
+        <Button
+            android:id="@+id/btnCreateGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create group" />
+
+        <Button
+            android:id="@+id/btnEditGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit group" />
     </LinearLayout>
 
     <TextView

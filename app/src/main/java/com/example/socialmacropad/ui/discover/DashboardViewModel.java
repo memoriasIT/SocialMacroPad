@@ -1,4 +1,4 @@
-package com.example.socialmacropad.ui.dashboard;
+package com.example.socialmacropad.ui.discover;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -12,9 +12,9 @@
     <string name="req_username_password">4-30 carácteres (A-Z, a-z, 0-9 sólo)</string>
     <string name="req_email">p. ej. nombre@mail.com</string>
     <string name="user_registred">Usuario registrado con éxito</string>
-    <string name="non_valid_username">El nombre de usuario introducido no es válido</string>
+    <string name="non_valid_email">El correo introducido no es válido</string>
     <string name="non_valid_password">La contraseña introducida no es válida</string>
-    <string name="user_not_found">El nombre de usuario y la contraseña que ingresaste no coinciden con nuestros registros. Por favor, revisa e inténtalo de nuevo.</string>
+    <string name="user_not_found">El correo y la contraseña que ingresaste no coinciden con nuestros registros. Por favor, revisa e inténtalo de nuevo.</string>
     <string name="req_phone">p. ej. +34612387954</string>
     <string name="group_of_activities_add_new">Grupos de Actividades > Añadir Nuevo</string>
     <string name="add_new">Añadir Nuevo</string>
@@ -32,7 +32,13 @@
     <string name="cancel">Cancelar</string>
     <string name="error_name">El nombre no puede ser nulo</string>
     <string name="warning_back">Se pederán todos los cambios no guardados</string>
-    <string name="new_group_created">Nuevo grupo creado</string>
+    <string name="new_group_created">Nuevo Grupo Creado</string>
     <string name="warning_delete_group">Este grupo será borrado</string>
-    <string name="updated_group">Grupo actualizado</string>
+    <string name="updated_group">Grupo Actualizado</string>
+    <string name="top_edit">" > Editar"</string>
+    <string name="add_new_activity">Añadir Nueva Actividad</string>
+    <string name="save_activity">Guardar Actividad</string>
+    <string name="error_input">El input no puede ser nulo</string>
+    <string name="new_activity_created">Nueva Actividad Creada</string>
+    <string name="updated_activity">Actividad Actualizada</string>
 </resources>

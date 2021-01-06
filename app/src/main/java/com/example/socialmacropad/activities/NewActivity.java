@@ -16,86 +16,86 @@ import android.widget.Toast;
 import com.example.socialmacropad.R;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class EditGroupActivity extends AppCompatActivity {
+public class NewActivity extends AppCompatActivity {
 
     TextInputLayout name;
-    TextInputLayout  description;
+    TextInputLayout  input;
     RadioGroup colour;
     TextView top;
-    TextView groupName;
+    TextView errorColour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_group);
+        setContentView(R.layout.activity_new);
         this.getSupportActionBar().hide();
 
         name = (TextInputLayout) findViewById(R.id.outlinedTextFieldName);
-        description = (TextInputLayout) findViewById(R.id.outlinedTextFieldDescription);
+        input = (TextInputLayout) findViewById(R.id.outlinedTextFieldInput);
         colour = (RadioGroup) findViewById(R.id.radioGroupColour);
         top = (TextView)findViewById(R.id.textViewTop);
-        groupName = (TextView)findViewById(R.id.textViewGroupName);
+        errorColour = (TextView)findViewById(R.id.textViewErrorColour);
+        errorColour.setVisibility(View.GONE);
+
 
         //CARGAR VALORES DEL GRUPO SELECCIONADO
-        top.setText("nombre_del_seleccionado"+ getString(R.string.top_edit));//nombre_del_grupo > Edit
-        groupName.setText("nombre_del_seleccionado");
-        name.getEditText().setText( "nombre_del_seleccionado", TextView.BufferType.EDITABLE);
-        description.getEditText().setText("descripcion_del_seleciconado", TextView.BufferType.EDITABLE);
-        //check al radio button del color correspondiente
-
-        ImageButton delete = (ImageButton)findViewById(R.id.delete);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                warningDialog(true);
-            }
-        });
+        top.setText("nombre_del_grupo" + " > " + getString(R.string.add_new_activity)); //Nombre_del_grupo > Add new activity
 
         ImageButton back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                warningDialog(false);
+                warningDialog();
             }
         });
 
-        Button save = (Button)findViewById(R.id.saveGroup);
+        Button save = (Button)findViewById(R.id.saveActivity);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                errorColour.setVisibility(View.GONE);//elimina el posible mensaje de error anterior
                 validarDatos();
             }
         });
+
     }
 
-    private void validarDatos() { //Nombre obligatorio, descripcion opcional, color obligatorio
+    private void validarDatos() { //Nombre obligatorio, input obligatorio, color obligatorio
         String nombre = name.getEditText().getText().toString();
+        String entrada = input.getEditText().getText().toString();
 
-        if(nombre.length()>0){//ACTUALIZAR el grupo a la BD
+        RadioButton green = (RadioButton)findViewById(R.id.option_green);
+        RadioButton blue = (RadioButton)findViewById(R.id.option_blue);
+        RadioButton orange = (RadioButton)findViewById(R.id.option_orange);
+        RadioButton grey = (RadioButton)findViewById(R.id.option_grey);
 
-            Toast.makeText(this, getString((R.string.updated_group)), Toast.LENGTH_LONG).show();
+        boolean a = nombre.length() > 0;
+        boolean b = entrada.length() > 0;
+        boolean c = green.isChecked() || blue.isChecked() || orange.isChecked() || grey.isChecked();
+        if(a && b && c){//Añadir la nueva actividad a la BD
+
+            Toast.makeText(this, getString((R.string.new_activity_created)), Toast.LENGTH_LONG).show();
             onBackPressed();
         }else{
-            name.setError(getString(R.string.error_name));
+            if(!a){
+                name.setError(getString(R.string.error_name));
+            }
+            if(!b){
+                input.setError(getString(R.string.error_input));
+            }
+            if(!c){
+                errorColour.setVisibility(View.VISIBLE);
+            }
         }
     }
 
-
-    private void warningDialog(Boolean delete) {//b:true-> delete    b:false->back
+    private void warningDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.are_you_sure));
-        if(delete){
-            builder.setMessage(getString(R.string.warning_delete_group));
-        }else{
-            builder.setMessage(getString(R.string.warning_back));
-        }
+        builder.setMessage(getString(R.string.warning_back));
         builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                if(delete){
-                    //SE ELIMINA EL GRUPO ACTUAL
-                }else {
-                    onBackPressed();
-                }
+                onBackPressed();
             }
         });
         builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {

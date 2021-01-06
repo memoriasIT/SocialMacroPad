@@ -50,9 +50,9 @@
     <string name="req_email">e. g. name@mail.com</string>
     <string name="req_phone">e. g. +34612387954</string>
     <string name="user_registred">Registered user successfully</string>
-    <string name="non_valid_username">The username entered is invalid</string>
+    <string name="non_valid_email">The email entered is invalid</string>
     <string name="non_valid_password">The password entered is invalid</string>
-    <string name="user_not_found">The username and password you entered did not match our records. Please double-check and try again.</string>
+    <string name="user_not_found">The email  and password you entered did not match our records. Please double-check and try again.</string>
     <string name="group_of_activities_add_new">Groups of Activities > Add New</string>
     <string name="add_new">Add New</string>
     <string name="name">Name</string>
@@ -71,9 +71,9 @@
     <string name="cancel">Cancel</string>
     <string name="error_name">The name can\'t be null</string>
     <string name="warning_back">All unsaved changes will be lost</string>
-    <string name="new_group_created">New group created</string>
+    <string name="new_group_created">New Group Created</string>
     <string name="warning_delete_group">This group will be deleted</string>
-    <string name="updated_group">Updated group</string>
+    <string name="updated_group">Updated Group</string>
 
 
     <!--    <string name="app_name">Bluetooth Serial Interface</string>-->
@@ -185,4 +185,11 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="top_edit">" > Edit"</string>
+    <string name="input" translatable="false">Input</string>
+    <string name="add_new_activity">Add New Activity</string>
+    <string name="save_activity">Save Activity</string>
+    <string name="error_input">The input can\'t be null</string>
+    <string name="new_activity_created">New Activity Created</string>
+    <string name="updated_activity">Updated Activity</string>
 </resources>

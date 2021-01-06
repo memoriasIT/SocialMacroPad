@@ -26,7 +26,7 @@ public class LogInActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private String TAG = LogInActivity.class.getSimpleName();
 
-    TextInputLayout username;
+    TextInputLayout email;
     TextInputLayout  password;
     TextView error;
 
@@ -38,7 +38,7 @@ public class LogInActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        username = (TextInputLayout) findViewById(R.id.outlinedTextFieldUsername);
+        email = (TextInputLayout) findViewById(R.id.outlinedTextFieldEmail);
         password = (TextInputLayout) findViewById(R.id.outlinedTextFieldPassword);
         error = (TextView)findViewById(R.id.textViewError);
         error.setVisibility(View.GONE);
@@ -74,14 +74,14 @@ public class LogInActivity extends AppCompatActivity {
     }
 
     private void validarDatos() {
-        String nombre = username.getEditText().getText().toString();
+        String correo = email.getEditText().getText().toString();
         String contrasena = password.getEditText().getText().toString();
 
-        boolean a = esNombreValido(nombre);
+        boolean a = esCorreoValido(correo);
         boolean b = esContrasenaValida(contrasena);
 
         if (a && b) {
-            if(logIn(nombre, contrasena)){ //Datos correctos -> iniciar sesion
+            if(logIn(correo, contrasena)){ //Datos correctos -> iniciar sesion
                 // Go to home screen
                 Intent intent = new Intent(LogInActivity.this, MainContent.class);
                 startActivity(intent);
@@ -113,14 +113,14 @@ public class LogInActivity extends AppCompatActivity {
         return mAuth.getCurrentUser() != null;
     }
 
-    private boolean esNombreValido(String nombre) {
+    private boolean esCorreoValido(String nombre) {
         // Aunque no lo parezca este es un buen regex porque cumple RFC 5322 lol --> emailregex.com
         Pattern patron = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])");
-        if (!patron.matcher(nombre).matches() || nombre.length() > 30 || nombre.length()<4) {
-            username.setError(getString(R.string.non_valid_username));
+        if (!patron.matcher(nombre).matches()) {
+            email.setError(getString(R.string.non_valid_email));
             return false;
         } else {
-            username.setError(null);
+            email.setError(null);
         }
         return true;
     }

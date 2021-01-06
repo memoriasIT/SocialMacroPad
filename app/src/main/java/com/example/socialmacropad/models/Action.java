@@ -1,17 +1,17 @@
 package com.example.socialmacropad.models;
 
 public class Action {
-    private String Action;
-    private String ActionName;
+    private String action;
+    private String actionname;
     private String color;
 
     // ESTO ESTÄ BIEN ES PARA FIREBASE
     public Action(){}
 
-    public Action(String Action, String ActionName, String color){
+    public Action(String Action, String actionname, String color){
         super();
-        this.Action = Action;
-        this.ActionName = ActionName;
+        this.action = Action;
+        this.actionname = actionname;
         this.color = color;
     }
 
@@ -24,18 +24,18 @@ public class Action {
     }
 
     public String getAction() {
-        return Action;
+        return action;
     }
 
     public void setAction(String action) {
-        Action = action;
+        this.action = action;
     }
 
-    public String getActionName() {
-        return ActionName;
+    public String getActionname() {
+        return actionname;
     }
 
-    public void setActionName(String actionName) {
-        ActionName = actionName;
+    public void setActionname(String actionname) {
+        this.actionname = actionname;
     }
 }

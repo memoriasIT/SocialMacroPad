@@ -1,6 +1,7 @@
 package com.example.socialmacropad.util;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,24 +51,48 @@ public class MacroPadAdapter extends ArrayAdapter<MacroPad> {
         description.setText(currentPad.getDescription());
 
         Button btn1_1 = (Button) listItem.findViewById(R.id.btn1_1);
-        btn1_1.setText(currentPad.getAction1().getActionName());
+        btn1_1.setText(insertPeriodically(currentPad.getAction1().getActionname(), "\n", 11));
 
         Button btn1_2 = (Button) listItem.findViewById(R.id.btn1_2);
-        btn1_2.setText(currentPad.getAction2().getActionName());
+        btn1_2.setText(insertPeriodically(currentPad.getAction2().getActionname(), "\n", 11));
 
         Button btn2_1 = (Button) listItem.findViewById(R.id.btn2_1);
-        btn2_1.setText(currentPad.getAction3().getActionName());
+        btn2_1.setText(insertPeriodically(currentPad.getAction3().getActionname(), "\n", 11));
 
         Button btn2_2 = (Button) listItem.findViewById(R.id.btn2_2);
-        btn2_2.setText(currentPad.getAction4().getActionName());
+        btn2_2.setText(insertPeriodically(currentPad.getAction4().getActionname(), "\n", 11));
 
         Button btn3_1 = (Button) listItem.findViewById(R.id.btn3_1);
-        btn3_1.setText(currentPad.getAction5().getActionName());
+        btn3_1.setText(insertPeriodically(currentPad.getAction5().getActionname(), "\n", 11));
 
         Button btn3_2 = (Button) listItem.findViewById(R.id.btn3_2);
-        btn3_2.setText(currentPad.getAction6().getActionName());
+        btn3_2.setText(insertPeriodically(currentPad.getAction6().getActionname(), "\n", 11));
 
         return listItem;
+    }
+
+
+    private static String insertPeriodically(
+            String text, String insert, int period)
+    {
+        StringBuilder builder = new StringBuilder(
+                text.length() + insert.length() * (text.length()/period)+1);
+
+        int index = 0;
+        String prefix = "";
+        while (index < text.length())
+        {
+            // Don't put the insert in the very first iteration.
+            // This is easier than appending it *after* each substring
+            builder.append(prefix);
+            prefix = insert;
+            builder.append(text.substring(index,
+                    Math.min(index + period, text.length())));
+            index += period;
+        }
+
+        Log.d("Test", builder.toString());
+        return builder.toString();
     }
 }
 

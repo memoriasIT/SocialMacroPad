@@ -41,4 +41,5 @@
     <string name="error_input">El input no puede ser nulo</string>
     <string name="new_activity_created">Nueva Actividad Creada</string>
     <string name="updated_activity">Actividad Actualizada</string>
+    <string name="general">General</string>
 </resources>

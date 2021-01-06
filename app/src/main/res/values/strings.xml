@@ -52,11 +52,11 @@
     <string name="user_registred">Registered user successfully</string>
     <string name="non_valid_email">The email entered is invalid</string>
     <string name="non_valid_password">The password entered is invalid</string>
-    <string name="user_not_found">The email  and password you entered did not match our records. Please double-check and try again.</string>
+    <string name="user_not_found">The email and password you entered did not match our records. Please double-check and try again.</string>
     <string name="group_of_activities_add_new">Groups of Activities > Add New</string>
     <string name="add_new">Add New</string>
     <string name="name">Name</string>
-    <string name="general" translatable="false">General</string>
+    <string name="general">General</string>
     <string name="description">Description</string>
     <string name="color">Colour</string>
     <string name="green">Green</string>

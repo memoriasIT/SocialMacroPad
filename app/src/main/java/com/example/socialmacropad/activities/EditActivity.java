@@ -88,7 +88,7 @@ public class EditActivity extends AppCompatActivity {
         }
     }
 
-    private void warningDialog(Boolean delete) {//b:true-> delete    b:false->back
+    private void warningDialog(Boolean delete) {//b:true-> delete   b:false->back
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.are_you_sure));
         if(delete){

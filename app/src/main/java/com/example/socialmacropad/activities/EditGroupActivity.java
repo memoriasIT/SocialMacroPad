@@ -71,7 +71,7 @@ public class EditGroupActivity extends AppCompatActivity {
     private void validarDatos() { //Nombre obligatorio, descripcion opcional, color obligatorio
         String nombre = name.getEditText().getText().toString();
 
-        if(nombre.length()>0){//ACTUALIZAR el grupo a la BD
+        if(nombre.length()>0){//ACTUALIZAR el grupo en la BD
 
             Toast.makeText(this, getString((R.string.updated_group)), Toast.LENGTH_LONG).show();
             onBackPressed();

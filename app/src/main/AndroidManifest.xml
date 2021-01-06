@@ -40,4 +40,5 @@
             android:supportsPictureInPicture="false" />
     </application>
 
+
 </manifest>

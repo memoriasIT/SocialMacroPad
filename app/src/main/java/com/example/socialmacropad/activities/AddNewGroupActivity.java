@@ -49,7 +49,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                errorColour.setVisibility(View.GONE);//elimina el posible mensaje de error anterior
+                errorColour.setVisibility(View.GONE);//elimina el posible mensaje de error anterior 
                 validarDatos();
             }
         });

@@ -39,7 +39,7 @@ public class NewActivity extends AppCompatActivity {
 
 
         //CARGAR VALORES DEL GRUPO SELECCIONADO
-        top.setText("nombre_del_grupo" + " > " + getString(R.string.add_new_activity)); //Nombre_del_grupo > Add new activity
+        top.setText("nombre_del_grupo" + " > " + getString(R.string.add_new_activity)); //nombre_del_grupo > Add new activity
 
         ImageButton back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

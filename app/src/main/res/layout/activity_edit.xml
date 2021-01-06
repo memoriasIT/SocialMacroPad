@@ -70,7 +70,6 @@
                 app:srcCompat="@drawable/delete" />
         </LinearLayout>
 
-
     </LinearLayout>
 
     <LinearLayout

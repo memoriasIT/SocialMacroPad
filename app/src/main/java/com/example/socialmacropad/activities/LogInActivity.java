@@ -81,7 +81,7 @@ public class LogInActivity extends AppCompatActivity {
         boolean b = esContrasenaValida(contrasena);
 
         if (a && b) {
-            if(logIn(correo, contrasena)){ //Datos correctos -> iniciar sesion
+            if(logIn(correo, contrasena)){ //Datos correctos  -> iniciar sesion
                 // Go to home screen
                 Intent intent = new Intent(LogInActivity.this, MainContent.class);
                 startActivity(intent);

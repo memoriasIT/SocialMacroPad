@@ -161,7 +161,6 @@
             android:layout_gravity="center_horizontal">
 
 
-
             <RadioButton
                 android:id="@+id/option_green"
                 android:layout_width="wrap_content"

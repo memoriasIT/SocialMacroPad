@@ -7,6 +7,8 @@ public class MacroPad {
     private String creatorID;
 
     private String name;
+    private String description;
+    private String color;
 
     private Action action1;
     private Action action2;
@@ -22,16 +24,34 @@ public class MacroPad {
     // Cuando se use un adaptador se utiliza este
 
 
-    public MacroPad(String creatorUser, String creatorID, String name, Action action1, Action action2, Action action3, Action action4, Action action5, Action action6) {
+    public MacroPad(String creatorUser, String creatorID, String name, String description, String color, Action action1, Action action2, Action action3, Action action4, Action action5, Action action6) {
         this.creatorUser = creatorUser;
         this.creatorID = creatorID;
         this.name = name;
+        this.color = color;
+        this.description = description;
         this.action1 = action1;
         this.action2 = action2;
         this.action3 = action3;
         this.action4 = action4;
         this.action5 = action5;
         this.action6 = action6;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public String getName() {

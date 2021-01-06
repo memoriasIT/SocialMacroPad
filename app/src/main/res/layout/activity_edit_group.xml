@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="left"
-            android:text="@string/group_of_activities_add_new"
+            android:text=""
             android:textColor="#000000"
             android:textSize="14sp"
             android:textStyle="normal"
@@ -48,13 +48,13 @@
                 app:srcCompat="@drawable/vector" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/textViewGroupName"
                 android:layout_width="199dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="GROUP NAME"
+                android:text=""
                 android:textColor="#000000"
-                android:textSize="34sp"
+                android:textSize="32sp"
                 android:textStyle="bold"
                 tools:ignore="MissingConstraints"
                 tools:layout_editor_absoluteX="0dp"
@@ -68,7 +68,6 @@
                 android:background="@null"
                 app:srcCompat="@drawable/delete" />
         </LinearLayout>
-
 
     </LinearLayout>
 
@@ -110,7 +109,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="323dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="46dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

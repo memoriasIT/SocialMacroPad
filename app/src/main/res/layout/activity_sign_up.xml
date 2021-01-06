@@ -184,7 +184,7 @@
             android:layout_height="14dp" />
 
         <Button
-            android:id="@+id/signup"
+            android:id="@+id/btn1_1"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="206dp"
             android:layout_height="63dp"

@@ -44,7 +44,7 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
-        Button signUp = (Button)findViewById(R.id.signup);
+        Button signUp = (Button)findViewById(R.id.btn1_1);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -15,8 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.socialmacropad.activities.AddNewGroupActivity;
 import com.example.socialmacropad.activities.BluetoothList;
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.activities.EditGroupActivity;
 import com.example.socialmacropad.activities.IntroActivity;
 import com.example.socialmacropad.event.UIToastEvent;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
@@ -85,7 +87,23 @@ public class HomeFragment extends Fragment {
         });
 
 
+        Button btnCreateGroup = getView().findViewById(R.id.btnCreateGroup);
+        btnCreateGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddNewGroupActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        Button btnEditGroup = getView().findViewById(R.id.btnCreateGroup);
+        btnEditGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), EditGroupActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_discover"
-        android:name="com.example.socialmacropad.ui.dashboard.DashboardFragment"
+        android:name="com.example.socialmacropad.ui.discover.DashboardFragment"
         android:label="@string/title_discover"
         tools:layout="@layout/fragment_dashboard" />
 

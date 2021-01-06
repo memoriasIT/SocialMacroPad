@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 // Intent code for open new activity through intent.
-                Intent intent = new Intent(MainActivity.this, ListaDeActividades.class);
+                Intent intent = new Intent(MainActivity.this, LearnActivity.class);
                 startActivity(intent);
             }
         });

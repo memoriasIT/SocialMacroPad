@@ -12,26 +12,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialMacroPad">
-        <activity android:name="com.example.socialmacropad.activities.EditGroupActivity" />
-        <activity android:name="com.example.socialmacropad.activities.AddNewGroupActivity" />
-        <activity android:name="com.example.socialmacropad.activities.LogInActivity" />
-        <activity android:name="com.example.socialmacropad.activities.SignUpActivity" />
         <activity
-            android:name="com.example.socialmacropad.activities.ListaDeActividades"
+            android:name=".activities.LearnActivity"
+            android:label="@string/title_activity_learn"
+            android:theme="@style/Theme.SocialMacroPad.NoActionBar"></activity>
+        <activity android:name=".activities.EditGroupActivity" />
+        <activity android:name=".activities.AddNewGroupActivity" />
+        <activity android:name=".activities.LogInActivity" />
+        <activity android:name=".activities.SignUpActivity" />
+        <activity
+            android:name=".activities.ListaDeActividades"
             android:label="@string/title_activity_lista_de_actividades" />
-        <activity android:name="com.example.socialmacropad.activities.MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CommunicateActivity"></activity>
+        <activity android:name=".activities.CommunicateActivity" />
         <activity
-            android:name="com.example.socialmacropad.activities.BluetoothList"
+            android:name=".activities.BluetoothList"
             android:label="@string/text_select_paired_device"
             android:resizeableActivity="false"
-            android:supportsPictureInPicture="false"></activity>
+            android:supportsPictureInPicture="false" />
     </application>
 
 </manifest>

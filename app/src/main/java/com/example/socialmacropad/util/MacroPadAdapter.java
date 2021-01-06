@@ -43,8 +43,11 @@ public class MacroPadAdapter extends ArrayAdapter<MacroPad> {
         TextView name = (TextView) listItem.findViewById(R.id.txtPadName);
         name.setText(currentPad.getName());
 
-        TextView release = (TextView) listItem.findViewById(R.id.txtUser);
-        release.setText(currentPad.getCreatorUser());
+        TextView user = (TextView) listItem.findViewById(R.id.txtUser);
+        user.setText(currentPad.getCreatorUser());
+
+        TextView description = (TextView) listItem.findViewById(R.id.txtDescription);
+        description.setText(currentPad.getDescription());
 
         Button btn1_1 = (Button) listItem.findViewById(R.id.btn1_1);
         btn1_1.setText(currentPad.getAction1().getActionName());

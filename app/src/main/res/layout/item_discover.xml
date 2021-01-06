@@ -8,6 +8,7 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:layout_weight="1"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,133 +37,163 @@
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
-        <TableLayout
+        <TextView
+            android:id="@+id/txtDescription"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <Button
-                    android:id="@+id/btn1_1"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_height="63dp"
-                    android:text="@string/signup"
-                    android:textColor="#000000"
-                    app:iconTint="#000000"
-                    app:strokeColor="#000000" />
-
-                <Space
-                    android:layout_width="20dp"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/btn1_2"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_height="63dp"
-                    android:text="@string/signup"
-                    android:textColor="#000000"
-                    app:iconTint="#000000"
-                    app:strokeColor="#000000" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <Button
-                    android:id="@+id/btn2_1"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="63dp"
-                    android:text="@string/signup"
-                    android:textColor="#000000"
-                    app:iconTint="#000000"
-                    app:strokeColor="#000000" />
-
-                <Space
-                    android:layout_width="2dp"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/btn2_2"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="63dp"
-                    android:text="@string/signup"
-                    android:textColor="#000000"
-                    app:iconTint="#000000"
-                    app:strokeColor="#000000" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-
-                <Button
-                    android:id="@+id/btn3_1"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="63dp"
-                    android:text="@string/signup"
-                    android:textColor="#000000"
-                    app:iconTint="#000000"
-                    app:strokeColor="#000000" />
-
-                <Space
-                    android:layout_width="2dp"
-                    android:layout_height="wrap_content" />
-
-                <Button
-                    android:id="@+id/btn3_2"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="63dp"
-                    android:text="@string/signup"
-                    android:textColor="#000000"
-                    app:iconTint="#000000"
-                    app:strokeColor="#000000" />
-            </TableRow>
-
-        </TableLayout>
+            android:layout_height="wrap_content"
+            android:text="@string/description" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:weightSum="100">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-
-            <TextView
-                android:id="@+id/logo_c"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="50"
-                android:text="20 Saves"
-                android:textAlignment="center"></TextView>
-
-            <Button
-                android:id="@+id/learnmore"
+            <TableLayout
                 android:layout_width="wrap_content"
-                android:layout_height="63dp"
-                android:backgroundTint="#0E4DA4"
-                android:text="Save"
-                android:textColor="#FFFFFF"
-                app:iconTint="#000000"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.505"
-                app:layout_constraintStart_toStartOf="parent"
-                app:strokeColor="#FFFFFF" />
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/btn1_1"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_height="63dp"
+                        android:text="@string/signup"
+                        android:textColor="#000000"
+                        app:iconTint="#000000"
+                        app:strokeColor="#000000" />
+
+                    <Space
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btn1_2"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_height="63dp"
+                        android:text="@string/signup"
+                        android:textColor="#000000"
+                        app:iconTint="#000000"
+                        app:strokeColor="#000000" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/btn2_1"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="63dp"
+                        android:text="@string/signup"
+                        android:textColor="#000000"
+                        app:iconTint="#000000"
+                        app:strokeColor="#000000" />
+
+                    <Space
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btn2_2"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="63dp"
+                        android:text="@string/signup"
+                        android:textColor="#000000"
+                        app:iconTint="#000000"
+                        app:strokeColor="#000000" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/btn3_1"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="63dp"
+                        android:text="@string/signup"
+                        android:textColor="#000000"
+                        app:iconTint="#000000"
+                        app:strokeColor="#000000" />
+
+                    <Space
+                        android:layout_width="2dp"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/btn3_2"
+                        style="?attr/materialButtonOutlinedStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="63dp"
+                        android:text="@string/signup"
+                        android:textColor="#000000"
+                        app:iconTint="#000000"
+                        app:strokeColor="#000000" />
+                </TableRow>
+
+            </TableLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="100"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/logo_c"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:text="20 Saves"
+                    android:textAlignment="center"></TextView>
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50" />
+
+                <Button
+                    android:id="@+id/learnmore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="63dp"
+                    android:backgroundTint="#0E4DA4"
+                    android:text="Save"
+                    android:textColor="#FFFFFF"
+                    app:iconTint="#000000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.505"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:strokeColor="#FFFFFF" />
+
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

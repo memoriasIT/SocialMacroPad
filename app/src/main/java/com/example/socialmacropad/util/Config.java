@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+// Config for toast messages
 public class Config {
     private static Toast toastMessage;
 

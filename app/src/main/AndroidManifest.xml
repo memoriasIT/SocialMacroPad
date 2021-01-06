@@ -21,9 +21,9 @@
         <activity android:name=".activities.LogInActivity" />
         <activity android:name=".activities.SignUpActivity" />
         <activity
-            android:name=".activities.ListaDeActividades"
+            android:name=".activities.MainContent"
             android:label="@string/title_activity_lista_de_actividades" />
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

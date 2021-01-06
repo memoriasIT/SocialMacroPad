@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,7 +68,7 @@ public class LogInActivity extends AppCompatActivity {
         // If user is already registered go to home screen
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            Intent intent = new Intent(LogInActivity.this, ListaDeActividades.class);
+            Intent intent = new Intent(LogInActivity.this, MainContent.class);
             startActivity(intent);
         }
     }
@@ -84,7 +83,7 @@ public class LogInActivity extends AppCompatActivity {
         if (a && b) {
             if(logIn(nombre, contrasena)){ //Datos correctos -> iniciar sesion
                 // Go to home screen
-                Intent intent = new Intent(LogInActivity.this, ListaDeActividades.class);
+                Intent intent = new Intent(LogInActivity.this, MainContent.class);
                 startActivity(intent);
 
             }else{

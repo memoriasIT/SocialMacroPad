@@ -1,5 +1,6 @@
 package com.example.socialmacropad.util;
 
+// Constants used accross the whole project
 public interface Constants {
     long STATUS_UPDATE_INTERVAL    = 150;
 

@@ -1,11 +1,6 @@
 package com.example.socialmacropad.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.socialmacropad.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -16,12 +11,13 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-public class ListaDeActividades extends AppCompatActivity {
+// Actividad principal, utiliza fragmentos con una navegación inferior
+public class MainContent extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_de_actividades);
+        setContentView(R.layout.activity_main_content);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         this.getSupportActionBar().hide();
         // Passing each menu ID as a set of Ids because each

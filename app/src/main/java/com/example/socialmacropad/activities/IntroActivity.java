@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.example.socialmacropad.R;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class IntroActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     String[] languages = {"Demo", "Demo2"};
 
     @Override
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 // Intent code for open new activity through intent.
-                Intent intent = new Intent(MainActivity.this, LearnActivity.class);
+                Intent intent = new Intent(IntroActivity.this, LearnActivity.class);
                 startActivity(intent);
             }
         });
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 // Intent code for open new activity through intent.
-                Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+                Intent intent = new Intent(IntroActivity.this, SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             @Override
             public void onClick(View v) {
                 // Intent code for open new activity through intent.
-                Intent intent = new Intent(MainActivity.this, LogInActivity.class);
+                Intent intent = new Intent(IntroActivity.this, LogInActivity.class);
                 startActivity(intent);
             }
         });

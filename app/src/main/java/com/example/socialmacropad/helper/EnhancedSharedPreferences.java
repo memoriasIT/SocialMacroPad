@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import java.util.Map;
 import java.util.Set;
 
+// Used to share preferences across activities
 public class EnhancedSharedPreferences implements SharedPreferences {
 
     private static EnhancedSharedPreferences enhancedSharedPreferences = null;

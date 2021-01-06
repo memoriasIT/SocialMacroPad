@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.socialmacropad.activities.BluetoothList;
 import com.example.socialmacropad.R;
-import com.example.socialmacropad.activities.MainActivity;
+import com.example.socialmacropad.activities.IntroActivity;
 import com.example.socialmacropad.event.UIToastEvent;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
 import com.example.socialmacropad.util.Config;
@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
+                Intent intent = new Intent(getActivity(), IntroActivity.class);
                 startActivity(intent);
             }
         });

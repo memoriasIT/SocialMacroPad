@@ -1,5 +1,6 @@
 package com.example.socialmacropad.event;
 
+// Custom Toast event
 public class UIToastEvent {
     private String message;
     private Boolean longToast;

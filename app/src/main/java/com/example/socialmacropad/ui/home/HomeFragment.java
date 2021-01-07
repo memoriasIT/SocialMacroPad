@@ -94,7 +94,7 @@ public class HomeFragment extends Fragment {
                 intent.putExtra("device_name", deviceName);
                 intent.putExtra("device_mac", macAddress);
                 startActivity(intent);
-                EventBus.getDefault().post(new UIToastEvent("ULTIMO DISPOSITIVO " + macAddress, true, true));
+//                EventBus.getDefault().post(new UIToastEvent("ULTIMO DISPOSITIVO " + macAddress, true, true));
             }
         });
 

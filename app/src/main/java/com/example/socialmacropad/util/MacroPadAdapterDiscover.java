@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,14 +15,21 @@ import androidx.annotation.Nullable;
 
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.models.MacroPad;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MacroPadAdapterDiscover extends ArrayAdapter<MacroPad> {
 
     private Context mContext;
     private List<MacroPad> macroPadList = new ArrayList<>();
+    private String TAG = MacroPadAdapterDiscover.class.getSimpleName();
 
 
     public MacroPadAdapterDiscover(@NonNull Context context, ArrayList<MacroPad> list) {
@@ -68,7 +76,34 @@ public class MacroPadAdapterDiscover extends ArrayAdapter<MacroPad> {
         Button btn3_2 = (Button) listItem.findViewById(R.id.btn3_2);
         btn3_2.setText(insertPeriodically(currentPad.getAction6().getActionname(), "\n", 11));
 
+        Button btnSave = (Button) listItem.findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if (btnSave.getText().equals(getString(R.string.save_macropad))){
+                    saveMacroPadToFirestore(currentPad);
+//                    btnSave.setText(getString(R.string.notSave_macropad));
+//                } else {
+//                    deleteSavedMacroPadFromFirestore(currentPad);
+//                }
+            }
+        });
         return listItem;
+    }
+
+    private void deleteSavedMacroPadFromFirestore(MacroPad currentPad) {
+        currentPad.getPadId();
+    }
+
+    private void saveMacroPadToFirestore(MacroPad currentPad) {
+        Map<String, Object> data = new HashMap<>();
+        DocumentReference PadRef = FirebaseFirestore.getInstance().document("macropad/"+currentPad.getPadId().trim());
+        data.put("padId", PadRef);
+
+        Log.d(TAG, String.valueOf(data));
+
+        String UserID = FirebaseAuth.getInstance().getUid();
+        FirebaseFirestore.getInstance().collection("users").document(UserID).collection("savedPads").add(data);
     }
 
 

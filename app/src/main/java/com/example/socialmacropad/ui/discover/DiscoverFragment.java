@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -21,8 +22,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DiscoverFragment extends Fragment {
 
@@ -50,13 +54,24 @@ public class DiscoverFragment extends Fragment {
         mAdapter = new MacroPadAdapterDiscover(getActivity(), macroPadList);
         listView.setAdapter(mAdapter);
 
-        // Demo macropad
-        macroPadList.add(new MacroPad("test", "test" , "name",  "description", "000000",    new Action("a", "a", "000000"), new Action("b", "b", "000000"), new Action("c", "c", "000000"),
-                new Action("d", "d", "000000"), new Action("e", "e", "000000"), new Action("f", "f", "000000")));
+
 
         // get macropads stored in firestore
         retrieveMacroPadsFromFirestore(macroPadList, mAdapter);
+    }
 
+
+    private void deleteMacroPadFromFirestore(int position) {
+    }
+
+    private void saveMacroPadToFirestore(int position) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("padId", true);
+
+        Log.d(TAG, String.valueOf(position));
+
+//        db.collection("cities").document("BJ")
+//                .set(data, SetOptions.merge());
     }
 
     private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, MacroPadAdapterDiscover mAdapter) {
@@ -72,6 +87,7 @@ public class DiscoverFragment extends Fragment {
                                 MacroPad macropad = document.toObject(MacroPad.class);
                                 macroPadList.add(macropad);
                                 mAdapter.notifyDataSetChanged();
+
                             }
 
                         } else {

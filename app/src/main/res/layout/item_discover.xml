@@ -179,7 +179,7 @@
                     android:layout_weight="50" />
 
                 <Button
-                    android:id="@+id/learnmore"
+                    android:id="@+id/btnSave"
                     android:layout_width="wrap_content"
                     android:layout_height="63dp"
                     android:backgroundTint="#0E4DA4"

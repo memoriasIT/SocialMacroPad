@@ -24,6 +24,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.model.DocumentKey;
+
+import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 
@@ -86,6 +89,7 @@ public class SavedFragment extends Fragment {
                                                 MacroPad macropad = rawMacropad.toObject(MacroPad.class);
                                                 macroPadList.add(macropad);
                                                 mAdapter.notifyDataSetChanged();
+                                                Log.d(TAG, "macropadID: " + macropad.getPadId());
                                             } else {
                                                 Log.d(TAG, "No such document");
                                             }

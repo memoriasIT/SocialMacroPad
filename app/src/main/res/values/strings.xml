@@ -192,4 +192,6 @@
     <string name="error_input">The input can\'t be null</string>
     <string name="new_activity_created">New Activity Created</string>
     <string name="updated_activity">Updated Activity</string>
+    <string name="save_macropad">Save</string>
+    <string name="notSave_macropad">Delete</string>
 </resources>

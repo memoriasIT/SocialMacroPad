@@ -45,4 +45,7 @@
     <string name="groups_of_activities">Grupos de Actividades</string>
     <string name="my_groups_of_activities">Mis Grupos de Actividades</string>
     <string name="new_group_of_activities">Nuevo grupo de actividades</string>
+    <string name="log_out">Cerrar Sesión</string>
+    <string name="connect_to_bluetooth">Conectar a Bluetooth</string>
+    <string name="last_connection">Última conexión</string>
 </resources>

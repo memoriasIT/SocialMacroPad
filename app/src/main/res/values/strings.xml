@@ -199,4 +199,7 @@
     <string name="groups_of_activities">Groups of Activities</string>
     <string name="my_groups_of_activities">My Groups of Activities</string>
     <string name="new_group_of_activities">New group of activities</string>
+    <string name="log_out">Log Out</string>
+    <string name="connect_to_bluetooth">Connect to buetooth</string>
+    <string name="last_connection">Last connection</string>
 </resources>

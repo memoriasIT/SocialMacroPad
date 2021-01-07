@@ -1,12 +1,17 @@
 package com.example.socialmacropad.activities;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -18,6 +23,8 @@ public class CommunicateActivity extends AppCompatActivity {
     private EditText messageBox;
     private Button sendButton, connectButton;
 
+    private TextView top, groupName;
+
     private CommunicateViewModel viewModel;
 
     @Override
@@ -25,6 +32,9 @@ public class CommunicateActivity extends AppCompatActivity {
         // Setup our activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_communicate);
+        this.getSupportActionBar().hide();
+
+        /*
         // Enable the back button in the action bar if possible
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -40,11 +50,11 @@ public class CommunicateActivity extends AppCompatActivity {
         }
 
         // Setup our Views
-        connectionText = findViewById(R.id.communicate_connection_text);
-        messagesView = findViewById(R.id.communicate_messages);
-        messageBox = findViewById(R.id.communicate_message);
-        sendButton = findViewById(R.id.communicate_send);
-        connectButton = findViewById(R.id.communicate_connect);
+        //connectionText = findViewById(R.id.communicate_connection_text);
+        //messagesView = findViewById(R.id.communicate_messages);
+        //messageBox = findViewById(R.id.communicate_message);
+        //sendButton = findViewById(R.id.communicate_send);
+        //connectButton = findViewById(R.id.communicate_connect);
 
         // Start observing the data sent to us by the ViewModel
         viewModel.getConnectionStatus().observe(this, this::onConnectionStatus);
@@ -64,6 +74,125 @@ public class CommunicateActivity extends AppCompatActivity {
 
         // Setup the send button click action
         sendButton.setOnClickListener(v -> viewModel.sendMessage(messageBox.getText().toString()));
+        */
+
+        top = (TextView)findViewById(R.id.textViewTop);
+        groupName = (TextView)findViewById(R.id.textViewGroupName);
+        //CARGAR VALORES DEL GRUPO SELECCIONADO
+        top.setText("nombre_del_grupo"+ " > " + getString(R.string.activities));//nombre_grupo > Activities
+        groupName.setText("Nombre_del_grupo");
+
+        ImageButton back = (ImageButton)findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+
+        Button act1 = (Button)findViewById(R.id.btnNewActivity1);
+        act1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                startActivity(intent);
+            }
+        });
+        act1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                editDialog();
+                return true;
+            }
+        });
+
+
+        Button act2 = (Button)findViewById(R.id.btnNewActivity2);
+        act2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                startActivity(intent);
+            }
+        });
+        act2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                editDialog();
+                return true;
+            }
+        });
+
+
+        Button act3 = (Button)findViewById(R.id.btnNewActivity3);
+        act3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                startActivity(intent);
+            }
+        });
+        act3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                editDialog();
+                return true;
+            }
+        });
+
+
+        Button act4 = (Button)findViewById(R.id.btnNewActivity4);
+        act4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                startActivity(intent);
+            }
+        });
+        act4.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                editDialog();
+                return true;
+            }
+        });
+
+
+        Button act5 = (Button)findViewById(R.id.btnNewActivity5);
+        act5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                startActivity(intent);
+            }
+        });
+        act5.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                editDialog();
+                return true;
+            }
+        });
+
+
+        Button act6 = (Button)findViewById(R.id.btnNewActivity6);
+        act6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                startActivity(intent);
+            }
+        });
+        act6.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                editDialog();
+                return true;
+            }
+        });
+
+
     }
 
     // Called when the ViewModel updates us of our connectivity status
@@ -117,5 +246,23 @@ public class CommunicateActivity extends AppCompatActivity {
     public void onBackPressed() {
         // Close the activity
         finish();
+    }
+
+    private void editDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.edit_this_activity));
+        builder.setPositiveButton(getString(R.string.edit), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Intent intent = new Intent(CommunicateActivity.this, EditActivity.class);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 }

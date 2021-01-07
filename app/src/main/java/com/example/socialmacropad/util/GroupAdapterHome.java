@@ -1,6 +1,5 @@
 package com.example.socialmacropad.util;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -15,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.socialmacropad.R;
-import com.example.socialmacropad.activities.CommunicateActivity;
-import com.example.socialmacropad.activities.EditGroupActivity;
+import com.example.socialmacropad.activities.communication.CommunicateActivity;
+import com.example.socialmacropad.activities.activityGroups.EditGroupActivity;
 import com.example.socialmacropad.models.GroupOfActivities;
 
 import java.util.ArrayList;

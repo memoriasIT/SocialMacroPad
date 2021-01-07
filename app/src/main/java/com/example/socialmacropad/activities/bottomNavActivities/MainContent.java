@@ -1,4 +1,4 @@
-package com.example.socialmacropad.activities;
+package com.example.socialmacropad.activities.bottomNavActivities;
 
 import android.os.Bundle;
 

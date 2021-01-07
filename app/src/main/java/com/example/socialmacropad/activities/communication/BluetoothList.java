@@ -1,4 +1,4 @@
-package com.example.socialmacropad.activities;
+package com.example.socialmacropad.activities.communication;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;

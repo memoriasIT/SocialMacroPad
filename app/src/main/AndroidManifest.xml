@@ -12,29 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialMacroPad">
-        <activity android:name=".activities.EditActivity" />
-        <activity android:name=".activities.NewActivity" />
+        <activity android:name=".activities.activityGroups.EditActivity" />
+        <activity android:name=".activities.activityGroups.NewActivity" />
         <activity
-            android:name=".activities.LearnActivity"
+            android:name=".activities.introAuth.LearnActivity"
             android:label="@string/title_activity_learn"
             android:theme="@style/Theme.SocialMacroPad.NoActionBar" />
-        <activity android:name=".activities.EditGroupActivity" />
-        <activity android:name=".activities.AddNewGroupActivity" />
-        <activity android:name=".activities.LogInActivity" />
-        <activity android:name=".activities.SignUpActivity" />
+        <activity android:name=".activities.activityGroups.EditGroupActivity" />
+        <activity android:name=".activities.activityGroups.AddNewGroupActivity" />
+        <activity android:name=".activities.introAuth.LogInActivity" />
+        <activity android:name=".activities.introAuth.SignUpActivity" />
         <activity
-            android:name=".activities.MainContent"
+            android:name=".activities.bottomNavActivities.MainContent"
             android:label="@string/title_activity_lista_de_actividades" />
-        <activity android:name=".activities.IntroActivity">
+        <activity android:name=".activities.introAuth.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.CommunicateActivity" />
+        <activity android:name=".activities.communication.CommunicateActivity" />
         <activity
-            android:name=".activities.BluetoothList"
+            android:name=".activities.communication.BluetoothList"
             android:label="@string/text_select_paired_device"
             android:resizeableActivity="false"
             android:supportsPictureInPicture="false" />

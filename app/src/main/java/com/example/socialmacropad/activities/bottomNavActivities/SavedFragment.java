@@ -1,6 +1,5 @@
-package com.example.socialmacropad.ui.saved;
+package com.example.socialmacropad.activities.bottomNavActivities;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,9 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.models.MacroPad;
@@ -31,16 +28,12 @@ import java.util.ArrayList;
 
 public class SavedFragment extends Fragment {
 
-    private SavedViewModel savedViewModel;
     private ListView listView;
     private MacroPadAdapterSaved mAdapter;
     private FirebaseFirestore db;
     private String TAG = SavedFragment.class.getSimpleName();
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        savedViewModel =
-                new ViewModelProvider(this).get(SavedViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_saved, container, false);
         return root;
     }

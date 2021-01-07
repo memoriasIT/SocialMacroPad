@@ -1,4 +1,4 @@
-package com.example.socialmacropad.activities;
+package com.example.socialmacropad.activities.introAuth;
 
 import android.os.Bundle;
 

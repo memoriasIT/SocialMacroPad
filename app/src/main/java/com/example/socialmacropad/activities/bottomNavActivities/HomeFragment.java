@@ -1,4 +1,4 @@
-package com.example.socialmacropad.ui.home;
+package com.example.socialmacropad.activities.bottomNavActivities;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -9,33 +9,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.socialmacropad.activities.AddNewGroupActivity;
-import com.example.socialmacropad.activities.BluetoothList;
 import com.example.socialmacropad.R;
-import com.example.socialmacropad.activities.CommunicateActivity;
-import com.example.socialmacropad.activities.EditGroupActivity;
-import com.example.socialmacropad.activities.IntroActivity;
+import com.example.socialmacropad.activities.activityGroups.AddNewGroupActivity;
+import com.example.socialmacropad.activities.communication.BluetoothList;
+import com.example.socialmacropad.activities.communication.CommunicateActivity;
+import com.example.socialmacropad.activities.introAuth.IntroActivity;
 import com.example.socialmacropad.event.UIToastEvent;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
 import com.example.socialmacropad.models.GroupOfActivities;
-import com.example.socialmacropad.models.MacroPad;
 import com.example.socialmacropad.util.Config;
 import com.example.socialmacropad.util.Constants;
 import com.example.socialmacropad.util.GroupAdapterHome;
-import com.example.socialmacropad.util.MacroPadAdapterDiscover;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -44,12 +36,10 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.security.acl.Group;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
     private BluetoothAdapter bluetoothAdapter = null;
     private EnhancedSharedPreferences sharedPreferences;
     private GroupAdapterHome mAdapter;
@@ -57,17 +47,8 @@ public class HomeFragment extends Fragment {
     private String TAG = HomeFragment.class.getSimpleName();
     private FirebaseFirestore db;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        //final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                //textView.setText(s);
-            }
-        });
         return root;
     }
 
@@ -112,7 +93,6 @@ public class HomeFragment extends Fragment {
                 intent.putExtra("device_name", deviceName);
                 intent.putExtra("device_mac", macAddress);
                 startActivity(intent);
-//                EventBus.getDefault().post(new UIToastEvent("ULTIMO DISPOSITIVO " + macAddress, true, true));
             }
         });
 
@@ -131,8 +111,6 @@ public class HomeFragment extends Fragment {
 
         mAdapter = new GroupAdapterHome(getActivity(), groupsList);
         listView.setAdapter(mAdapter);
-
-        //CARGAR LAS ACTIVIDADES CREADAS DE LA BD
 
         // get macropads stored in firestore
         retrieveGroupsFromFirestore(groupsList, mAdapter);
@@ -172,17 +150,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//
-//        switch (requestCode) {
-//            case Constants.CONNECT_DEVICE_INSECURE:
-//            case Constants.CONNECT_DEVICE_SECURE:
-//                if (resultCode == Activity.RESULT_OK) {
-//                    String macAddress = Objects.requireNonNull(data.getExtras()).getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-//                    sharedPreferences.edit().putString(getString(R.string.preference_last_connected_device), macAddress).apply();
-//                    Log.e("MAC_ADDRESS: ", macAddress);
-//                }
-//
-//        }
     }
 
     // ///////////////////////////////////////////////

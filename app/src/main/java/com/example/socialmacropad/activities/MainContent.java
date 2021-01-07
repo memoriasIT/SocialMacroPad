@@ -34,7 +34,6 @@ public class MainContent extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
 
-        Log.d(TAG, FirebaseAuth.getInstance().getUid());
 
 
     }

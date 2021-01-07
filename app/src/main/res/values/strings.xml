@@ -1,6 +1,6 @@
 <resources>
+
     <string name="app_name">SocialMacroPad</string>
-    <string name="login">Log in</string>
     <string name="signup">Sign up</string>
     <string name="language">Language</string>
     <string name="title_activity_lista_de_actividades">MainActivity</string>
@@ -15,37 +15,31 @@
 
 
     <string name="text_bluetooth_adapter_error">Error Bluetooth Adapter, porfavor reinicia tu telefono</string>
-    <string name="text_unknown_error">Unknown error: porfavor reinicia la aplicación</string>
-    <string name="text_no_bluetooth_permission">No se puede iniciar bluetooth, revise sus permisos</string>
-    <string name="text_unable_to_connect_to_device">No se puede conectar al dispositivo</string>
-    <string name="text_device_connection_was_lost">Se perdió la conexión del dispositivo</string>
-    <string name="text_usb_service_foreground_message">Esto manejará toda la comunicación Usb</string>
-    <string name="text_bluetooth_service_foreground_message">Esto manejará toda la comunicación Bluetooth</string>
-    <string name="text_bluetooth_service">Servicio Bluetooth</string>
-    <string name="text_no_bluetooth_adapter">Adaptador Bluetooth no encontrado</string>
-    <string name="text_default_connection">Conexión por defecto</string>
-    <string name="text_connected_to">Conectado a </string>
-    <string name="text_connection_lost">Perdió conexión</string>
-    <string name="text_paired_devices">Elige el dispositivo a emparejar</string>
-    <string name="text_bluetooth_adaptor_error">Error bluetooth adaptador!</string>
-    <string name="text_no_paired_devices">Dispositivos no emparejados</string>
-    <string name="text_select_paired_device">Selecciona dispositivo emparejado</string>
-    <string name="text_none_found">No encontrado</string>
-    <string name="text_not_connected">No conectado</string>
-    <string name="text_connecting">Conectando&#8230;.</string>
-    <string name="text_disconnect">Desconectar!</string>
-    <string name="text_connected">Conectado</string>
-    <string name="text_settings">Ajustes</string>
-    <string name="text_connect">Conectar</string>
-    <string name="text_reset">Resetear</string>
+    <string name="text_unknown_error">Unknown error: please restart the app</string>
+    <string name="text_unable_to_connect_to_device">Cannot connect the device</string>
+    <string name="text_device_connection_was_lost">Connection was lost</string>
+    <string name="text_usb_service_foreground_message">This service will manage all usb services</string>
+    <string name="text_bluetooth_service">Bluetooth Service</string>
+    <string name="text_connected_to">Connected to</string>
+    <string name="text_connection_lost">Connection lost</string>
+    <string name="text_paired_devices">Choose device to connect</string>
+    <string name="text_bluetooth_adaptor_error">Error with the bluetooth adaptader!</string>
+    <string name="text_no_paired_devices">Devices not paired</string>
+    <string name="text_none_found">Not found</string>
+    <string name="text_not_connected">Not connected</string>
+    <string name="text_connecting">Connecting&#8230;.</string>
+    <string name="text_disconnect">Disconnect!</string>
+    <string name="text_connected">Connected</string>
+    <string name="text_settings">Settings</string>
+    <string name="text_connect">Connect</string>
+    <string name="text_reset">Reset</string>
     <string name="preference_auto_connect">auto_connect</string>
-    <string name="text_disconnect_confirm">Esta seguro que desea desconectar?</string>
-    <string name="text_yes_confirm">Si</string>
-    <string name="text_cancel">Cancelar</string>
-    <string name="text_bt_service_not_running">Servicio Bluetooth no esta ejecutandose!</string>
-    <string name="text_bt_not_enabled">Bluetooth no está habilitado!</string>
+    <string name="text_disconnect_confirm">Are you sure you want to disconnect?</string>
+    <string name="text_yes_confirm">Yes</string>
+    <string name="text_cancel">Cancel</string>
+    <string name="text_bt_service_not_running">Bluetooth service is not running!</string>
+    <string name="text_bt_not_enabled">Bluetooth is not up!</string>
     <string name="preference_update_pool_interval">preference_update_pool_interval</string>
-    <string name="preference_last_connected_device">last_connected_device</string>
     <string name="req_username_password">4-30 characters (A-Z, a-z, 0-9 only)</string>
     <string name="req_email">e. g. name@mail.com</string>
     <string name="req_phone">e. g. +34612387954</string>
@@ -203,4 +197,11 @@
     <string name="connect_to_bluetooth">Connect to buetooth</string>
     <string name="last_connection">Last connection</string>
     <string name="no_elements">You did not save any MacroPads yet!</string>
+    <string name="login">Log in</string>
+    <string name="text_no_bluetooth_permission">No bluetooth permission</string>
+    <string name="text_bluetooth_service_foreground_message">This service will manage all bluetooth services</string>
+    <string name="text_no_bluetooth_adapter">Bluetooth adapter not found</string>
+    <string name="text_default_connection">Default connection</string>
+    <string name="text_select_paired_device">Choose paired device</string>
+    <string name="preference_last_connected_device">last_connected_device</string>
 </resources>

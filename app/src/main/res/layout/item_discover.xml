@@ -171,7 +171,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="50"
                     android:text="@string/default_saves"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:visibility="invisible" />
 
                 <Space
                     android:layout_width="20dp"

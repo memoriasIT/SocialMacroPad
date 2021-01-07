@@ -51,7 +51,7 @@ public class MacroPadAdapterDiscover extends ArrayAdapter<MacroPad> {
         name.setText(currentPad.getName());
 
         TextView user = (TextView) listItem.findViewById(R.id.txtUser);
-        user.setText(currentPad.getCreatorUser());
+        user.setText("@"+currentPad.getCreatorUser());
 
         TextView description = (TextView) listItem.findViewById(R.id.txtDescription);
         description.setText(currentPad.getDescription());
@@ -101,7 +101,7 @@ public class MacroPadAdapterDiscover extends ArrayAdapter<MacroPad> {
         Log.d(TAG, String.valueOf(data));
 
         String UserID = FirebaseAuth.getInstance().getUid();
-        FirebaseFirestore.getInstance().collection("users").document(UserID).collection("savedPads").add(data);
+        FirebaseFirestore.getInstance().collection("users").document(UserID).collection("savedPads").document(currentPad.getPadId()).set(data);
     }
 
 

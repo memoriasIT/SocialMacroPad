@@ -18,7 +18,6 @@ import com.example.socialmacropad.models.MacroPad;
 import com.example.socialmacropad.util.MacroPadAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -37,7 +36,7 @@ public class DiscoverFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         discoverViewModel =
                 new ViewModelProvider(this).get(DiscoverViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View root = inflater.inflate(R.layout.fragment_discover, container, false);
         return root;
     }
 
@@ -48,22 +47,19 @@ public class DiscoverFragment extends Fragment {
 
         listView = (ListView) getView().findViewById(R.id.macroPad_list);
         ArrayList<MacroPad> macroPadList = new ArrayList<>();
+        mAdapter = new MacroPadAdapter(getActivity(), macroPadList);
+        listView.setAdapter(mAdapter);
+
+        // Demo macropad
         macroPadList.add(new MacroPad("test", "test" , "name",  "description", "000000",    new Action("a", "a", "000000"), new Action("b", "b", "000000"), new Action("c", "c", "000000"),
                 new Action("d", "d", "000000"), new Action("e", "e", "000000"), new Action("f", "f", "000000")));
 
-
-        retrieveMacroPadsFromFirestore(macroPadList);
-
-
-        // EJEMPLOS
-
-//        macroPadList.add(new MacroPad("test", "test" , "name2", "descripcion" , "000000", new Action("a", "a", "000000"), new Action("b", "b", "000000"), new Action("c", "c", "000000"),
-//                new Action("d", "d", "000000"), new Action("e", "e", "000000"), new Action("f", "f", "000000")));
-
+        // get macropads stored in firestore
+        retrieveMacroPadsFromFirestore(macroPadList, mAdapter);
 
     }
 
-    private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList) {
+    private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, MacroPadAdapter mAdapter) {
         db = FirebaseFirestore.getInstance();
         db.collection("macropad")
                 .get()
@@ -75,10 +71,9 @@ public class DiscoverFragment extends Fragment {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 MacroPad macropad = document.toObject(MacroPad.class);
                                 macroPadList.add(macropad);
-                                Log.d(TAG, macropad.getAction1().toString());
+                                mAdapter.notifyDataSetChanged();
                             }
-                            mAdapter = new MacroPadAdapter(getActivity(), macroPadList);
-                            listView.setAdapter(mAdapter);
+
                         } else {
                             Log.w(TAG, "Error getting documents.", task.getException());
                         }

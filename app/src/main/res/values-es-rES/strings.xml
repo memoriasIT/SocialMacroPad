@@ -211,4 +211,8 @@
     <string name="defaultButton">" "</string>
     <string name="default_saves">Guardado 0 veces</string>
     <string name="copyright_2020">Copyright 2020</string>
+    <string name="activities">Actividades</string>
+    <string name="new_activity">Nueva Actividad</string>
+    <string name="edit">Editar</string>
+    <string name="edit_this_activity">¿Editar esta Actividad?</string>
 </resources>

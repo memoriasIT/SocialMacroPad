@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,19 +25,27 @@ import com.example.socialmacropad.activities.EditGroupActivity;
 import com.example.socialmacropad.activities.IntroActivity;
 import com.example.socialmacropad.event.UIToastEvent;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
+import com.example.socialmacropad.models.GroupOfActivities;
+import com.example.socialmacropad.models.MacroPad;
 import com.example.socialmacropad.util.Config;
 import com.example.socialmacropad.util.Constants;
+import com.example.socialmacropad.util.GroupAdapterHome;
+import com.example.socialmacropad.util.MacroPadAdapterDiscover;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
+
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private BluetoothAdapter bluetoothAdapter = null;
     private EnhancedSharedPreferences sharedPreferences;
+    private GroupAdapterHome mAdapter;
+    private ListView listView;
     private String TAG = HomeFragment.class.getSimpleName();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -107,14 +117,14 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        Button btnEditGroup = getView().findViewById(R.id.btnEditGroup);
-        btnEditGroup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), EditGroupActivity.class);
-                startActivity(intent);
-            }
-        });
+        listView = (ListView) getView().findViewById(R.id.groups_list);
+        ArrayList<GroupOfActivities> groupsList = new ArrayList<>();
+
+        mAdapter = new GroupAdapterHome(getActivity(), groupsList);
+        listView.setAdapter(mAdapter);
+
+        //CARGAR LAS ACTIVIDADES CREADAS DE LA BD
+
     }
 
 

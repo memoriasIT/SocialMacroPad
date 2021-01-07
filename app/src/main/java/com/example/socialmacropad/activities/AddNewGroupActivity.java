@@ -16,7 +16,13 @@ import android.widget.Toast;
 
 import com.example.socialmacropad.R;
 
+import com.example.socialmacropad.models.GroupOfActivities;
 import com.google.android.material.textfield.TextInputLayout;
+
+import static com.example.socialmacropad.util.Constants.BLUE;
+import static com.example.socialmacropad.util.Constants.GREEN;
+import static com.example.socialmacropad.util.Constants.GREY;
+import static com.example.socialmacropad.util.Constants.ORANGE;
 
 public class AddNewGroupActivity extends AppCompatActivity {
 
@@ -67,7 +73,20 @@ public class AddNewGroupActivity extends AppCompatActivity {
 
         boolean a = nombre.length()>0;
         boolean b = green.isChecked() || blue.isChecked() || orange.isChecked() || grey.isChecked();
-        if(a && b){//Añadir el nuevo grupo a la BD
+        if(a && b){
+            String color = null;
+            if(green.isChecked()){
+                color = GREEN;
+            }else if(blue.isChecked()){
+                color = BLUE;
+            }else if(orange.isChecked()){
+                color = ORANGE;
+            }else if(grey.isChecked()){
+                color = GREY;
+            }
+            GroupOfActivities newGroup = new GroupOfActivities(nombre, descripcion, color);
+
+            //AÑADIR newGroup A LA BASE DE DATOS
 
             Toast.makeText(this, getString((R.string.new_group_created)), Toast.LENGTH_LONG).show();
             onBackPressed();

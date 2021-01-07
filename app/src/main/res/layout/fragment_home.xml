@@ -63,7 +63,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="545dp"
+            android:layout_height="219dp"
             android:orientation="vertical">
 
             <Space
@@ -97,10 +97,9 @@
                     android:textColor="#FF0000"
                     app:iconTint="#000000"
                     app:strokeColor="#FF0000"
-                    tools:ignore="MissingConstraints"  />
+                    tools:ignore="MissingConstraints" />
 
             </LinearLayout>
-
 
 
             <Space
@@ -158,15 +157,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
 
+
+            <!--
             <Button
                 android:id="@+id/btnEditGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/edit_group" />
 
-
-
-            <!--
             <TextView
                 android:id="@+id/text_home"
                 android:layout_width="327dp"
@@ -178,6 +176,11 @@
                 android:textSize="20sp" />
                 -->
         </LinearLayout>
+
+        <ListView
+            android:id="@+id/groups_list"
+            android:layout_width="match_parent"
+            android:layout_height="323dp"></ListView>
 
     </LinearLayout>
 

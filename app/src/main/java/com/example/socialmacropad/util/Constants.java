@@ -13,6 +13,11 @@ public interface Constants {
     int CONNECT_DEVICE_SECURE           = 9;
     int CONNECT_DEVICE_INSECURE         = 10;
 
+    String GREEN                        = "#DBEFD2";
+    String BLUE                         = "#D2E0EF";
+    String ORANGE                       = "#EFE7D2";
+    String GREY                         = "#F0F0F0";
+
     String DEVICE_NAME                  = "device_name";
     String TOAST                        = "toast";
 

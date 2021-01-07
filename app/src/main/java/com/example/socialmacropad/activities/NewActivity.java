@@ -3,6 +3,7 @@ package com.example.socialmacropad.activities;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.socialmacropad.models.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,11 @@ import android.widget.Toast;
 
 import com.example.socialmacropad.R;
 import com.google.android.material.textfield.TextInputLayout;
+
+import static com.example.socialmacropad.util.Constants.BLUE;
+import static com.example.socialmacropad.util.Constants.GREEN;
+import static com.example.socialmacropad.util.Constants.GREY;
+import static com.example.socialmacropad.util.Constants.ORANGE;
 
 public class NewActivity extends AppCompatActivity {
 
@@ -73,6 +79,19 @@ public class NewActivity extends AppCompatActivity {
         boolean b = entrada.length() > 0;
         boolean c = green.isChecked() || blue.isChecked() || orange.isChecked() || grey.isChecked();
         if(a && b && c){//Añadir la nueva actividad a la BD
+            String color = null;
+            if(green.isChecked()){
+                color = GREEN;
+            }else if(blue.isChecked()){
+                color = BLUE;
+            }else if(orange.isChecked()){
+                color = ORANGE;
+            }else if(grey.isChecked()){
+                color = GREY;
+            }
+            Activity newActivity = new Activity(nombre, entrada, color);
+
+            //AÑADIR newActivity A LA BASE DE DATOS
 
             Toast.makeText(this, getString((R.string.new_activity_created)), Toast.LENGTH_LONG).show();
             onBackPressed();

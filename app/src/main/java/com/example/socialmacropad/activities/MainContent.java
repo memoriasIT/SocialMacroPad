@@ -1,11 +1,9 @@
 package com.example.socialmacropad.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import com.example.socialmacropad.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;

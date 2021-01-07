@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.models.MacroPad;
-import com.example.socialmacropad.util.MacroPadAdapterDiscover;
 import com.example.socialmacropad.util.MacroPadAdapterSaved;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,9 +24,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.model.DocumentKey;
-
-import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 

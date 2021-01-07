@@ -3,7 +3,6 @@ package com.example.socialmacropad.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -15,18 +14,12 @@ import android.widget.Toast;
 
 import com.example.socialmacropad.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -56,11 +49,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser currentUser = mAuth.getCurrentUser();
-                if (currentUser != null) {
-
+//                if (currentUser != null) {
 //                    Intent intent = new Intent(SignUpActivity.this, MainContent.class);
 //                    startActivity(intent);
-                }
+//                }
             }
         };
 
@@ -106,16 +98,6 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth.removeAuthStateListener(mAuthListener);
     }
 
-    // Cuando el usuario hace login/register
-    protected void onAuthStateChanged(FirebaseAuth auth) {
-        super.onStart();
-        // If user is already registered go to home screen
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-//            Intent intent = new Intent(SignUpActivity.this, MainContent.class);
-//            startActivity(intent);
-        }
-    }
 
     private void validarDatos() {
         String nombre = username.getEditText().getText().toString();

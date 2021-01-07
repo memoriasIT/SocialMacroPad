@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,6 @@ import com.example.socialmacropad.models.MacroPad;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +26,7 @@ import java.util.Map;
 public class MacroPadAdapterDiscover extends ArrayAdapter<MacroPad> {
 
     private Context mContext;
-    private List<MacroPad> macroPadList = new ArrayList<>();
+    private List<MacroPad> macroPadList;
     private String TAG = MacroPadAdapterDiscover.class.getSimpleName();
 
 

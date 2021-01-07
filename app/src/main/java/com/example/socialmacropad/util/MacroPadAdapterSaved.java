@@ -21,7 +21,7 @@ import java.util.List;
 public class MacroPadAdapterSaved extends ArrayAdapter<MacroPad> {
 
     private Context mContext;
-    private List<MacroPad> macroPadList = new ArrayList<>();
+    private List<MacroPad> macroPadList;
 
 
     public MacroPadAdapterSaved(@NonNull Context context, ArrayList<MacroPad> list) {

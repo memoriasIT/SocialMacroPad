@@ -78,7 +78,7 @@
         "and use of imagery guide visual treatments. These elements do far more than please the "
         "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
         "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
+        "interfaz that immerse the user in the experience.\n"
         "An emphasis on user actions makes core functionality immediately apparent and provides "
         "waypoints for the user.\n\n"
 
@@ -148,11 +148,10 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Ajustes</string>
-    <string name="input" translatable="false">Input</string>
     <string name="save_macropad">Guardar</string>
     <string name="notSave_macropad">Borrar</string>
-    <string name="preference_last_connected_device_macAddress">Ultimo MAC registrado</string>
-    <string name="preference_last_connected_device_name">Ultimo nombre de dispositivo registrado</string>
+    <string name="preference_last_connected_device_macAddress">Último MAC registrado</string>
+    <string name="preference_last_connected_device_name">Último nombre de dispositivo registrado</string>
     <string name="no_elements">No has guardado ningún MacroPad aún!</string>
 
     <string name="app_name">SocialMacroPad</string>
@@ -204,9 +203,12 @@
     <string name="last_connection">Última conexión</string>
     <string name="messages">Mensajes</string>
     <string name="disconnect">Desconectar</string>
-    <string name="intelligent_macropad">Intelligent MacroPad™</string>
     <string name="bluetooth">Bluetooth</string>
     <string name="edit_group">Edit group</string>
     <string name="intelligent_macropad">Intelligent MacroPad™</string>
     <string name="save">Save</string>
+    <string name="defaultName">Intelligent MacroPad™</string>
+    <string name="defaultButton">" "</string>
+    <string name="default_saves">Guardado 0 veces</string>
+    <string name="copyright_2020">Copyright 2020</string>
 </resources>

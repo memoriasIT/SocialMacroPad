@@ -7,53 +7,165 @@
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/btnDisconnect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Disconnect" />
-
-        <Button
-            android:id="@+id/btnConnectBluetooth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="connect to bluetooth" />
-
-        <Button
-            android:id="@+id/btnLastDevice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Last connection" />
-
-        <Button
-            android:id="@+id/btnCreateGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create group" />
-
-        <Button
-            android:id="@+id/btnEditGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit group" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/text_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
+        android:layout_width="352dp"
+        android:layout_height="677dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewBluetooth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Bluetooth"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="170dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btnConnectBluetooth"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:text="Connect to Bluetooth"
+                android:textColor="#000000"
+                app:iconTint="#000000"
+                app:strokeColor="#000000"
+                tools:ignore="MissingConstraints" />
+
+
+            <Button
+                android:id="@+id/btnLastDevice"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:text="Last Connection"
+                android:textColor="#000000"
+                app:iconTint="#000000"
+                app:strokeColor="#000000"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/btnDisconnect"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:text="Disconnect"
+                android:textColor="#000000"
+                app:iconTint="#000000"
+                app:strokeColor="#000000"
+                tools:ignore="MissingConstraints" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="545dp"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="21dp" />
+
+            <TextView
+                android:id="@+id/textViewGroups"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:text="@string/groups_of_activities"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="170dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <TextView
+                android:id="@+id/textViewMyGroups"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/my_groups_of_activities"
+                android:textColor="#000000"
+                android:textSize="29sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <Button
+                android:id="@+id/btnCreateGroup"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:backgroundTint="#F0F0F0"
+                android:drawableRight="@drawable/add_plus"
+                android:gravity="left"
+                android:text="@string/new_group_of_activities"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                app:iconTint="#000000"
+                app:strokeColor="#F0F0F0"
+                tools:ignore="MissingConstraints" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:id="@+id/textViewLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="_______________"
+                android:textColor="#000000"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="170dp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="16dp" />
+
+            <Button
+                android:id="@+id/btnEditGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit group" />
+
+
+            <!--
+            <TextView
+                android:id="@+id/text_home"
+                android:layout_width="327dp"
+                android:layout_height="267dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+                -->
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

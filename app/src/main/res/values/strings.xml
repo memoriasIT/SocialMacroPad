@@ -196,4 +196,7 @@
     <string name="notSave_macropad">Delete</string>
     <string name="preference_last_connected_device_macAddress">Last Device MAC</string>
     <string name="preference_last_connected_device_name">last device name</string>
+    <string name="groups_of_activities">Groups of Activities</string>
+    <string name="my_groups_of_activities">My Groups of Activities</string>
+    <string name="new_group_of_activities">New group of activities</string>
 </resources>

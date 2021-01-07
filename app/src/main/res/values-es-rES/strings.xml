@@ -42,4 +42,7 @@
     <string name="new_activity_created">Nueva Actividad Creada</string>
     <string name="updated_activity">Actividad Actualizada</string>
     <string name="general">General</string>
+    <string name="groups_of_activities">Grupos de Actividades</string>
+    <string name="my_groups_of_activities">Mis Grupos de Actividades</string>
+    <string name="new_group_of_activities">Nuevo grupo de actividades</string>
 </resources>

@@ -7,7 +7,6 @@ import android.content.ContextWrapper;
 
 import com.example.socialmacropad.R;
 
-@Deprecated
 // Not used yet, used to generate a notification when service is active
 public class NotificationHelper extends ContextWrapper {
 

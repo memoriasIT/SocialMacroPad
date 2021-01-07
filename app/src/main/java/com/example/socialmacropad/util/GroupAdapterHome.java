@@ -3,6 +3,7 @@ package com.example.socialmacropad.util;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class GroupAdapterHome extends ArrayAdapter<GroupOfActivities> {
     private Context mContext;
     private List<GroupOfActivities> groupsList = new ArrayList<>();
     private String TAG = GroupAdapterHome.class.getSimpleName();
+    private GroupOfActivities currentGroup;
 
 
     public GroupAdapterHome(@NonNull Context context, ArrayList<GroupOfActivities> list) {
@@ -41,7 +43,7 @@ public class GroupAdapterHome extends ArrayAdapter<GroupOfActivities> {
         if(listItem == null)
             listItem = LayoutInflater.from(mContext).inflate(R.layout.item_groups_home,parent,false);
 
-        GroupOfActivities currentGroup = groupsList.get(position);
+        currentGroup = groupsList.get(position);
 
         Button btnGroup = (Button) listItem.findViewById(R.id.btnNameGroup);
         btnGroup.setText(currentGroup.getName());
@@ -50,6 +52,9 @@ public class GroupAdapterHome extends ArrayAdapter<GroupOfActivities> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, CommunicateActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("groupName", currentGroup.getName());
+                intent.putExtras(bundle);
                 mContext.startActivity(intent);
             }
         });
@@ -59,6 +64,7 @@ public class GroupAdapterHome extends ArrayAdapter<GroupOfActivities> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, EditGroupActivity.class);
+
                 mContext.startActivity(intent);
             }
         });

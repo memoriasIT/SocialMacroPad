@@ -34,6 +34,7 @@ public class CommunicateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_communicate);
         this.getSupportActionBar().hide();
 
+
         /*
         // Enable the back button in the action bar if possible
         if (getSupportActionBar() != null) {
@@ -78,9 +79,12 @@ public class CommunicateActivity extends AppCompatActivity {
 
         top = (TextView)findViewById(R.id.textViewTop);
         groupName = (TextView)findViewById(R.id.textViewGroupName);
+
         //CARGAR VALORES DEL GRUPO SELECCIONADO
-        top.setText("nombre_del_grupo"+ " > " + getString(R.string.activities));//nombre_grupo > Activities
-        groupName.setText("Nombre_del_grupo");
+        Bundle bundle = getIntent().getExtras();
+        String bundleGroupName = bundle.getString("groupName");
+        top.setText(bundleGroupName + " > " + getString(R.string.activities));//nombre_grupo > Activities
+        groupName.setText(bundleGroupName);
 
         ImageButton back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

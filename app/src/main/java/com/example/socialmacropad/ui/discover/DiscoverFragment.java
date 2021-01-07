@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.models.Action;
 import com.example.socialmacropad.models.MacroPad;
-import com.example.socialmacropad.util.MacroPadAdapter;
+import com.example.socialmacropad.util.MacroPadAdapterDiscover;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,7 +28,7 @@ public class DiscoverFragment extends Fragment {
 
     private DiscoverViewModel discoverViewModel;
     private ListView listView;
-    private MacroPadAdapter mAdapter;
+    private MacroPadAdapterDiscover mAdapter;
     private FirebaseFirestore db;
     private String TAG = DiscoverFragment.class.getSimpleName();
 
@@ -47,7 +47,7 @@ public class DiscoverFragment extends Fragment {
 
         listView = (ListView) getView().findViewById(R.id.macroPad_list);
         ArrayList<MacroPad> macroPadList = new ArrayList<>();
-        mAdapter = new MacroPadAdapter(getActivity(), macroPadList);
+        mAdapter = new MacroPadAdapterDiscover(getActivity(), macroPadList);
         listView.setAdapter(mAdapter);
 
         // Demo macropad
@@ -59,7 +59,7 @@ public class DiscoverFragment extends Fragment {
 
     }
 
-    private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, MacroPadAdapter mAdapter) {
+    private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, MacroPadAdapterDiscover mAdapter) {
         db = FirebaseFirestore.getInstance();
         db.collection("macropad")
                 .get()

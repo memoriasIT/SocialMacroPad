@@ -18,13 +18,13 @@ import com.example.socialmacropad.models.MacroPad;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MacroPadAdapter extends ArrayAdapter<MacroPad> {
+public class MacroPadAdapterDiscover extends ArrayAdapter<MacroPad> {
 
     private Context mContext;
     private List<MacroPad> macroPadList = new ArrayList<>();
 
 
-    public MacroPadAdapter(@NonNull Context context, ArrayList<MacroPad> list) {
+    public MacroPadAdapterDiscover(@NonNull Context context, ArrayList<MacroPad> list) {
         super(context, 0 , list);
         mContext = context;
         macroPadList = list;

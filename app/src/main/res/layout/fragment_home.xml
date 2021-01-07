@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Bluetooth"
+            android:text="@string/bluetooth"
             android:textColor="#000000"
             android:textSize="14sp"
             android:textStyle="normal"
@@ -162,7 +162,7 @@
                 android:id="@+id/btnEditGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Edit group" />
+                android:text="@string/edit_group" />
 
 
 

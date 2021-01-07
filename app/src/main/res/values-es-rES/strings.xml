@@ -204,4 +204,9 @@
     <string name="last_connection">Última conexión</string>
     <string name="messages">Mensajes</string>
     <string name="disconnect">Desconectar</string>
+    <string name="intelligent_macropad">Intelligent MacroPad™</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="edit_group">Edit group</string>
+    <string name="intelligent_macropad">Intelligent MacroPad™</string>
+    <string name="save">Save</string>
 </resources>

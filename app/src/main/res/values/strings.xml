@@ -204,4 +204,13 @@
     <string name="text_default_connection">Default connection</string>
     <string name="text_select_paired_device">Choose paired device</string>
     <string name="preference_last_connected_device">last_connected_device</string>
+    <string name="intelligent_macropad">Intelligent MacroPad™</string>
+    <string name="copyright_2020">Copyright 2020</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="edit_group">Edit group</string>
+    <string name="intelligent_macropad">Intelligent MacroPad™</string>
+    <string name="default_saves">0 Saves</string>
+    <string name="save">Save</string>
+    <string name="defaultButton">" "</string>
+    <string name="defaultName">Intelligent MacroPad™</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.socialmacropad.models;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Action {
     private String action;
     private String actionname;

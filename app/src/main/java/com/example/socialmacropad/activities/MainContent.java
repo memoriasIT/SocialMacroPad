@@ -1,9 +1,11 @@
 package com.example.socialmacropad.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.socialmacropad.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -13,6 +15,8 @@ import androidx.navigation.ui.NavigationUI;
 
 // Actividad principal, utiliza fragmentos con una navegación inferior
 public class MainContent extends AppCompatActivity {
+
+    private static final String TAG = MainContent.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,8 @@ public class MainContent extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+
+        Log.d(TAG, FirebaseAuth.getInstance().getUid());
 
 
     }

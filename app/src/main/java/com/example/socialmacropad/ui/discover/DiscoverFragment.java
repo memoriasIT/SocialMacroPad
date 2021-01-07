@@ -61,18 +61,6 @@ public class DiscoverFragment extends Fragment {
     }
 
 
-    private void deleteMacroPadFromFirestore(int position) {
-    }
-
-    private void saveMacroPadToFirestore(int position) {
-        Map<String, Object> data = new HashMap<>();
-        data.put("padId", true);
-
-        Log.d(TAG, String.valueOf(position));
-
-//        db.collection("cities").document("BJ")
-//                .set(data, SetOptions.merge());
-    }
 
     private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, MacroPadAdapterDiscover mAdapter) {
         db = FirebaseFirestore.getInstance();

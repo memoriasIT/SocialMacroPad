@@ -8,7 +8,7 @@ public class GroupOfActivities {
     private String name;
     private String description;
     private String colour;
-    private List<Activity> activities;
+    private List<Action> actions;
 
     public GroupOfActivities(){ }
 
@@ -16,7 +16,7 @@ public class GroupOfActivities {
         this.name = name;
         this.description = description;
         this.colour = colour;//ej: #FF0000
-        activities = new ArrayList<Activity>();
+        actions = new ArrayList<Action>();
     }
 
     public String getDescription() {
@@ -43,18 +43,18 @@ public class GroupOfActivities {
         this.name = name;
     }
 
-    public List<Activity> getActivities(){ return activities; }
+    public List<Action> getActivities(){ return actions; }
 
-    public void addActivity(Activity activity){
-        activities.add(activity);
+    public void addAction(Action action){
+        actions.add(action);
     }
 
-    public void deleteActivity(Activity activity){
-        activities.remove(activity);
+    public void deleteAction(Activity activity){
+        actions.remove(activity);
     }
 
     public void deleteGroup(){
-        activities.clear();
+        actions.clear();
     }
 
 }

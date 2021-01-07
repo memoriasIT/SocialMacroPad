@@ -31,12 +31,20 @@ import com.example.socialmacropad.util.Config;
 import com.example.socialmacropad.util.Constants;
 import com.example.socialmacropad.util.GroupAdapterHome;
 import com.example.socialmacropad.util.MacroPadAdapterDiscover;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
@@ -47,6 +55,7 @@ public class HomeFragment extends Fragment {
     private GroupAdapterHome mAdapter;
     private ListView listView;
     private String TAG = HomeFragment.class.getSimpleName();
+    private FirebaseFirestore db;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -89,8 +98,8 @@ public class HomeFragment extends Fragment {
         });
 
 
-        Button btnAction1 = getView().findViewById(R.id.btnLastDevice);
-        btnAction1.setOnClickListener(new View.OnClickListener() {
+        Button btnLastDevice = getView().findViewById(R.id.btnLastDevice);
+        btnLastDevice .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String macAddress = sharedPreferences.getString(getString(R.string.preference_last_connected_device_macAddress), "");
@@ -125,6 +134,32 @@ public class HomeFragment extends Fragment {
 
         //CARGAR LAS ACTIVIDADES CREADAS DE LA BD
 
+        // get macropads stored in firestore
+        retrieveGroupsFromFirestore(groupsList, mAdapter);
+
+    }
+
+    private void retrieveGroupsFromFirestore(ArrayList<GroupOfActivities> groupsList, GroupAdapterHome mAdapter) {
+        db = FirebaseFirestore.getInstance();
+        String UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        db.collection("users/"+UserID+"/pads")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                GroupOfActivities group = document.toObject(GroupOfActivities.class);
+                                groupsList.add(group);
+                                mAdapter.notifyDataSetChanged();
+                            }
+
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
     }
 
 

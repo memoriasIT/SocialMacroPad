@@ -3,6 +3,7 @@ package com.example.socialmacropad.activities;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.helper.EnhancedSharedPreferences;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -25,12 +27,17 @@ import java.util.Collection;
 public class BluetoothList extends AppCompatActivity {
 
     private BluetoothListViewModel viewModel;
+    private EnhancedSharedPreferences sharedPreferences;
+    private String TAG = BluetoothList.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Setup our activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_device_list);
+
+        // Setup sharedPreferences
+        sharedPreferences = EnhancedSharedPreferences.getInstance(getApplicationContext(), getString(R.string.sharedPreferencesKey));
 
         // Setup our ViewModel
         viewModel = ViewModelProviders.of(this).get(BluetoothListViewModel.class);
@@ -65,6 +72,11 @@ public class BluetoothList extends AppCompatActivity {
 
     // Called when clicking on a device entry to start the CommunicateActivity
     public void openCommunicationsActivity(String deviceName, String macAddress) {
+        sharedPreferences.edit().putString(getString(R.string.preference_last_connected_device_macAddress), macAddress).apply();
+        sharedPreferences.edit().putString(getString(R.string.preference_last_connected_device_name), deviceName).apply();
+
+        Log.d(TAG, deviceName);
+
         Intent intent = new Intent(this, CommunicateActivity.class);
         intent.putExtra("device_name", deviceName);
         intent.putExtra("device_mac", macAddress);

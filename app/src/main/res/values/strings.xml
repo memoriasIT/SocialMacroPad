@@ -194,4 +194,6 @@
     <string name="updated_activity">Updated Activity</string>
     <string name="save_macropad">Save</string>
     <string name="notSave_macropad">Delete</string>
+    <string name="preference_last_connected_device_macAddress">Last Device MAC</string>
+    <string name="preference_last_connected_device_name">last device name</string>
 </resources>

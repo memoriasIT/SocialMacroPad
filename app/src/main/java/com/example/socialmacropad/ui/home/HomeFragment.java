@@ -3,6 +3,7 @@ package com.example.socialmacropad.ui.home;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.socialmacropad.activities.AddNewGroupActivity;
 import com.example.socialmacropad.activities.BluetoothList;
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.activities.CommunicateActivity;
 import com.example.socialmacropad.activities.EditGroupActivity;
 import com.example.socialmacropad.activities.IntroActivity;
 import com.example.socialmacropad.event.UIToastEvent;
@@ -35,6 +37,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private BluetoothAdapter bluetoothAdapter = null;
     private EnhancedSharedPreferences sharedPreferences;
+    private String TAG = HomeFragment.class.getSimpleName();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -81,7 +84,16 @@ public class HomeFragment extends Fragment {
         btnAction1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String macAddress = sharedPreferences.getString(getString(R.string.preference_last_connected_device), "");
+                String macAddress = sharedPreferences.getString(getString(R.string.preference_last_connected_device_macAddress), "");
+                String deviceName = sharedPreferences.getString(getString(R.string.preference_last_connected_device_name), "");
+
+                Log.d(TAG, macAddress);
+                Log.d(TAG, deviceName);
+
+                Intent intent = new Intent(getActivity(), CommunicateActivity.class);
+                intent.putExtra("device_name", deviceName);
+                intent.putExtra("device_mac", macAddress);
+                startActivity(intent);
                 EventBus.getDefault().post(new UIToastEvent("ULTIMO DISPOSITIVO " + macAddress, true, true));
             }
         });

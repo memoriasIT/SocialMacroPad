@@ -202,4 +202,5 @@
     <string name="log_out">Log Out</string>
     <string name="connect_to_bluetooth">Connect to buetooth</string>
     <string name="last_connection">Last connection</string>
+    <string name="no_elements">You did not save any MacroPads yet!</string>
 </resources>

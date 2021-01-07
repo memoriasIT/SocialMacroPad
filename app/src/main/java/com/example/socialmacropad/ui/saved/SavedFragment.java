@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,13 +54,14 @@ public class SavedFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         listView = (ListView) getView().findViewById(R.id.macroPad_list);
+        TextView emptyText = (TextView) getView().findViewById(R.id.txtNoElements);
+        listView.setEmptyView(emptyText);
+
+
         ArrayList<MacroPad> macroPadList = new ArrayList<>();
         mAdapter = new MacroPadAdapterSaved(getActivity(), macroPadList);
         listView.setAdapter(mAdapter);
 
-        // Demo macropad
-//        macroPadList.add(new MacroPad("test", "test" , "name",  "description", "000000",    new Action("a", "a", "000000"), new Action("b", "b", "000000"), new Action("c", "c", "000000"),
-//                new Action("d", "d", "000000"), new Action("e", "e", "000000"), new Action("f", "f", "000000")));
 
         // get macropads stored in firestore
         retrieveMacroPadsFromFirestore(macroPadList, mAdapter);

@@ -18,7 +18,7 @@ import com.example.socialmacropad.R;
 import com.example.socialmacropad.activities.activityGroups.EditActivity;
 import com.example.socialmacropad.activities.activityGroups.NewActivity;
 import com.example.socialmacropad.models.Action;
-import com.example.socialmacropad.models.GroupOfActivities;
+import com.example.socialmacropad.models.MacroPad;
 import com.google.gson.Gson;
 
 public class CommunicateActivity extends AppCompatActivity {
@@ -26,7 +26,7 @@ public class CommunicateActivity extends AppCompatActivity {
     private TextView connectionText, messagesView;
     private EditText messageBox;
     private Button sendButton, connectButton;
-    private GroupOfActivities currentGroup;
+    private MacroPad currentGroup;
 
     private TextView top, groupName;
 
@@ -92,7 +92,7 @@ public class CommunicateActivity extends AppCompatActivity {
         if (extras != null) {
             jsonCurrentGroup = extras.getString("currentGroup");
         }
-        currentGroup = new Gson().fromJson(jsonCurrentGroup, GroupOfActivities.class);
+        currentGroup = new Gson().fromJson(jsonCurrentGroup, MacroPad.class);
 
         top.setText(currentGroup.getName() + " > " + getString(R.string.activities));//nombre_grupo > Activities
         groupName.setText(currentGroup.getName());
@@ -108,7 +108,7 @@ public class CommunicateActivity extends AppCompatActivity {
 
         Button act1 = (Button)findViewById(R.id.btnNewActivity1);
         try {
-            Action action1 = currentGroup.getActivities().get(0);
+            Action action1 = currentGroup.getAction1();
             if(!action1.getActionname().equals("null")){
                 act1.setText(action1.getActionname());
                 act1.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +132,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog();
+                editDialog(currentGroup.getAction1());
                 return true;
             }
         });
@@ -149,7 +149,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog();
+                editDialog(currentGroup.getAction1());
                 return true;
             }
         });
@@ -166,7 +166,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog();
+                editDialog(currentGroup.getAction1());
                 return true;
             }
         });
@@ -183,7 +183,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act4.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog();
+                editDialog(currentGroup.getAction1());
                 return true;
             }
         });
@@ -200,7 +200,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act5.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog();
+                editDialog(currentGroup.getAction1());
                 return true;
             }
         });
@@ -217,7 +217,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act6.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog();
+                editDialog(currentGroup.getAction1());
                 return true;
             }
         });
@@ -278,12 +278,13 @@ public class CommunicateActivity extends AppCompatActivity {
         finish();
     }
 
-    private void editDialog() {
+    private void editDialog(Action action) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.edit_this_activity));
         builder.setPositiveButton(getString(R.string.edit), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 Intent intent = new Intent(CommunicateActivity.this, EditActivity.class);
+                intent.putExtra("action", new Gson().toJson(action));
                 startActivity(intent);
             }
         });

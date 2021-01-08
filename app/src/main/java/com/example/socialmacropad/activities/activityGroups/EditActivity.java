@@ -13,7 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.models.Action;
+import com.example.socialmacropad.models.MacroPad;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -22,6 +25,7 @@ public class EditActivity extends AppCompatActivity {
     RadioGroup colour;
     TextView top;
     TextView activityName;
+    private Action currAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +40,18 @@ public class EditActivity extends AppCompatActivity {
         activityName = (TextView)findViewById(R.id.textViewActivityName);
 
         //CARGAR VALORES DE LA ACTIVIDAD SELECCIONADA
-        top.setText("nombre_del_grupo"+ " > " + "nombre_de_la_act" + getString(R.string.top_edit));//nombre_grupo > nombew_act > Edit
-        activityName.setText("nombre_de_la_act");
-        name.getEditText().setText( "nombre_de_la_act", TextView.BufferType.EDITABLE);
-        input.getEditText().setText("input_del_seleciconado", TextView.BufferType.EDITABLE);
+        String jsonCurrentGroup = null;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            jsonCurrentGroup = extras.getString("action");
+        }
+        currAction = new Gson().fromJson(jsonCurrentGroup, Action.class);
+
+
+        top.setText("nombre_del_grupo"+ " > " + currAction.getActionname() + getString(R.string.top_edit));//nombre_grupo > nombew_act > Edit
+        activityName.setText(currAction.getActionname());
+        name.getEditText().setText( currAction.getActionname(), TextView.BufferType.EDITABLE);
+        input.getEditText().setText(currAction.getAction(), TextView.BufferType.EDITABLE);
         //check al radio button del color correspondiente
 
         ImageButton delete = (ImageButton)findViewById(R.id.delete);

@@ -215,4 +215,6 @@
     <string name="new_activity">Nueva Actividad</string>
     <string name="edit">Editar</string>
     <string name="edit_this_activity">¿Editar esta Actividad?</string>
+    <string name="spanish">Español</string>
+    <string name="english">Inglés</string>
 </resources>

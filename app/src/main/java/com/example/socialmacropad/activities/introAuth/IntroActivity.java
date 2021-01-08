@@ -2,8 +2,10 @@ package com.example.socialmacropad.activities.introAuth;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,14 +23,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class IntroActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    String[] languages = {"Demo", "Demo2"};
+    String[] languages = {"Select language","Spanish", "English"};
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String TAG = IntroActivity.class.getSimpleName();
-
+    private int actualLanguage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +42,27 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
             this.getSupportActionBar().hide();
         }
         catch (NullPointerException ignored){}
-
         setContentView(R.layout.activity_main);
+
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, languages);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spin = (Spinner) findViewById(R.id.languageSpinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, languages);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(adapter);
-        spin.setOnItemSelectedListener(this);
+        //spin.setOnItemSelectedListener(this);
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapter, View vies, int position, long id) {
+                if(position!=actualLanguage){
+                    actualLanguage = position;
+                    setLanguage(position);
+                    refresh();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapter) { }
+        });
 
 //        Get Firebase instance for singing up users
         mAuth = FirebaseAuth.getInstance();
@@ -96,6 +113,34 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
             }
         });
 
+    }
+
+    private void setLanguage(int position) {//1->Spanish, 2->English
+        if(position==1){
+            Locale locale = new Locale("es");
+            Locale.setDefault(locale);
+            Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            //refresh();
+        }else if(position==2){
+            Locale locale = new Locale("en");
+            Locale.setDefault(locale);
+            Configuration config = getBaseContext().getResources().getConfiguration();
+            config.locale = locale;
+            getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+            //refresh();
+        }
+
+    }
+
+    private void refresh() {
+        Button learnMore = (Button)findViewById(R.id.learnmore);
+        learnMore.setText(getString(R.string.teachMe));
+        Button signUp = (Button)findViewById(R.id.btn1_1);
+        signUp.setText(getString(R.string.signup));
+        Button logIn = (Button)findViewById(R.id.login);
+        logIn.setText(getString(R.string.login));
     }
 
     private void addUserToFirestore() {

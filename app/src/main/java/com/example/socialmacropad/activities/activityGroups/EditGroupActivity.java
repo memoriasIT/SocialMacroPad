@@ -4,7 +4,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,13 +16,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.activities.bottomNavActivities.MainContent;
 import com.example.socialmacropad.models.GroupOfActivities;
+import com.example.socialmacropad.models.MacroPad;
 import com.example.socialmacropad.util.Constants;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 
 public class EditGroupActivity extends AppCompatActivity {
-
+    MacroPad currentGroup;
     TextInputLayout name;
     TextInputLayout  description;
     RadioGroup colour;
@@ -45,13 +51,13 @@ public class EditGroupActivity extends AppCompatActivity {
         if (extras != null) {
             jsonCurrentGroup = extras.getString("currentGroup");
         }
-        GroupOfActivities currentGroup = new Gson().fromJson(jsonCurrentGroup, GroupOfActivities.class);
+        currentGroup = new Gson().fromJson(jsonCurrentGroup, MacroPad.class);
 
         top.setText(currentGroup.getName() + getString(R.string.top_edit));//nombre_del_grupo > Edit
         groupName.setText(currentGroup.getName());
         name.getEditText().setText( currentGroup.getName(), TextView.BufferType.EDITABLE);
         description.getEditText().setText(currentGroup.getDescription(), TextView.BufferType.EDITABLE);
-        switch (currentGroup.getColour()){
+        switch (currentGroup.getColor()){
             case Constants.BLUE  : colour.check(R.id.option_blue); break;
             case Constants.GREEN : colour.check(R.id.option_green);break;
             case Constants.GREY : colour.check(R.id.option_grey); break;
@@ -108,7 +114,16 @@ public class EditGroupActivity extends AppCompatActivity {
         builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 if(delete){
-                    //SE ELIMINA EL GRUPO ACTUAL
+                    // Delete from firebase
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    String UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                    db.collection("users").document(UserID).collection("pads").document(currentGroup.getPadId()).delete();
+                    db.collection("macropad").document(currentGroup.getPadId()).delete();
+
+                    // Goto home activity
+                    Intent intent = new Intent(getApplicationContext(), MainContent.class);
+                    startActivity(intent);
                 }else {
                     onBackPressed();
                 }

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +17,16 @@ import com.example.socialmacropad.R;
 import com.example.socialmacropad.models.Action;
 import com.example.socialmacropad.models.MacroPad;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.socialmacropad.util.Constants.BLUE;
+import static com.example.socialmacropad.util.Constants.GREEN;
+import static com.example.socialmacropad.util.Constants.GREY;
+import static com.example.socialmacropad.util.Constants.ORANGE;
 
 public class EditActivity extends AppCompatActivity {
 
@@ -26,6 +36,7 @@ public class EditActivity extends AppCompatActivity {
     TextView top;
     TextView activityName;
     private Action currAction;
+    private MacroPad macroPad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +57,10 @@ public class EditActivity extends AppCompatActivity {
             jsonCurrentGroup = extras.getString("action");
         }
         currAction = new Gson().fromJson(jsonCurrentGroup, Action.class);
+        macroPad = new Gson().fromJson(jsonCurrentGroup, MacroPad.class);
 
 
-        top.setText("nombre_del_grupo"+ " > " + currAction.getActionname() + getString(R.string.top_edit));//nombre_grupo > nombew_act > Edit
+        top.setText(macroPad.getName() + " > " + currAction.getActionname() + getString(R.string.top_edit));//nombre_grupo > nombew_act > Edit
         activityName.setText(currAction.getActionname());
         name.getEditText().setText( currAction.getActionname(), TextView.BufferType.EDITABLE);
         input.getEditText().setText(currAction.getAction(), TextView.BufferType.EDITABLE);
@@ -81,13 +93,32 @@ public class EditActivity extends AppCompatActivity {
     }
 
     private void validarDatos() { //Nombre obligatorio, input obligatorio, color obligatorio
-        String nombre = name.getEditText().getText().toString();
-        String entrada = input.getEditText().getText().toString();
+        String strnombre = name.getEditText().getText().toString();
+        String strinput = input.getEditText().getText().toString();
+        String strcolor = null;
 
-        boolean a = nombre.length() > 0;
-        boolean b = entrada.length() > 0;
+        RadioButton green = (RadioButton)findViewById(R.id.option_green);
+        RadioButton blue = (RadioButton)findViewById(R.id.option_blue);
+        RadioButton orange = (RadioButton)findViewById(R.id.option_orange);
+        RadioButton grey = (RadioButton)findViewById(R.id.option_grey);
+        if(green.isChecked()){
+            strcolor = GREEN;
+        }else if(blue.isChecked()){
+            strcolor = BLUE;
+        }else if(orange.isChecked()){
+            strcolor = ORANGE;
+        }else if(grey.isChecked()){
+            strcolor = GREY;
+        }
+
+        boolean a = strnombre.length() > 0;
+        boolean b = strinput.length() > 0;
         if(a && b){//ACTUALIZAR la actividad en la BD
-
+            Map<String, Object> data = new HashMap<>();
+            data.put("action", strnombre);
+            data.put("actionname", strinput);
+            data.put("color", strcolor);
+            FirebaseFirestore.getInstance().collection("macropad").document(macroPad.getPadId()).update(data);
             Toast.makeText(this, getString((R.string.updated_activity)), Toast.LENGTH_LONG).show();
             onBackPressed();
         }else{

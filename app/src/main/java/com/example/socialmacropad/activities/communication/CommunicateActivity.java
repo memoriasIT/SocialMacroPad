@@ -147,7 +147,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction1());
+                editDialog(currentGroup.getAction1(), currentGroup);
                 return true;
             }
         });
@@ -183,7 +183,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction2());
+                editDialog(currentGroup.getAction2(), currentGroup);
                 return true;
             }
         });
@@ -219,7 +219,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction3());
+                editDialog(currentGroup.getAction3(), currentGroup);
                 return true;
             }
         });
@@ -255,7 +255,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act4.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction4());
+                editDialog(currentGroup.getAction4(), currentGroup);
                 return true;
             }
         });
@@ -291,7 +291,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act5.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction5());
+                editDialog(currentGroup.getAction5(), currentGroup);
                 return true;
             }
         });
@@ -327,7 +327,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act6.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction6());
+                editDialog(currentGroup.getAction6(), currentGroup);
                 return true;
             }
         });
@@ -400,13 +400,14 @@ public class CommunicateActivity extends AppCompatActivity {
         finish();
     }
 
-    private void editDialog(Action action) {
+    private void editDialog(Action action, MacroPad currentGroup) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.edit_this_activity));
         builder.setPositiveButton(getString(R.string.edit), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 Intent intent = new Intent(CommunicateActivity.this, EditActivity.class);
                 intent.putExtra("action", new Gson().toJson(action));
+                intent.putExtra("macropad", new Gson().toJson(currentGroup));
                 startActivity(intent);
             }
         });

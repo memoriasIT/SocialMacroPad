@@ -81,41 +81,42 @@ public class SignUpActivity extends AppCompatActivity {
 
 //        Get Firebase instance for singing up users
         mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(nombre)
-                        .build();
-
-                currentUser.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Log.d(TAG, "User profile updated.");
-                                }
-                            }
-                        });
-
-//                if (currentUser != null) {
-//                    Intent intent = new Intent(SignUpActivity.this, MainContent.class);
-//                    startActivity(intent);
-//                }
-            }
-        };    }
+//        mAuthListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                FirebaseUser currentUser = mAuth.getCurrentUser();
+//                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+//                        .setDisplayName(nombre)
+//                        .build();
+//
+//                currentUser.updateProfile(profileUpdates)
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//                                    Log.d(TAG, "User profile updated.");
+//                                }
+//                            }
+//                        });
+//
+////                if (currentUser != null) {
+////                    Intent intent = new Intent(SignUpActivity.this, MainContent.class);
+////                    startActivity(intent);
+////                }
+//            }
+//        };
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+//        mAuth.addAuthStateListener(mAuthListener);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        mAuth.removeAuthStateListener(mAuthListener);
+//        mAuth.removeAuthStateListener(mAuthListener);
     }
 
 
@@ -136,9 +137,26 @@ public class SignUpActivity extends AppCompatActivity {
 
             Toast.makeText(this, getString((R.string.user_registred)), Toast.LENGTH_LONG).show();
 
-
             onBackPressed();
         }
+    }
+
+    private void addDataToRegister() {
+//        nombre = username.getEditText().toString();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(nombre)
+                .build();
+
+        currentUser.updateProfile(profileUpdates)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Log.d(TAG, "User profile updated. " + nombre);
+                        }
+                    }
+                });
     }
 
     private boolean esNombreValido(String nombre) {
@@ -186,23 +204,14 @@ public class SignUpActivity extends AppCompatActivity {
     // Registra usuario en Firebase
     private void registrarUsuario(String email, String password) {
 
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "createUserWithEmail:success");
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                Log.d(TAG, "createUserWithEmail:success");
 
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignUpActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-//                            updateUI(null);
-                        }
-
-                    }
-                });
+                addDataToRegister();
+            }
+        });
     }
 
 

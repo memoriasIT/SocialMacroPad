@@ -124,8 +124,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Toast toast = Toast.makeText(getApplicationContext(), "Send" + action1.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
-//                        viewModel.sendMessage(action1.getAction() );
-                        viewModel.sendMessage("help");
+                        viewModel.sendMessage(action1.getAction() );
                         toast.show();
                     }
                 });

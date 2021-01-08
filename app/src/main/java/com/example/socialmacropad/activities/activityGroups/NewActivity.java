@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.socialmacropad.models.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -15,7 +16,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.models.GroupOfActivities;
+import com.example.socialmacropad.models.MacroPad;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.socialmacropad.util.Constants.BLUE;
 import static com.example.socialmacropad.util.Constants.GREEN;
@@ -29,6 +39,7 @@ public class NewActivity extends AppCompatActivity {
     RadioGroup colour;
     TextView top;
     TextView errorColour;
+    private String TAG = NewActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +56,13 @@ public class NewActivity extends AppCompatActivity {
 
 
         //CARGAR VALORES DEL GRUPO SELECCIONADO
-        top.setText("nombre_del_grupo" + " > " + getString(R.string.add_new_activity)); //nombre_del_grupo > Add new activity
+        String jsonCurrentGroup = null;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            jsonCurrentGroup = extras.getString("currentGroup");
+        }
+        GroupOfActivities currentGroup = new Gson().fromJson(jsonCurrentGroup, GroupOfActivities.class);
+        top.setText(currentGroup.getName() + " > " + getString(R.string.add_new_activity)); //nombre_del_grupo > Add new activity
 
         ImageButton back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -125,4 +142,7 @@ public class NewActivity extends AppCompatActivity {
         });
         builder.show();
     }
+
+
+
 }

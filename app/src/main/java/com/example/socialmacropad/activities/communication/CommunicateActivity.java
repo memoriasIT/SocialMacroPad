@@ -82,8 +82,8 @@ public class CommunicateActivity extends AppCompatActivity {
         sendButton.setOnClickListener(v -> viewModel.sendMessage(messageBox.getText().toString()));
         */
 
-        top = (TextView)findViewById(R.id.textViewTop);
-        groupName = (TextView)findViewById(R.id.textViewGroupName);
+        top = (TextView) findViewById(R.id.textViewTop);
+        groupName = (TextView) findViewById(R.id.textViewGroupName);
 
 
         //CARGAR VALORES DEL GRUPO SELECCIONADO
@@ -97,7 +97,7 @@ public class CommunicateActivity extends AppCompatActivity {
         top.setText(currentGroup.getName() + " > " + getString(R.string.activities));//nombre_grupo > Activities
         groupName.setText(currentGroup.getName());
 
-        ImageButton back = (ImageButton)findViewById(R.id.back);
+        ImageButton back = (ImageButton) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,10 +106,10 @@ public class CommunicateActivity extends AppCompatActivity {
         });
 
 
-        Button act1 = (Button)findViewById(R.id.btnNewActivity1);
+        Button act1 = (Button) findViewById(R.id.btnNewActivity1);
         try {
             Action action1 = currentGroup.getAction1();
-            if(!action1.getActionname().equals("null")){
+            if (!action1.getActionname().equals("null")) {
                 act1.setText(action1.getActionname());
                 act1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -119,16 +119,17 @@ public class CommunicateActivity extends AppCompatActivity {
                     }
                 });
 
+            } else {
+                act1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
-        } catch (Exception e) {
-            act1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
-                    Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
-                    startActivity(intent);
-                }
-            });
-        }
+
+        } catch (Exception e) {}
         act1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -138,86 +139,166 @@ public class CommunicateActivity extends AppCompatActivity {
         });
 
 
-        Button act2 = (Button)findViewById(R.id.btnNewActivity2);
-        act2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
-                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
-                startActivity(intent);
+        Button act2 = (Button) findViewById(R.id.btnNewActivity2);
+        try {
+            Action action2 = currentGroup.getAction2();
+            if (!action2.getActionname().equals("null")) { // La actividad ha sido creada
+                act2.setText(action2.getActionname());
+                act2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Toast toast = Toast.makeText(getApplicationContext(), "Send" + action2.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+
+            } else { // La actividad aún no ha sido creada
+                act2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
-        });
+
+        } catch (Exception e) {}
         act2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction1());
+                editDialog(currentGroup.getAction2());
                 return true;
             }
         });
 
 
-        Button act3 = (Button)findViewById(R.id.btnNewActivity3);
-        act3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
-                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
-                startActivity(intent);
+        Button act3 = (Button) findViewById(R.id.btnNewActivity3);
+        try {
+            Action action3 = currentGroup.getAction3();
+            if (!action3.getActionname().equals("null")) { // La actividad ha sido creada
+                act3.setText(action3.getActionname());
+                act3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Toast toast = Toast.makeText(getApplicationContext(), "Send" + action3.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+
+            } else { // La actividad aún no ha sido creada
+                act3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
-        });
+
+        } catch (Exception e) {}
         act3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction1());
+                editDialog(currentGroup.getAction3());
                 return true;
             }
         });
 
 
-        Button act4 = (Button)findViewById(R.id.btnNewActivity4);
-        act4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
-                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
-                startActivity(intent);
+        Button act4 = (Button) findViewById(R.id.btnNewActivity4);
+        try {
+            Action action4 = currentGroup.getAction4();
+            if (!action4.getActionname().equals("null")) { // La actividad ha sido creada
+                act4.setText(action4.getActionname());
+                act4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Toast toast = Toast.makeText(getApplicationContext(), "Send" + action4.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+
+            } else { // La actividad aún no ha sido creada
+                act4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
-        });
+
+        } catch (Exception e) {}
         act4.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction1());
+                editDialog(currentGroup.getAction4());
                 return true;
             }
         });
 
 
-        Button act5 = (Button)findViewById(R.id.btnNewActivity5);
-        act5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
-                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
-                startActivity(intent);
+        Button act5 = (Button) findViewById(R.id.btnNewActivity5);
+        try {
+            Action action5 = currentGroup.getAction5();
+            if (!action5.getActionname().equals("null")) { // La actividad ha sido creada
+                act5.setText(action5.getActionname());
+                act5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Toast toast = Toast.makeText(getApplicationContext(), "Send" + action5.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+
+            } else { // La actividad aún no ha sido creada
+                act5.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
-        });
+
+        } catch (Exception e) {}
         act5.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction1());
+                editDialog(currentGroup.getAction5());
                 return true;
             }
         });
 
 
-        Button act6 = (Button)findViewById(R.id.btnNewActivity6);
-        act6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
-                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
-                startActivity(intent);
+        Button act6 = (Button) findViewById(R.id.btnNewActivity6);
+        try {
+            Action action6 = currentGroup.getAction6();
+            if (!action6.getActionname().equals("null")) { // La actividad ha sido creada
+                act6.setText(action6.getActionname());
+                act6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Toast toast = Toast.makeText(getApplicationContext(), "Send" + action6.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+
+            } else { // La actividad aún no ha sido creada
+                act6.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
-        });
+
+        } catch (Exception e) {}
         act6.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction1());
+                editDialog(currentGroup.getAction6());
                 return true;
             }
         });
@@ -258,8 +339,7 @@ public class CommunicateActivity extends AppCompatActivity {
 
     // Called when a button in the action bar is pressed
     @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
+    public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // If the back button was pressed, handle it the normal way

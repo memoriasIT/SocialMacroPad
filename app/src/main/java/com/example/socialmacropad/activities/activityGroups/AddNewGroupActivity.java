@@ -1,11 +1,13 @@
 package com.example.socialmacropad.activities.activityGroups;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,8 +18,25 @@ import android.widget.Toast;
 
 import com.example.socialmacropad.R;
 
+import com.example.socialmacropad.models.Action;
 import com.example.socialmacropad.models.GroupOfActivities;
+import com.example.socialmacropad.models.MacroPad;
+import com.example.socialmacropad.util.GroupAdapterHome;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.socialmacropad.util.Constants.BLUE;
 import static com.example.socialmacropad.util.Constants.GREEN;
@@ -30,6 +49,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
     TextInputLayout  description;
     RadioGroup colour;
     TextView errorColour;
+    private String TAG = AddNewGroupActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,9 +104,18 @@ public class AddNewGroupActivity extends AppCompatActivity {
             }else if(grey.isChecked()){
                 color = GREY;
             }
-            GroupOfActivities newGroup = new GroupOfActivities(nombre, descripcion, color);
+
+            // MacroPad(String creatorUser, String creatorID, String padId, String name, String description, String color, Action action1, Action action2, Action action3, Action action4, Action action5, Action action6) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            Date currentDate = new Date();
+            long epoch = currentDate.getTime() / 1000;
+            MacroPad macropad = new MacroPad(user.getDisplayName(), user.getUid(), String.valueOf(epoch), nombre, descripcion, color,
+                    new Action("null", "null", GREY), new Action("null", "null", GREY), new Action("null", "null", GREY),
+                    new Action("null", "null", GREY), new Action("null", "null", GREY), new Action("null", "null", GREY));
+
 
             //AÑADIR newGroup A LA BASE DE DATOS
+            saveMacroPadToFirestore(macropad);
 
             Toast.makeText(this, getString((R.string.new_group_created)), Toast.LENGTH_LONG).show();
             onBackPressed();
@@ -116,5 +145,21 @@ public class AddNewGroupActivity extends AppCompatActivity {
             }
         });
         builder.show();
+    }
+
+
+    private void saveMacroPadToFirestore(MacroPad currentPad) {
+        // Add macropad to main collection
+        FirebaseFirestore.getInstance().collection("macropad").document(currentPad.getPadId()).set(currentPad);
+
+        // Add reference to user macropads
+        Map<String, Object> data = new HashMap<>();
+        DocumentReference PadRef = FirebaseFirestore.getInstance().document("macropad/"+currentPad.getPadId().trim());
+        data.put("padId", PadRef);
+
+        Log.d(TAG, String.valueOf(data));
+
+        String UserID = FirebaseAuth.getInstance().getUid();
+        FirebaseFirestore.getInstance().collection("users").document(UserID).collection("pads").document(currentPad.getPadId()).set(data);
     }
 }

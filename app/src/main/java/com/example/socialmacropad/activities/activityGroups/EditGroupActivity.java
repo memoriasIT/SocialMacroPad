@@ -22,8 +22,17 @@ import com.example.socialmacropad.models.MacroPad;
 import com.example.socialmacropad.util.Constants;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.example.socialmacropad.util.Constants.BLUE;
+import static com.example.socialmacropad.util.Constants.GREEN;
+import static com.example.socialmacropad.util.Constants.GREY;
+import static com.example.socialmacropad.util.Constants.ORANGE;
 
 public class EditGroupActivity extends AppCompatActivity {
     MacroPad currentGroup;
@@ -92,8 +101,28 @@ public class EditGroupActivity extends AppCompatActivity {
 
     private void validarDatos() { //Nombre obligatorio, descripcion opcional, color obligatorio
         String nombre = name.getEditText().getText().toString();
+        String descripcion = description.getEditText().getText().toString();
+        String color = null;
 
+        RadioButton green = (RadioButton)findViewById(R.id.option_green);
+        RadioButton blue = (RadioButton)findViewById(R.id.option_blue);
+        RadioButton orange = (RadioButton)findViewById(R.id.option_orange);
+        RadioButton grey = (RadioButton)findViewById(R.id.option_grey);
+        if(green.isChecked()){
+            color = GREEN;
+        }else if(blue.isChecked()){
+            color = BLUE;
+        }else if(orange.isChecked()){
+            color = ORANGE;
+        }else if(grey.isChecked()){
+            color = GREY;
+        }
         if(nombre.length()>0){//ACTUALIZAR el grupo en la BD
+            Map<String, Object> data = new HashMap<>();
+            data.put("name", nombre);
+            data.put("description", descripcion);
+            data.put("color", color);
+            FirebaseFirestore.getInstance().collection("macropad").document(currentGroup.getPadId()).update(data);
 
             Toast.makeText(this, getString((R.string.updated_group)), Toast.LENGTH_LONG).show();
             onBackPressed();

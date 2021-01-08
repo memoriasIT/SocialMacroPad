@@ -19,6 +19,7 @@ import com.example.socialmacropad.R;
 import com.example.socialmacropad.activities.communication.CommunicateActivity;
 import com.example.socialmacropad.models.Action;
 import com.example.socialmacropad.models.MacroPad;
+import com.example.socialmacropad.util.Constants;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
@@ -76,6 +77,12 @@ public class EditActivity extends AppCompatActivity {
         name.getEditText().setText( currAction.getActionname(), TextView.BufferType.EDITABLE);
         input.getEditText().setText(currAction.getAction(), TextView.BufferType.EDITABLE);
         //check al radio button del color correspondiente
+        switch (currAction.getColor()){
+            case Constants.BLUE  : colour.check(R.id.option_blue); break;
+            case Constants.GREEN : colour.check(R.id.option_green);break;
+            case Constants.GREY : colour.check(R.id.option_grey); break;
+            case Constants.ORANGE : colour.check(R.id.option_orange); break;
+        }
 
 
 

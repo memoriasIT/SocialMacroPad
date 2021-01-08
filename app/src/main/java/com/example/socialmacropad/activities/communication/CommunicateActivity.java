@@ -2,6 +2,7 @@ package com.example.socialmacropad.activities.communication;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -120,6 +121,7 @@ public class CommunicateActivity extends AppCompatActivity {
             Action action1 = currentGroup.getAction1();
             if (!action1.getActionname().equals("null")) {
                 act1.setText(action1.getActionname());
+                act1.setBackgroundColor(Color.parseColor(action1.getColor()));
                 act1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
@@ -135,6 +137,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
                         intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
+                        intent.putExtra("actID", 1);
                         startActivity(intent);
                     }
                 });
@@ -155,6 +158,7 @@ public class CommunicateActivity extends AppCompatActivity {
             Action action2 = currentGroup.getAction2();
             if (!action2.getActionname().equals("null")) { // La actividad ha sido creada
                 act2.setText(action2.getActionname());
+                act2.setBackgroundColor(Color.parseColor(action2.getColor()));
                 act2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
@@ -169,6 +173,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
                         intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
+                        intent.putExtra("actID", 2);
                         startActivity(intent);
                     }
                 });
@@ -189,6 +194,7 @@ public class CommunicateActivity extends AppCompatActivity {
             Action action3 = currentGroup.getAction3();
             if (!action3.getActionname().equals("null")) { // La actividad ha sido creada
                 act3.setText(action3.getActionname());
+                act3.setBackgroundColor(Color.parseColor(action3.getColor()));
                 act3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
@@ -203,6 +209,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
                         intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
+                        intent.putExtra("actID", 3);
                         startActivity(intent);
                     }
                 });
@@ -223,6 +230,7 @@ public class CommunicateActivity extends AppCompatActivity {
             Action action4 = currentGroup.getAction4();
             if (!action4.getActionname().equals("null")) { // La actividad ha sido creada
                 act4.setText(action4.getActionname());
+                act4.setBackgroundColor(Color.parseColor(action4.getColor()));
                 act4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
@@ -237,6 +245,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
                         intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
+                        intent.putExtra("actID", 4);
                         startActivity(intent);
                     }
                 });
@@ -257,6 +266,7 @@ public class CommunicateActivity extends AppCompatActivity {
             Action action5 = currentGroup.getAction5();
             if (!action5.getActionname().equals("null")) { // La actividad ha sido creada
                 act5.setText(action5.getActionname());
+                act5.setBackgroundColor(Color.parseColor(action5.getColor()));
                 act5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
@@ -271,6 +281,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
                         intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
+                        intent.putExtra("actID", 5);
                         startActivity(intent);
                     }
                 });
@@ -291,6 +302,7 @@ public class CommunicateActivity extends AppCompatActivity {
             Action action6 = currentGroup.getAction6();
             if (!action6.getActionname().equals("null")) { // La actividad ha sido creada
                 act6.setText(action6.getActionname());
+                act6.setBackgroundColor(Color.parseColor(action6.getColor()));
                 act6.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
@@ -305,6 +317,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
                         intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
+                        intent.putExtra("actID", 6);
                         startActivity(intent);
                     }
                 });

@@ -1,10 +1,14 @@
 package com.example.socialmacropad.activities.activityGroups;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.socialmacropad.activities.communication.CommunicateActivity;
+import com.example.socialmacropad.models.Action;
 import com.example.socialmacropad.models.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,10 +22,17 @@ import android.widget.Toast;
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.models.GroupOfActivities;
 import com.example.socialmacropad.models.MacroPad;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 
 import java.util.HashMap;
@@ -40,6 +51,9 @@ public class NewActivity extends AppCompatActivity {
     TextView top;
     TextView errorColour;
     private String TAG = NewActivity.class.getSimpleName();
+    private int actionID;//id dentro del macropad (1,2,3,4,5,6)
+    private MacroPad currentGroup;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +71,13 @@ public class NewActivity extends AppCompatActivity {
 
         //CARGAR VALORES DEL GRUPO SELECCIONADO
         String jsonCurrentGroup = null;
+        actionID = 0;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             jsonCurrentGroup = extras.getString("currentGroup");
+            actionID = extras.getInt("actID");
         }
-        GroupOfActivities currentGroup = new Gson().fromJson(jsonCurrentGroup, GroupOfActivities.class);
+        currentGroup = new Gson().fromJson(jsonCurrentGroup, MacroPad.class);
         top.setText(currentGroup.getName() + " > " + getString(R.string.add_new_activity)); //nombre_del_grupo > Add new activity
 
         ImageButton back = (ImageButton)findViewById(R.id.back);
@@ -106,9 +122,9 @@ public class NewActivity extends AppCompatActivity {
             }else if(grey.isChecked()){
                 color = GREY;
             }
-            Activity newActivity = new Activity(nombre, entrada, color);
+            Action newAction= new Action(nombre, entrada, color);
 
-            //AÑADIR newActivity A LA BASE DE DATOS
+            saveActionToFirestore(newAction, actionID, currentGroup);
 
             Toast.makeText(this, getString((R.string.new_activity_created)), Toast.LENGTH_LONG).show();
             onBackPressed();
@@ -123,6 +139,41 @@ public class NewActivity extends AppCompatActivity {
                 errorColour.setVisibility(View.VISIBLE);
             }
         }
+    }
+
+    private void saveActionToFirestore(Action newAction, int actionID, MacroPad currentGroup) {
+        db = FirebaseFirestore.getInstance();
+        String UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Map<String, Object> data = new HashMap<>();
+        //put newAction o DocumentReference?
+        switch (actionID){
+            case 1:
+                data.put("action1", newAction);
+                break;
+            case 2:
+                data.put("action2", newAction);
+                break;
+            case 3:
+                data.put("action3", newAction);
+                break;
+            case 4:
+                data.put("action4", newAction);
+                break;
+            case 5:
+                data.put("action5", newAction);
+                break;
+            case 6:
+                data.put("action6", newAction);
+                break;
+        }
+
+        db.collection("macropad").document(currentGroup.getPadId()).update(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d(TAG, "Success");
+            }
+        });
+
     }
 
     private void warningDialog() {

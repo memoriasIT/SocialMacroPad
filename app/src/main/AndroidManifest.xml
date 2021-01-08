@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.socialmacropad">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
@@ -12,6 +15,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SocialMacroPad">
+        <activity android:name=".activities.introAuth.LearnPDFActivity"></activity>
+
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+
+
         <activity android:name=".activities.activityGroups.EditActivity" />
         <activity android:name=".activities.activityGroups.NewActivity" />
         <activity
@@ -39,6 +50,5 @@
             android:resizeableActivity="false"
             android:supportsPictureInPicture="false" />
     </application>
-
 
 </manifest>

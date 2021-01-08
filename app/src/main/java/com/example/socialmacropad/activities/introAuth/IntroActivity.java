@@ -84,7 +84,7 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onClick(View v) {
                 // Intent code for open new activity through intent.
-                Intent intent = new Intent(IntroActivity.this, LearnActivity.class);
+                Intent intent = new Intent(IntroActivity.this, LearnPDFActivity.class);
                 startActivity(intent);
             }
         });

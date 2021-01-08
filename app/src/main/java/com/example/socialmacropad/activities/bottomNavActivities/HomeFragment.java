@@ -87,22 +87,22 @@ public class HomeFragment extends Fragment {
         });
 
 
-        Button btnLastDevice = getView().findViewById(R.id.btnLastDevice);
-        btnLastDevice .setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String macAddress = sharedPreferences.getString(getString(R.string.preference_last_connected_device_macAddress), "");
-                String deviceName = sharedPreferences.getString(getString(R.string.preference_last_connected_device_name), "");
-
-                Log.d(TAG, macAddress);
-                Log.d(TAG, deviceName);
+//        Button btnLastDevice = getView().findViewById(R.id.btnLastDevice);
+//        btnLastDevice .setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String macAddress = sharedPreferences.getString(getString(R.string.preference_last_connected_device_macAddress), "");
+//                String deviceName = sharedPreferences.getString(getString(R.string.preference_last_connected_device_name), "");
+//
+//                Log.d(TAG, macAddress);
+//                Log.d(TAG, deviceName);
 
 //                Intent intent = new Intent(getActivity(), CommunicateActivity.class);
 //                intent.putExtra("device_name", deviceName);
 //                intent.putExtra("device_mac", macAddress);
 //                startActivity(intent);
-            }
-        });
+//            }
+//        });
 
 
         Button btnCreateGroup = getView().findViewById(R.id.btnCreateGroup);

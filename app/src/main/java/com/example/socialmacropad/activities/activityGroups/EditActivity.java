@@ -41,6 +41,9 @@ public class EditActivity extends AppCompatActivity {
     private Action currAction;
     private MacroPad macroPad;
     private int pos;
+    private String strnombre;
+    private String strinput;
+    private String strcolor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,9 +108,9 @@ public class EditActivity extends AppCompatActivity {
 
     // Validar los inputs
     private void validarDatos() { //Nombre obligatorio, input obligatorio, color obligatorio
-        String strnombre = name.getEditText().getText().toString();
-        String strinput = input.getEditText().getText().toString();
-        String strcolor = null;
+        strnombre = name.getEditText().getText().toString();
+        strinput = input.getEditText().getText().toString();
+        strcolor = null;
 
         RadioButton green = (RadioButton)findViewById(R.id.option_green);
         RadioButton blue = (RadioButton)findViewById(R.id.option_blue);
@@ -182,7 +185,31 @@ public class EditActivity extends AppCompatActivity {
                     Map<String, Object> data = new HashMap<>();
                     data.put("action"+pos, new Action("null", "null", GREY));
 
+                    switch (pos){
+                        case 1:
+                            macroPad.setAction1(new Action(strinput, strnombre, strcolor));
+                            break;
+                        case 2:
+                            macroPad.setAction2(new Action(strinput, strnombre, strcolor));
+                            break;
+                        case 3:
+                            macroPad.setAction3(new Action(strinput, strnombre, strcolor));
+                            break;
+                        case 4:
+                            macroPad.setAction4(new Action(strinput, strnombre, strcolor));
+                            break;
+                        case 5:
+                            macroPad.setAction5(new Action(strinput, strnombre, strcolor));
+                            break;
+                        case 6:
+                            macroPad.setAction6(new Action(strinput, strnombre, strcolor));
+                            break;
+                    }
+
                     FirebaseFirestore.getInstance().collection("macropad").document(macroPad.getPadId()).update(data);
+                    Intent intent = new Intent(EditActivity.this, CommunicateActivity.class);
+                    intent.putExtra("currentGroup", new Gson().toJson(macroPad));
+                    startActivity(intent);
                 }else {
                     onBackPressed();
                 }

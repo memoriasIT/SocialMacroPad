@@ -126,7 +126,7 @@ public class NewActivity extends AppCompatActivity {
             }
             Action newAction= new Action(entrada, nombre, color);
 
-            saveActionToFirestore(newAction, actionID, currentGroup);
+            saveActionToFirestore(newAction, actionID, currentGroup, entrada, nombre, color);
 
             Toast.makeText(this, getString((R.string.new_activity_created)), Toast.LENGTH_LONG).show();
             onBackPressed();
@@ -144,7 +144,7 @@ public class NewActivity extends AppCompatActivity {
     }
 
     // Save to DB
-    private void saveActionToFirestore(Action newAction, int actionID, MacroPad currentGroup) {
+    private void saveActionToFirestore(Action newAction, int actionID, MacroPad currentGroup, String input, String nombre, String color) {
         db = FirebaseFirestore.getInstance();
         String UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Map<String, Object> data = new HashMap<>();
@@ -152,21 +152,27 @@ public class NewActivity extends AppCompatActivity {
         switch (actionID){
             case 1:
                 data.put("action1", newAction);
+                currentGroup.setAction1(new Action(input, nombre, color));
                 break;
             case 2:
                 data.put("action2", newAction);
+                currentGroup.setAction2(new Action(input, nombre, color));
                 break;
             case 3:
                 data.put("action3", newAction);
+                currentGroup.setAction3(new Action(input, nombre, color));
                 break;
             case 4:
                 data.put("action4", newAction);
+                currentGroup.setAction4(new Action(input, nombre, color));
                 break;
             case 5:
                 data.put("action5", newAction);
+                currentGroup.setAction5(new Action(input, nombre, color));
                 break;
             case 6:
                 data.put("action6", newAction);
+                currentGroup.setAction6(new Action(input, nombre, color));
                 break;
         }
 
@@ -176,6 +182,11 @@ public class NewActivity extends AppCompatActivity {
                 Log.d(TAG, "Success");
             }
         });
+
+        Intent intent = new Intent(NewActivity.this, CommunicateActivity.class);
+        intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
+        startActivity(intent);
+
 
     }
 

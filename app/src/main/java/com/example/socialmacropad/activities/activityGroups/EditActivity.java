@@ -46,6 +46,7 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
         this.getSupportActionBar().hide();
 
+        // Get UI elements
         name = (TextInputLayout) findViewById(R.id.outlinedTextFieldName);
         input = (TextInputLayout) findViewById(R.id.outlinedTextFieldInput);
         colour = (RadioGroup) findViewById(R.id.radioGroupColour);
@@ -72,6 +73,9 @@ public class EditActivity extends AppCompatActivity {
         input.getEditText().setText(currAction.getAction(), TextView.BufferType.EDITABLE);
         //check al radio button del color correspondiente
 
+
+
+        // Set onClick Listeners
         ImageButton delete = (ImageButton)findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +102,7 @@ public class EditActivity extends AppCompatActivity {
 
     }
 
+    // Validar los inputs
     private void validarDatos() { //Nombre obligatorio, input obligatorio, color obligatorio
         String strnombre = name.getEditText().getText().toString();
         String strinput = input.getEditText().getText().toString();
@@ -136,6 +141,7 @@ public class EditActivity extends AppCompatActivity {
         }
     }
 
+    // Dialog para borrar la actividad o volver
     private void warningDialog(Boolean delete) {//b:true-> delete   b:false->back
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.are_you_sure));

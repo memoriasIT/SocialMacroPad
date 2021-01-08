@@ -48,6 +48,7 @@ public class EditGroupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_group);
         this.getSupportActionBar().hide();
 
+        // Get UI elements
         name = (TextInputLayout) findViewById(R.id.outlinedTextFieldName);
         description = (TextInputLayout) findViewById(R.id.outlinedTextFieldDescription);
         colour = (RadioGroup) findViewById(R.id.radioGroupColour);
@@ -74,6 +75,7 @@ public class EditGroupActivity extends AppCompatActivity {
         }
 
 
+        // Add OnClickListeners
         ImageButton delete = (ImageButton)findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +101,7 @@ public class EditGroupActivity extends AppCompatActivity {
         });
     }
 
+    // Validate inputs
     private void validarDatos() { //Nombre obligatorio, descripcion opcional, color obligatorio
         String nombre = name.getEditText().getText().toString();
         String descripcion = description.getEditText().getText().toString();
@@ -124,8 +127,8 @@ public class EditGroupActivity extends AppCompatActivity {
             data.put("color", color);
             FirebaseFirestore.getInstance().collection("macropad").document(currentGroup.getPadId()).update(data);
 
+            // Volver a la activity principal
             Toast.makeText(this, getString((R.string.updated_group)), Toast.LENGTH_LONG).show();
-//            onBackPressed();
             Intent intent = new Intent(getApplicationContext(), MainContent.class);
             startActivity(intent);
         }else{
@@ -134,6 +137,7 @@ public class EditGroupActivity extends AppCompatActivity {
     }
 
 
+    // Dialog para borrar la actividad o volver
     private void warningDialog(Boolean delete) {//b:true-> delete    b:false->back
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.are_you_sure));

@@ -59,12 +59,15 @@ public class AddNewGroupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_group);
         this.getSupportActionBar().hide();
 
+        // Get UI elements
         name = (TextInputLayout) findViewById(R.id.outlinedTextFieldName);
         description = (TextInputLayout) findViewById(R.id.outlinedTextFieldDescription);
         colour = (RadioGroup) findViewById(R.id.radioGroupColour);
         errorColour = (TextView)findViewById(R.id.textViewErrorColour);
         errorColour.setVisibility(View.GONE);
 
+
+        // Set button onClickListeners
         ImageButton back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +87,12 @@ public class AddNewGroupActivity extends AppCompatActivity {
 
     }
 
+    // Ejecutado al pulsar guardar, valida la entrada
     private void validarDatos() { //Nombre obligatorio, descripcion opcional, color obligatorio
         String nombre = name.getEditText().getText().toString();
         String descripcion = description.getEditText().getText().toString();
 
+        // Color RadioGroup
         RadioButton green = (RadioButton)findViewById(R.id.option_green);
         RadioButton blue = (RadioButton)findViewById(R.id.option_blue);
         RadioButton orange = (RadioButton)findViewById(R.id.option_orange);
@@ -96,6 +101,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
         boolean a = nombre.length()>0;
         boolean b = green.isChecked() || blue.isChecked() || orange.isChecked() || grey.isChecked();
         if(a && b){
+            // Get color in string hex format
             String color = null;
             if(green.isChecked()){
                 color = GREEN;
@@ -107,7 +113,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
                 color = GREY;
             }
 
-            // MacroPad(String creatorUser, String creatorID, String padId, String name, String description, String color, Action action1, Action action2, Action action3, Action action4, Action action5, Action action6) {
+            // Prepare data for adding the group to the database
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             Date currentDate = new Date();
             long epoch = currentDate.getTime() / 1000;
@@ -119,11 +125,12 @@ public class AddNewGroupActivity extends AppCompatActivity {
             //AÑADIR newGroup A LA BASE DE DATOS
             saveMacroPadToFirestore(macropad);
 
+            // Volver a la página principal
             Toast.makeText(this, getString((R.string.new_group_created)), Toast.LENGTH_LONG).show();
-//            onBackPressed();
             Intent intent = new Intent(getApplicationContext(), MainContent.class);
             startActivity(intent);
         }else{
+            // An error ocurred in validation
             if(!a){
                 name.setError(getString(R.string.error_name));
             }
@@ -133,6 +140,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
         }
     }
 
+    // Warning al volver atrás para no perder los cambios
     private void warningDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.are_you_sure));
@@ -151,7 +159,7 @@ public class AddNewGroupActivity extends AppCompatActivity {
         builder.show();
     }
 
-
+    // Save macropad to DB
     private void saveMacroPadToFirestore(MacroPad currentPad) {
         // Add macropad to main collection
         FirebaseFirestore.getInstance().collection("macropad").document(currentPad.getPadId()).set(currentPad);

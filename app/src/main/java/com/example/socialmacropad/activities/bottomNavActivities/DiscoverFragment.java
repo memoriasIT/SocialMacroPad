@@ -17,6 +17,7 @@ import com.example.socialmacropad.util.MacroPadAdapterDiscover;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -54,7 +55,7 @@ public class DiscoverFragment extends Fragment {
 
     private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, MacroPadAdapterDiscover mAdapter) {
         db = FirebaseFirestore.getInstance();
-        db.collection("macropad")
+        db.collection("macropad").orderBy("padId", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

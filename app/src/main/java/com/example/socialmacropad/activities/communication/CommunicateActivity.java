@@ -338,33 +338,7 @@ public class CommunicateActivity extends AppCompatActivity {
 
     // Called when the ViewModel updates us of our connectivity status
     private void onConnectionStatus(CommunicateViewModel.ConnectionStatus connectionStatus) {
-        switch (connectionStatus) {
-            case CONNECTED:
-//                connectionText.setText(R.string.status_connected);
-//                messageBox.setEnabled(true);
-//                sendButton.setEnabled(true);
-//                connectButton.setEnabled(true);
-//                connectButton.setText(R.string.disconnect);
-//                connectButton.setOnClickListener(v -> viewModel.disconnect());
-                break;
 
-            case CONNECTING:
-//                connectionText.setText(R.string.status_connecting);
-//                messageBox.setEnabled(false);
-//                sendButton.setEnabled(false);
-//                connectButton.setEnabled(false);
-//                connectButton.setText(R.string.connect);
-                break;
-
-            case DISCONNECTED:
-//                connectionText.setText(R.string.status_disconnected);
-//                messageBox.setEnabled(false);
-//                sendButton.setEnabled(false);
-//                connectButton.setEnabled(true);
-//                connectButton.setText(R.string.connect);
-//                connectButton.setOnClickListener(v -> viewModel.connect());
-                break;
-        }
     }
 
     // Called when a button in the action bar is pressed

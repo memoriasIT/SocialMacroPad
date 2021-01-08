@@ -122,7 +122,7 @@ public class NewActivity extends AppCompatActivity {
             }else if(grey.isChecked()){
                 color = GREY;
             }
-            Action newAction= new Action(nombre, entrada, color);
+            Action newAction= new Action(entrada, nombre, color);
 
             saveActionToFirestore(newAction, actionID, currentGroup);
 

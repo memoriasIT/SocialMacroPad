@@ -61,6 +61,7 @@ public class NewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new);
         this.getSupportActionBar().hide();
 
+        // Get UI elements
         name = (TextInputLayout) findViewById(R.id.outlinedTextFieldName);
         input = (TextInputLayout) findViewById(R.id.outlinedTextFieldInput);
         colour = (RadioGroup) findViewById(R.id.radioGroupColour);
@@ -99,6 +100,7 @@ public class NewActivity extends AppCompatActivity {
 
     }
 
+    // Validate inputs
     private void validarDatos() { //Nombre obligatorio, input obligatorio, color obligatorio
         String nombre = name.getEditText().getText().toString();
         String entrada = input.getEditText().getText().toString();
@@ -141,6 +143,7 @@ public class NewActivity extends AppCompatActivity {
         }
     }
 
+    // Save to DB
     private void saveActionToFirestore(Action newAction, int actionID, MacroPad currentGroup) {
         db = FirebaseFirestore.getInstance();
         String UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -176,6 +179,7 @@ public class NewActivity extends AppCompatActivity {
 
     }
 
+    // Dialog called when pressing back
     private void warningDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.are_you_sure));

@@ -38,12 +38,11 @@ public class SavedFragment extends Fragment {
         return root;
     }
 
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Set up list view with adapter
         listView = (ListView) getView().findViewById(R.id.macroPad_list);
         TextView emptyText = (TextView) getView().findViewById(R.id.txtNoElements);
         listView.setEmptyView(emptyText);
@@ -59,11 +58,11 @@ public class SavedFragment extends Fragment {
         retrieveMacroPadsFromFirestore(macroPadList, mAdapter);
 
 
-
     }
 
 
 
+    // Get macropads from DB
     private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, MacroPadAdapterSaved mAdapter) {
         db = FirebaseFirestore.getInstance();
         String UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -74,7 +73,6 @@ public class SavedFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
                                 // Get macropad by reference
                                 DocumentReference ref = (DocumentReference) document.getData().get("padId");
                                 ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -83,11 +81,9 @@ public class SavedFragment extends Fragment {
                                         if (task.isSuccessful()) {
                                             DocumentSnapshot rawMacropad = task.getResult();
                                             if (rawMacropad.exists()) {
-                                                Log.d(TAG, "DocumentSnapshot data: " + rawMacropad.getData());
                                                 MacroPad macropad = rawMacropad.toObject(MacroPad.class);
                                                 macroPadList.add(macropad);
                                                 mAdapter.notifyDataSetChanged();
-                                                Log.d(TAG, "macropadID: " + macropad.getPadId());
                                             } else {
                                                 Log.d(TAG, "No such document");
                                             }

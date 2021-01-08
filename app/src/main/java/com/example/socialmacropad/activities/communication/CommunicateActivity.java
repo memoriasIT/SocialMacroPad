@@ -45,7 +45,6 @@ public class CommunicateActivity extends AppCompatActivity {
         this.getSupportActionBar().hide();
 
 
-
 //        // Enable the back button in the action bar if possible
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -65,33 +64,11 @@ public class CommunicateActivity extends AppCompatActivity {
             return;
         }
 
-        // Setup our Views
-        //connectionText = findViewById(R.id.communicate_connection_text);
-        //messagesView = findViewById(R.id.communicate_messages);
-        //messageBox = findViewById(R.id.communicate_message);
-        //sendButton = findViewById(R.id.communicate_send);
-        //connectButton = findViewById(R.id.communicate_connect);
-
         // Start observing the data sent to us by the ViewModel
         viewModel.getConnectionStatus().observe(this, this::onConnectionStatus);
         viewModel.getDeviceName().observe(this, name -> setTitle(getString(R.string.device_name_format, name)));
-//        viewModel.getMessages().observe(this, message -> {
-//            if (TextUtils.isEmpty(message)) {
-//                message = getString(R.string.no_messages);
-//            }
-//            messagesView.setText(message);
-//        });
-//        viewModel.getMessage().observe(this, message -> {
-//             Only update the message if the ViewModel is trying to reset it
-//            if (TextUtils.isEmpty(message)) {
-//                messageBox.setText(message);
-//            }
-//        });
 
-//         Setup the send button click action
-//        sendButton.setOnClickListener(v -> viewModel.sendMessage(messageBox.getText().toString()));
-
-
+        // Set up layout
         top = (TextView) findViewById(R.id.textViewTop);
         groupName = (TextView) findViewById(R.id.textViewGroupName);
 
@@ -116,7 +93,7 @@ public class CommunicateActivity extends AppCompatActivity {
             }
         });
 
-
+        // Actions
         Button act1 = (Button) findViewById(R.id.btnNewActivity1);
         try {
             Action action1 = currentGroup.getAction1();

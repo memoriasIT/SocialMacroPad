@@ -23,6 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+// Discover macropads, shown in botton nav
 public class DiscoverFragment extends Fragment {
 
     private ListView listView;
@@ -40,11 +41,11 @@ public class DiscoverFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Set array adapter for showing macropads
         listView = (ListView) getView().findViewById(R.id.macroPad_list);
         ArrayList<MacroPad> macroPadList = new ArrayList<>();
         mAdapter = new MacroPadAdapterDiscover(getActivity(), macroPadList);
         listView.setAdapter(mAdapter);
-
 
 
         // get macropads stored in firestore
@@ -52,7 +53,7 @@ public class DiscoverFragment extends Fragment {
     }
 
 
-
+    // Retrieve all macropads from firestore
     private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, MacroPadAdapterDiscover mAdapter) {
         db = FirebaseFirestore.getInstance();
         db.collection("macropad").orderBy("padId", Query.Direction.DESCENDING)
@@ -62,7 +63,6 @@ public class DiscoverFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
                                 MacroPad macropad = document.toObject(MacroPad.class);
                                 macroPadList.add(macropad);
                                 mAdapter.notifyDataSetChanged();

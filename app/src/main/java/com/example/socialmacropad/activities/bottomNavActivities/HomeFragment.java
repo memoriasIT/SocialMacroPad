@@ -64,9 +64,10 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.d(TAG, "Display Name" + FirebaseAuth.getInstance().getCurrentUser().getDisplayName() );
+        // Setup sharedPreferences (our implementation of singletonmap)
         sharedPreferences = EnhancedSharedPreferences.getInstance(getActivity(), getString(R.string.sharedPreferencesKey));
 
+        // Set up OnClickListeners
         Button btnConnect = getView().findViewById(R.id.btnConnectBluetooth);
         btnConnect.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -87,24 +88,6 @@ public class HomeFragment extends Fragment {
         });
 
 
-//        Button btnLastDevice = getView().findViewById(R.id.btnLastDevice);
-//        btnLastDevice .setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String macAddress = sharedPreferences.getString(getString(R.string.preference_last_connected_device_macAddress), "");
-//                String deviceName = sharedPreferences.getString(getString(R.string.preference_last_connected_device_name), "");
-//
-//                Log.d(TAG, macAddress);
-//                Log.d(TAG, deviceName);
-
-//                Intent intent = new Intent(getActivity(), CommunicateActivity.class);
-//                intent.putExtra("device_name", deviceName);
-//                intent.putExtra("device_mac", macAddress);
-//                startActivity(intent);
-//            }
-//        });
-
-
         Button btnCreateGroup = getView().findViewById(R.id.btnCreateGroup);
         btnCreateGroup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +97,8 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
+        // Set up listview for showing groups
         listView = (ListView) getView().findViewById(R.id.groups_list);
         ArrayList<MacroPad> macroPadList = new ArrayList<>();
 
@@ -124,21 +109,24 @@ public class HomeFragment extends Fragment {
         retrieveMacroPadsFromFirestore(macroPadList, mAdapter);
 
 
+        // Reload data when FireBase sends event
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // Notify list adapter
                 mAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Nothing
             }
         };
 
 
     }
 
+    // Get grops from firestore
     private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, GroupAdapterHome mAdapter) {
         db = FirebaseFirestore.getInstance();
         String UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
@@ -180,11 +168,6 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -206,6 +189,7 @@ public class HomeFragment extends Fragment {
         EventBus.getDefault().unregister(this);
     }
 
+    // Our custom customizable Toast event
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onUIToastEvent(UIToastEvent event) {
         Config.Mensaje(getActivity(), event.getMessage(), event.getLongToast(), event.getIsWarning());

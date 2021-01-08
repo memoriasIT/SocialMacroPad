@@ -78,10 +78,8 @@ public class BluetoothList extends AppCompatActivity {
 
         Log.d(TAG, deviceName);
 
-//        Intent intent = new Intent(this, CommunicateActivity.class);
+        // Go back to main activity
         Intent intent = new Intent(this, MainContent.class);
-//        intent.putExtra("device_name", deviceName);
-//        intent.putExtra("device_mac", macAddress);
         startActivity(intent);
     }
 

@@ -37,20 +37,16 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        try
-        {
-            this.getSupportActionBar().hide();
-        }
+        try { this.getSupportActionBar().hide(); }
         catch (NullPointerException ignored){}
         setContentView(R.layout.activity_main);
 
-
-
+        // Set up adapter for language selector
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, languages);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         Spinner spin = (Spinner) findViewById(R.id.languageSpinner);
         spin.setAdapter(adapter);
-        //spin.setOnItemSelectedListener(this);
+
+        // Change language on item selected
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapter, View vies, int position, long id) {
@@ -82,7 +78,7 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
         };
 
 
-
+        // Buttons onclicklisteners
         Button learnMore = (Button)findViewById(R.id.learnmore);
         learnMore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +111,7 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
 
     }
 
+    // Used to change locales
     private void setLanguage(int position) {//1->Spanish, 2->English
         if(position==1){
             Locale locale = new Locale("es");
@@ -134,6 +131,7 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
 
     }
 
+    // Recargar la UI despues de cambiar el idioma
     private void refresh() {
         Button learnMore = (Button)findViewById(R.id.learnmore);
         learnMore.setText(getString(R.string.teachMe));
@@ -143,6 +141,8 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
         logIn.setText(getString(R.string.login));
     }
 
+
+    // Añadir el usuario a la base de datos de Firestore
     private void addUserToFirestore() {
 //        String UID = FirebaseAuth.getInstance().getCurrentUser().getUid();
 //        FirebaseFirestore.getInstance().collection("users").document(UID).set(UID);
@@ -165,18 +165,21 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
         });
     }
 
+    // Setup listener para añadir detalles del usuario a base de datos
     @Override
     protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
+    // Remove auth listener
     @Override
     protected void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(mAuthListener);
     }
 
+    // Avisar al usuario del cambio de idioma
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(getApplicationContext(), "Selected language: "+languages[position] ,Toast.LENGTH_SHORT).show();
@@ -184,6 +187,5 @@ public class IntroActivity extends AppCompatActivity implements AdapterView.OnIt
 
     @Override
     public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO - Custom Code
     }
 }

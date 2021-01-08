@@ -17,8 +17,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collection;
 
 public class BluetoothListViewModel extends AndroidViewModel {
-
-    // Our BluetoothManager!
     private BluetoothManager bluetoothManager;
 
     // The paired devices list tha the activity sees

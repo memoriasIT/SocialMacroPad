@@ -20,6 +20,8 @@ public class MainContent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_content);
+
+        // Set up bottom navigation
         BottomNavigationView navView = findViewById(R.id.nav_view);
         this.getSupportActionBar().hide();
         // Passing each menu ID as a set of Ids because each
@@ -30,10 +32,6 @@ public class MainContent extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-
-
-
-    }
+   }
 
 }

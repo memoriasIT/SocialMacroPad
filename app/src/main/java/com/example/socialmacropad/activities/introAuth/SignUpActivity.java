@@ -46,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         this.getSupportActionBar().hide();
 
-
+        // Get ui elements
         username = (TextInputLayout) findViewById(R.id.outlinedTextFieldUsername);
         reqUsername = (TextView) findViewById(R.id.reqUsername);
         password = (TextInputLayout) findViewById(R.id.outlinedTextFieldPassword);
@@ -56,6 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
         phoneNumber = (TextInputLayout) findViewById(R.id.outlinedTextFieldPhone);
         reqPhone = (TextView) findViewById(R.id.reqPhone);
 
+        // set up On click listeners
         ImageButton back = (ImageButton) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,49 +78,11 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-
-
 //        Get Firebase instance for singing up users
         mAuth = FirebaseAuth.getInstance();
-//        mAuthListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                FirebaseUser currentUser = mAuth.getCurrentUser();
-//                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-//                        .setDisplayName(nombre)
-//                        .build();
-//
-//                currentUser.updateProfile(profileUpdates)
-//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                            @Override
-//                            public void onComplete(@NonNull Task<Void> task) {
-//                                if (task.isSuccessful()) {
-//                                    Log.d(TAG, "User profile updated.");
-//                                }
-//                            }
-//                        });
-//
-////                if (currentUser != null) {
-////                    Intent intent = new Intent(SignUpActivity.this, MainContent.class);
-////                    startActivity(intent);
-////                }
-//            }
-//        };
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-//        mAuth.removeAuthStateListener(mAuthListener);
-    }
-
-
+    // validate inputs
     private void validarDatos() {
         nombre = username.getEditText().getText().toString();
         String contrasena = password.getEditText().getText().toString();
@@ -141,8 +104,8 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
+    // Add extra data to user in firestore and firebase
     private void addDataToRegister() {
-//        nombre = username.getEditText().toString();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(nombre)
@@ -159,6 +122,8 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
+
+    // Validate name
     private boolean esNombreValido(String nombre) {
         Pattern patron = Pattern.compile("^[a-zA-Z0-9]+$");
         if (!patron.matcher(nombre).matches() || nombre.length() > 30 || nombre.length() < 4) {
@@ -170,6 +135,7 @@ public class SignUpActivity extends AppCompatActivity {
         return true;
     }
 
+    // Validate phone
     private boolean esTelefonoValido(String telefono) {
         if (!Patterns.PHONE.matcher(telefono).matches()) {
             phoneNumber.setError(getString(R.string.req_phone));
@@ -180,6 +146,7 @@ public class SignUpActivity extends AppCompatActivity {
         return true;
     }
 
+    // Validate email
     private boolean esCorreoValido(String correo) {
         if (!Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
             email.setError(getString(R.string.req_email));
@@ -190,6 +157,7 @@ public class SignUpActivity extends AppCompatActivity {
         return true;
     }
 
+    // Validate password
     private boolean esContrasenaValida(String contrasena) {
         Pattern patron = Pattern.compile("^[a-zA-Z0-9]+$");
         if (!patron.matcher(contrasena).matches() || contrasena.length() < 4 || contrasena.length() > 30) {
@@ -203,7 +171,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     // Registra usuario en Firebase
     private void registrarUsuario(String email, String password) {
-
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -213,7 +180,5 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
 }

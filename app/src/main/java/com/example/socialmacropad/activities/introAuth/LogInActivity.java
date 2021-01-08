@@ -37,13 +37,17 @@ public class LogInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
         this.getSupportActionBar().hide();
 
+        // FirebaseAuth singleton
         mAuth = FirebaseAuth.getInstance();
 
+        // Setup UI
         email = (TextInputLayout) findViewById(R.id.outlinedTextFieldEmail);
         password = (TextInputLayout) findViewById(R.id.outlinedTextFieldPassword);
         error = (TextView)findViewById(R.id.textViewError);
         error.setVisibility(View.GONE);
 
+
+        // Buttons onclicklisteners
         ImageButton back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +67,7 @@ public class LogInActivity extends AppCompatActivity {
         });
     }
 
+    // Autologin
     @Override
     protected void onStart() {
         super.onStart();
@@ -74,6 +79,7 @@ public class LogInActivity extends AppCompatActivity {
         }
     }
 
+    // Validate input
     private void validarDatos() {
         String correo = email.getEditText().getText().toString();
         String contrasena = password.getEditText().getText().toString();
@@ -93,8 +99,8 @@ public class LogInActivity extends AppCompatActivity {
         }
     }
 
+    //Login Firebase Auth
     private boolean logIn(String email, String contrasena) {
-        //Login Firebase
         mAuth.signInWithEmailAndPassword(email, contrasena)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -114,6 +120,7 @@ public class LogInActivity extends AppCompatActivity {
         return mAuth.getCurrentUser() != null;
     }
 
+    // Validar correo
     private boolean esCorreoValido(String nombre) {
         // Aunque no lo parezca este es un buen regex porque cumple RFC 5322 lol --> emailregex.com
         Pattern patron = Pattern.compile("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)])");
@@ -126,6 +133,7 @@ public class LogInActivity extends AppCompatActivity {
         return true;
     }
 
+    // Validar contraseña
     private boolean esContrasenaValida(String contrasena) {
         Pattern patron = Pattern.compile("^[a-zA-Z0-9]+$");
         if (!patron.matcher(contrasena).matches() || contrasena.length() < 4 || contrasena.length() > 30) {

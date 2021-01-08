@@ -125,7 +125,9 @@ public class EditGroupActivity extends AppCompatActivity {
             FirebaseFirestore.getInstance().collection("macropad").document(currentGroup.getPadId()).update(data);
 
             Toast.makeText(this, getString((R.string.updated_group)), Toast.LENGTH_LONG).show();
-            onBackPressed();
+//            onBackPressed();
+            Intent intent = new Intent(getApplicationContext(), MainContent.class);
+            startActivity(intent);
         }else{
             name.setError(getString(R.string.error_name));
         }
@@ -154,7 +156,8 @@ public class EditGroupActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainContent.class);
                     startActivity(intent);
                 }else {
-                    onBackPressed();
+                    Intent intent = new Intent(getApplicationContext(), MainContent.class);
+                    startActivity(intent);
                 }
             }
         });

@@ -3,6 +3,7 @@ package com.example.socialmacropad.activities.introAuth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
@@ -19,6 +20,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.regex.Pattern;
 
@@ -35,6 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
     TextView reqEmail;
     TextInputLayout phoneNumber;
     TextView reqPhone;
+    String nombre;
 
 
     @Override
@@ -43,18 +46,6 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
         this.getSupportActionBar().hide();
 
-//        Get Firebase instance for singing up users
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-//                if (currentUser != null) {
-//                    Intent intent = new Intent(SignUpActivity.this, MainContent.class);
-//                    startActivity(intent);
-//                }
-            }
-        };
 
         username = (TextInputLayout) findViewById(R.id.outlinedTextFieldUsername);
         reqUsername = (TextView) findViewById(R.id.reqUsername);
@@ -84,7 +75,36 @@ public class SignUpActivity extends AppCompatActivity {
                 validarDatos();
             }
         });
-    }
+
+
+
+
+//        Get Firebase instance for singing up users
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(nombre)
+                        .build();
+
+                currentUser.updateProfile(profileUpdates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Log.d(TAG, "User profile updated.");
+                                }
+                            }
+                        });
+
+//                if (currentUser != null) {
+//                    Intent intent = new Intent(SignUpActivity.this, MainContent.class);
+//                    startActivity(intent);
+//                }
+            }
+        };    }
 
     @Override
     protected void onStart() {
@@ -100,7 +120,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     private void validarDatos() {
-        String nombre = username.getEditText().getText().toString();
+        nombre = username.getEditText().getText().toString();
         String contrasena = password.getEditText().getText().toString();
         String telefono = phoneNumber.getEditText().getText().toString();
         String correo = email.getEditText().getText().toString();
@@ -115,6 +135,8 @@ public class SignUpActivity extends AppCompatActivity {
             registrarUsuario(correo, contrasena);
 
             Toast.makeText(this, getString((R.string.user_registred)), Toast.LENGTH_LONG).show();
+
+
             onBackPressed();
         }
     }

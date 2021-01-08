@@ -61,6 +61,7 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        Log.d(TAG, "Display Name" + FirebaseAuth.getInstance().getCurrentUser().getDisplayName() );
         sharedPreferences = EnhancedSharedPreferences.getInstance(getActivity(), getString(R.string.sharedPreferencesKey));
 
         Button btnConnect = getView().findViewById(R.id.btnConnectBluetooth);

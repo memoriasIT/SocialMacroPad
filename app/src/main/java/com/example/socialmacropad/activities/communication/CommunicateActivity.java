@@ -103,6 +103,7 @@ public class CommunicateActivity extends AppCompatActivity {
             jsonCurrentGroup = extras.getString("currentGroup");
         }
         currentGroup = new Gson().fromJson(jsonCurrentGroup, MacroPad.class);
+        Log.d("Start COMMUNICATEACT", "demo" + currentGroup.getPadId());
 
         top.setText(currentGroup.getName() + " > " + getString(R.string.activities));//nombre_grupo > Activities
         groupName.setText(currentGroup.getName());
@@ -147,7 +148,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction1(), currentGroup);
+                editDialog(currentGroup.getAction1(), 1);
                 return true;
             }
         });
@@ -183,7 +184,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction2(), currentGroup);
+                editDialog(currentGroup.getAction2(), 2);
                 return true;
             }
         });
@@ -219,7 +220,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act3.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction3(), currentGroup);
+                editDialog(currentGroup.getAction3(), 3);
                 return true;
             }
         });
@@ -255,7 +256,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act4.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction4(), currentGroup);
+                editDialog(currentGroup.getAction4(), 4);
                 return true;
             }
         });
@@ -291,7 +292,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act5.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction5(), currentGroup);
+                editDialog(currentGroup.getAction5(), 5);
                 return true;
             }
         });
@@ -327,7 +328,7 @@ public class CommunicateActivity extends AppCompatActivity {
         act6.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction6(), currentGroup);
+                editDialog(currentGroup.getAction6(), 6);
                 return true;
             }
         });
@@ -400,13 +401,16 @@ public class CommunicateActivity extends AppCompatActivity {
         finish();
     }
 
-    private void editDialog(Action action, MacroPad currentGroup) {
+    private void editDialog(Action action, int i) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.edit_this_activity));
         builder.setPositiveButton(getString(R.string.edit), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 Intent intent = new Intent(CommunicateActivity.this, EditActivity.class);
                 intent.putExtra("action", new Gson().toJson(action));
+                intent.putExtra("pos", i);
+
+                Log.d("End COMMUNICATEACT", "demo" + currentGroup.getPadId());
                 intent.putExtra("macropad", new Gson().toJson(currentGroup));
                 startActivity(intent);
             }

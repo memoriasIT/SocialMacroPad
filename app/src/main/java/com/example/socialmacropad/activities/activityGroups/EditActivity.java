@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -37,6 +38,7 @@ public class EditActivity extends AppCompatActivity {
     TextView activityName;
     private Action currAction;
     private MacroPad macroPad;
+    private int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,12 +54,16 @@ public class EditActivity extends AppCompatActivity {
 
         //CARGAR VALORES DE LA ACTIVIDAD SELECCIONADA
         String jsonCurrentGroup = null;
+        String macropad = null;
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             jsonCurrentGroup = extras.getString("action");
+            macropad = extras.getString("macropad");
+            pos = extras.getInt("pos");
         }
         currAction = new Gson().fromJson(jsonCurrentGroup, Action.class);
-        macroPad = new Gson().fromJson(jsonCurrentGroup, MacroPad.class);
+        macroPad = new Gson().fromJson(macropad, MacroPad.class);
+        Log.d("Start EDITACTIVITY", "demo" + macroPad.getPadId());
 
 
         top.setText(macroPad.getName() + " > " + currAction.getActionname() + getString(R.string.top_edit));//nombre_grupo > nombew_act > Edit
@@ -115,9 +121,8 @@ public class EditActivity extends AppCompatActivity {
         boolean b = strinput.length() > 0;
         if(a && b){//ACTUALIZAR la actividad en la BD
             Map<String, Object> data = new HashMap<>();
-            data.put("action", strnombre);
-            data.put("actionname", strinput);
-            data.put("color", strcolor);
+            data.put("action"+pos, new Action(strinput, strnombre, strcolor));
+
             FirebaseFirestore.getInstance().collection("macropad").document(macroPad.getPadId()).update(data);
             Toast.makeText(this, getString((R.string.updated_activity)), Toast.LENGTH_LONG).show();
             onBackPressed();
@@ -143,6 +148,11 @@ public class EditActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int id) {
                 if(delete){
                     //SE ELIMINA LA ACTIVIDAD ACTUAL
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("action"+pos, new Action("null", "null", GREY));
+
+                    Log.d("EditActivity", "pos" + pos );
+                    FirebaseFirestore.getInstance().collection("macropad").document(macroPad.getPadId()).update(data);
                 }else {
                     onBackPressed();
                 }

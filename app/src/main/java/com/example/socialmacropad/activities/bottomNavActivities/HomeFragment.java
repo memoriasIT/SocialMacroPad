@@ -22,12 +22,16 @@ import com.example.socialmacropad.activities.introAuth.IntroActivity;
 import com.example.socialmacropad.event.UIToastEvent;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
 import com.example.socialmacropad.models.GroupOfActivities;
+import com.example.socialmacropad.models.MacroPad;
 import com.example.socialmacropad.util.Config;
 import com.example.socialmacropad.util.Constants;
 import com.example.socialmacropad.util.GroupAdapterHome;
+import com.example.socialmacropad.util.MacroPadAdapterSaved;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -107,20 +111,20 @@ public class HomeFragment extends Fragment {
         });
 
         listView = (ListView) getView().findViewById(R.id.groups_list);
-        ArrayList<GroupOfActivities> groupsList = new ArrayList<>();
+        ArrayList<MacroPad> macroPadList = new ArrayList<>();
 
-        mAdapter = new GroupAdapterHome(getActivity(), groupsList);
+        mAdapter = new GroupAdapterHome(getActivity(), macroPadList);
         listView.setAdapter(mAdapter);
 
         // get macropads stored in firestore
-        retrieveGroupsFromFirestore(groupsList, mAdapter);
+        retrieveMacroPadsFromFirestore(macroPadList, mAdapter);
 
     }
 
-    private void retrieveGroupsFromFirestore(ArrayList<GroupOfActivities> groupsList, GroupAdapterHome mAdapter) {
+    private void retrieveMacroPadsFromFirestore(ArrayList<MacroPad> macroPadList, GroupAdapterHome mAdapter) {
         db = FirebaseFirestore.getInstance();
         String UserID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        db.collection("users/"+UserID+"/pads")
+        db.collection("users/" + UserID + "/pads")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -128,9 +132,27 @@ public class HomeFragment extends Fragment {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
-                                GroupOfActivities group = document.toObject(GroupOfActivities.class);
-                                groupsList.add(group);
-                                mAdapter.notifyDataSetChanged();
+                                // Get macropad by reference
+                                DocumentReference ref = (DocumentReference) document.getData().get("padId");
+                                ref.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            DocumentSnapshot rawMacropad = task.getResult();
+                                            if (rawMacropad.exists()) {
+                                                Log.d(TAG, "DocumentSnapshot data: " + rawMacropad.getData());
+                                                MacroPad macropad = rawMacropad.toObject(MacroPad.class);
+                                                macroPadList.add(macropad);
+                                                mAdapter.notifyDataSetChanged();
+                                                Log.d(TAG, "macropadID: " + macropad.getPadId());
+                                            } else {
+                                                Log.d(TAG, "No such document");
+                                            }
+                                        } else {
+                                            Log.d(TAG, "get failed with ", task.getException());
+                                        }
+                                    }
+                                });
                             }
 
                         } else {
@@ -139,7 +161,6 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
-
 
     @Override
     public void onResume() {

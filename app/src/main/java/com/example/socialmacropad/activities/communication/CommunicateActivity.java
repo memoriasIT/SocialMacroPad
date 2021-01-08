@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.activities.activityGroups.EditActivity;
 import com.example.socialmacropad.activities.activityGroups.NewActivity;
+import com.example.socialmacropad.models.Action;
 import com.example.socialmacropad.models.GroupOfActivities;
 import com.google.gson.Gson;
 
@@ -24,6 +26,7 @@ public class CommunicateActivity extends AppCompatActivity {
     private TextView connectionText, messagesView;
     private EditText messageBox;
     private Button sendButton, connectButton;
+    private GroupOfActivities currentGroup;
 
     private TextView top, groupName;
 
@@ -89,7 +92,7 @@ public class CommunicateActivity extends AppCompatActivity {
         if (extras != null) {
             jsonCurrentGroup = extras.getString("currentGroup");
         }
-        GroupOfActivities currentGroup = new Gson().fromJson(jsonCurrentGroup, GroupOfActivities.class);
+        currentGroup = new Gson().fromJson(jsonCurrentGroup, GroupOfActivities.class);
 
         top.setText(currentGroup.getName() + " > " + getString(R.string.activities));//nombre_grupo > Activities
         groupName.setText(currentGroup.getName());
@@ -104,13 +107,28 @@ public class CommunicateActivity extends AppCompatActivity {
 
 
         Button act1 = (Button)findViewById(R.id.btnNewActivity1);
-        act1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
-                Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
-                startActivity(intent);
+        try {
+            Action action1 = currentGroup.getActivities().get(0);
+            if(!action1.getActionname().equals("null")){
+                act1.setText(action1.getActionname());
+                act1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                        Toast toast = Toast.makeText(getApplicationContext(), "Send" + action1.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                });
+
             }
-        });
+        } catch (Exception e) {
+            act1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                    Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
         act1.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {

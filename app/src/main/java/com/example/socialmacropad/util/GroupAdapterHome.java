@@ -18,20 +18,21 @@ import com.example.socialmacropad.R;
 import com.example.socialmacropad.activities.communication.CommunicateActivity;
 import com.example.socialmacropad.activities.activityGroups.EditGroupActivity;
 import com.example.socialmacropad.models.GroupOfActivities;
+import com.example.socialmacropad.models.MacroPad;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupAdapterHome extends ArrayAdapter<GroupOfActivities> {
+public class GroupAdapterHome extends ArrayAdapter<MacroPad> {
 
     private Context mContext;
-    private List<GroupOfActivities> groupsList = new ArrayList<>();
+    private List<MacroPad> groupsList = new ArrayList<>();
     private String TAG = GroupAdapterHome.class.getSimpleName();
-    private GroupOfActivities currentGroup;
+    private MacroPad currentGroup;
 
 
-    public GroupAdapterHome(@NonNull Context context, ArrayList<GroupOfActivities> list) {
+    public GroupAdapterHome(@NonNull Context context, ArrayList<MacroPad> list) {
         super(context, 0 , list);
         mContext = context;
         groupsList = list;
@@ -48,7 +49,7 @@ public class GroupAdapterHome extends ArrayAdapter<GroupOfActivities> {
 
         Button btnGroup = (Button) listItem.findViewById(R.id.btnNameGroup);
         btnGroup.setText(currentGroup.getName());
-        btnGroup.setBackgroundColor(Color.parseColor(currentGroup.getColour()));
+        btnGroup.setBackgroundColor(Color.parseColor(currentGroup.getColor()));
         btnGroup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

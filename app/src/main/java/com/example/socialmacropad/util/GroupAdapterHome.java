@@ -18,6 +18,7 @@ import com.example.socialmacropad.R;
 import com.example.socialmacropad.activities.communication.CommunicateActivity;
 import com.example.socialmacropad.activities.activityGroups.EditGroupActivity;
 import com.example.socialmacropad.models.GroupOfActivities;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +53,7 @@ public class GroupAdapterHome extends ArrayAdapter<GroupOfActivities> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, CommunicateActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("groupName", currentGroup.getName());
-                intent.putExtras(bundle);
+                intent.putExtra("currentGroup", new Gson().toJson(groupsList.get(position)));
                 mContext.startActivity(intent);
             }
         });
@@ -64,7 +63,7 @@ public class GroupAdapterHome extends ArrayAdapter<GroupOfActivities> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, EditGroupActivity.class);
-
+                intent.putExtra("currentGroup", new Gson().toJson(groupsList.get(position)));
                 mContext.startActivity(intent);
             }
         });

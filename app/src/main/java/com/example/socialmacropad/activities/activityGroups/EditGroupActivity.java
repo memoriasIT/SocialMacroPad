@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.models.GroupOfActivities;
+import com.example.socialmacropad.util.Constants;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.gson.Gson;
 
 public class EditGroupActivity extends AppCompatActivity {
 
@@ -36,11 +40,24 @@ public class EditGroupActivity extends AppCompatActivity {
         groupName = (TextView)findViewById(R.id.textViewGroupName);
 
         //CARGAR VALORES DEL GRUPO SELECCIONADO
-        top.setText("nombre_del_seleccionado"+ getString(R.string.top_edit));//nombre_del_grupo > Edit
-        groupName.setText("nombre_del_seleccionado");
-        name.getEditText().setText( "nombre_del_seleccionado", TextView.BufferType.EDITABLE);
-        description.getEditText().setText("descripcion_del_seleciconado", TextView.BufferType.EDITABLE);
-        //check al radio button del color correspondiente
+        String jsonCurrentGroup = null;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            jsonCurrentGroup = extras.getString("currentGroup");
+        }
+        GroupOfActivities currentGroup = new Gson().fromJson(jsonCurrentGroup, GroupOfActivities.class);
+
+        top.setText(currentGroup.getName() + getString(R.string.top_edit));//nombre_del_grupo > Edit
+        groupName.setText(currentGroup.getName());
+        name.getEditText().setText( currentGroup.getName(), TextView.BufferType.EDITABLE);
+        description.getEditText().setText(currentGroup.getDescription(), TextView.BufferType.EDITABLE);
+        switch (currentGroup.getColour()){
+            case Constants.BLUE  : colour.check(R.id.option_blue); break;
+            case Constants.GREEN : colour.check(R.id.option_green);break;
+            case Constants.GREY : colour.check(R.id.option_grey); break;
+            case Constants.ORANGE : colour.check(R.id.option_orange); break;
+        }
+
 
         ImageButton delete = (ImageButton)findViewById(R.id.delete);
         delete.setOnClickListener(new View.OnClickListener() {

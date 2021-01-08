@@ -109,7 +109,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="323dp"
-                android:layout_height="46dp" />
+                android:layout_height="51dp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

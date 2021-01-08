@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.activities.activityGroups.EditActivity;
 import com.example.socialmacropad.activities.activityGroups.NewActivity;
+import com.example.socialmacropad.models.GroupOfActivities;
+import com.google.gson.Gson;
 
 public class CommunicateActivity extends AppCompatActivity {
 
@@ -80,11 +82,17 @@ public class CommunicateActivity extends AppCompatActivity {
         top = (TextView)findViewById(R.id.textViewTop);
         groupName = (TextView)findViewById(R.id.textViewGroupName);
 
+
         //CARGAR VALORES DEL GRUPO SELECCIONADO
-        Bundle bundle = getIntent().getExtras();
-        String bundleGroupName = bundle.getString("groupName");
-        top.setText(bundleGroupName + " > " + getString(R.string.activities));//nombre_grupo > Activities
-        groupName.setText(bundleGroupName);
+        String jsonCurrentGroup = null;
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            jsonCurrentGroup = extras.getString("currentGroup");
+        }
+        GroupOfActivities currentGroup = new Gson().fromJson(jsonCurrentGroup, GroupOfActivities.class);
+
+        top.setText(currentGroup.getName() + " > " + getString(R.string.activities));//nombre_grupo > Activities
+        groupName.setText(currentGroup.getName());
 
         ImageButton back = (ImageButton)findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {

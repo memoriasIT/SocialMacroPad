@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.activities.bottomNavActivities.MainContent;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
 
 import org.jetbrains.annotations.NotNull;
@@ -77,9 +78,10 @@ public class BluetoothList extends AppCompatActivity {
 
         Log.d(TAG, deviceName);
 
-        Intent intent = new Intent(this, CommunicateActivity.class);
-        intent.putExtra("device_name", deviceName);
-        intent.putExtra("device_mac", macAddress);
+//        Intent intent = new Intent(this, CommunicateActivity.class);
+        Intent intent = new Intent(this, MainContent.class);
+//        intent.putExtra("device_name", deviceName);
+//        intent.putExtra("device_mac", macAddress);
         startActivity(intent);
     }
 

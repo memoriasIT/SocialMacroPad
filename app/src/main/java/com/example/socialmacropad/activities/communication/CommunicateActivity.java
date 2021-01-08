@@ -134,6 +134,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
                         startActivity(intent);
                     }
                 });
@@ -167,6 +168,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
                         startActivity(intent);
                     }
                 });
@@ -200,6 +202,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
                         startActivity(intent);
                     }
                 });
@@ -233,6 +236,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
                         startActivity(intent);
                     }
                 });
@@ -266,6 +270,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
                         startActivity(intent);
                     }
                 });
@@ -299,6 +304,7 @@ public class CommunicateActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
                         Intent intent = new Intent(CommunicateActivity.this, NewActivity.class);
+                        intent.putExtra("currentGroup", new Gson().toJson(currentGroup));
                         startActivity(intent);
                     }
                 });

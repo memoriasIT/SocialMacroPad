@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.socialmacropad.R;
 
+import com.example.socialmacropad.activities.bottomNavActivities.MainContent;
 import com.example.socialmacropad.models.Action;
 import com.example.socialmacropad.models.GroupOfActivities;
 import com.example.socialmacropad.models.MacroPad;
@@ -118,7 +120,9 @@ public class AddNewGroupActivity extends AppCompatActivity {
             saveMacroPadToFirestore(macropad);
 
             Toast.makeText(this, getString((R.string.new_group_created)), Toast.LENGTH_LONG).show();
-            onBackPressed();
+//            onBackPressed();
+            Intent intent = new Intent(getApplicationContext(), MainContent.class);
+            startActivity(intent);
         }else{
             if(!a){
                 name.setError(getString(R.string.error_name));

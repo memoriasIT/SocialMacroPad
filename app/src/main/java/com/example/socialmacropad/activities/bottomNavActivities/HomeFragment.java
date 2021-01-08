@@ -94,10 +94,10 @@ public class HomeFragment extends Fragment {
                 Log.d(TAG, macAddress);
                 Log.d(TAG, deviceName);
 
-                Intent intent = new Intent(getActivity(), CommunicateActivity.class);
-                intent.putExtra("device_name", deviceName);
-                intent.putExtra("device_mac", macAddress);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), CommunicateActivity.class);
+//                intent.putExtra("device_name", deviceName);
+//                intent.putExtra("device_mac", macAddress);
+//                startActivity(intent);
             }
         });
 

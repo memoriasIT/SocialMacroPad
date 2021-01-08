@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialmacropad.R;
+import com.example.socialmacropad.activities.communication.CommunicateActivity;
 import com.example.socialmacropad.models.Action;
 import com.example.socialmacropad.models.MacroPad;
 import com.google.android.material.textfield.TextInputLayout;
@@ -64,7 +66,6 @@ public class EditActivity extends AppCompatActivity {
         }
         currAction = new Gson().fromJson(jsonCurrentGroup, Action.class);
         macroPad = new Gson().fromJson(macropad, MacroPad.class);
-        Log.d("Start EDITACTIVITY", "demo" + macroPad.getPadId());
 
 
         top.setText(macroPad.getName() + " > " + currAction.getActionname() + getString(R.string.top_edit));//nombre_grupo > nombew_act > Edit
@@ -128,9 +129,33 @@ public class EditActivity extends AppCompatActivity {
             Map<String, Object> data = new HashMap<>();
             data.put("action"+pos, new Action(strinput, strnombre, strcolor));
 
+            switch (pos){
+                case 1:
+                    macroPad.setAction1(new Action(strinput, strnombre, strcolor));
+                    break;
+                case 2:
+                    macroPad.setAction2(new Action(strinput, strnombre, strcolor));
+                    break;
+                case 3:
+                    macroPad.setAction3(new Action(strinput, strnombre, strcolor));
+                    break;
+                case 4:
+                    macroPad.setAction4(new Action(strinput, strnombre, strcolor));
+                    break;
+                case 5:
+                    macroPad.setAction5(new Action(strinput, strnombre, strcolor));
+                    break;
+                case 6:
+                    macroPad.setAction6(new Action(strinput, strnombre, strcolor));
+                    break;
+            }
+
             FirebaseFirestore.getInstance().collection("macropad").document(macroPad.getPadId()).update(data);
             Toast.makeText(this, getString((R.string.updated_activity)), Toast.LENGTH_LONG).show();
-            onBackPressed();
+
+            Intent intent = new Intent(EditActivity.this, CommunicateActivity.class);
+            intent.putExtra("currentGroup", new Gson().toJson(macroPad));
+            startActivity(intent);
         }else{
             if(!a){
                 name.setError(getString(R.string.error_name));
@@ -157,7 +182,6 @@ public class EditActivity extends AppCompatActivity {
                     Map<String, Object> data = new HashMap<>();
                     data.put("action"+pos, new Action("null", "null", GREY));
 
-                    Log.d("EditActivity", "pos" + pos );
                     FirebaseFirestore.getInstance().collection("macropad").document(macroPad.getPadId()).update(data);
                 }else {
                     onBackPressed();

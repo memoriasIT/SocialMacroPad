@@ -80,7 +80,6 @@ public class CommunicateActivity extends AppCompatActivity {
             jsonCurrentGroup = extras.getString("currentGroup");
         }
         currentGroup = new Gson().fromJson(jsonCurrentGroup, MacroPad.class);
-        Log.d("Start COMMUNICATEACT", "demo" + currentGroup.getPadId());
 
         top.setText(currentGroup.getName() + " > " + getString(R.string.activities));//nombre_grupo > Activities
         groupName.setText(currentGroup.getName());

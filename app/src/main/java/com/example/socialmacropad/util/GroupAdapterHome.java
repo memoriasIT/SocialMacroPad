@@ -3,7 +3,6 @@ package com.example.socialmacropad.util;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import androidx.annotation.Nullable;
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.activities.communication.CommunicateActivity;
 import com.example.socialmacropad.activities.activityGroups.EditGroupActivity;
-import com.example.socialmacropad.models.GroupOfActivities;
 import com.example.socialmacropad.models.MacroPad;
 import com.google.gson.Gson;
 

@@ -1,7 +1,6 @@
 package com.example.socialmacropad.activities.activityGroups;
 
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -21,21 +20,13 @@ import com.example.socialmacropad.R;
 
 import com.example.socialmacropad.activities.bottomNavActivities.MainContent;
 import com.example.socialmacropad.models.Action;
-import com.example.socialmacropad.models.GroupOfActivities;
 import com.example.socialmacropad.models.MacroPad;
-import com.example.socialmacropad.util.GroupAdapterHome;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;

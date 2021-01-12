@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,12 +16,10 @@ import android.widget.Toast;
 
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.activities.bottomNavActivities.MainContent;
-import com.example.socialmacropad.models.GroupOfActivities;
 import com.example.socialmacropad.models.MacroPad;
 import com.example.socialmacropad.util.Constants;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 

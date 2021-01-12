@@ -20,6 +20,8 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.socialmacropad.R;
 import com.example.socialmacropad.activities.activityGroups.EditActivity;
 import com.example.socialmacropad.activities.activityGroups.NewActivity;
+import com.example.socialmacropad.activities.bottomNavActivities.MainContent;
+import com.example.socialmacropad.activities.introAuth.LogInActivity;
 import com.example.socialmacropad.helper.EnhancedSharedPreferences;
 import com.example.socialmacropad.models.Action;
 import com.example.socialmacropad.models.MacroPad;
@@ -88,7 +90,8 @@ public class CommunicateActivity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Intent intent = new Intent(CommunicateActivity.this, MainContent.class);
+                startActivity(intent);
             }
         });
 
@@ -101,13 +104,19 @@ public class CommunicateActivity extends AppCompatActivity {
                 act1.setBackgroundColor(Color.parseColor(action1.getColor()));
                 act1.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                    public void onClick(View v) {//Cuando hay actividad asociada al boton
                         Toast toast = Toast.makeText(getApplicationContext(), "Send" + action1.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
                         viewModel.sendMessage(action1.getAction() );
                         toast.show();
                     }
                 });
-
+                act1.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        editDialog(currentGroup.getAction1(), 1);
+                        return true;
+                    }
+                });
             } else {
                 act1.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -121,13 +130,7 @@ public class CommunicateActivity extends AppCompatActivity {
             }
 
         } catch (Exception e) {}
-        act1.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction1(), 1);
-                return true;
-            }
-        });
+
 
 
         Button act2 = (Button) findViewById(R.id.btnNewActivity2);
@@ -138,9 +141,16 @@ public class CommunicateActivity extends AppCompatActivity {
                 act2.setBackgroundColor(Color.parseColor(action2.getColor()));
                 act2.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                    public void onClick(View v) {//Cuando hay actividad asociada al boton
                         Toast toast = Toast.makeText(getApplicationContext(), "Send" + action2.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
                         toast.show();
+                    }
+                });
+                act2.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        editDialog(currentGroup.getAction2(), 2);
+                        return true;
                     }
                 });
 
@@ -157,13 +167,7 @@ public class CommunicateActivity extends AppCompatActivity {
             }
 
         } catch (Exception e) {}
-        act2.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction2(), 2);
-                return true;
-            }
-        });
+
 
 
         Button act3 = (Button) findViewById(R.id.btnNewActivity3);
@@ -174,9 +178,16 @@ public class CommunicateActivity extends AppCompatActivity {
                 act3.setBackgroundColor(Color.parseColor(action3.getColor()));
                 act3.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                    public void onClick(View v) {//Cuando hay actividad asociada al boton
                         Toast toast = Toast.makeText(getApplicationContext(), "Send" + action3.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
                         toast.show();
+                    }
+                });
+                act3.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        editDialog(currentGroup.getAction3(), 3);
+                        return true;
                     }
                 });
 
@@ -190,16 +201,11 @@ public class CommunicateActivity extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+
             }
 
         } catch (Exception e) {}
-        act3.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction3(), 3);
-                return true;
-            }
-        });
+
 
 
         Button act4 = (Button) findViewById(R.id.btnNewActivity4);
@@ -210,9 +216,16 @@ public class CommunicateActivity extends AppCompatActivity {
                 act4.setBackgroundColor(Color.parseColor(action4.getColor()));
                 act4.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                    public void onClick(View v) {//Cuando hay actividad asociada al boton
                         Toast toast = Toast.makeText(getApplicationContext(), "Send" + action4.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
                         toast.show();
+                    }
+                });
+                act4.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        editDialog(currentGroup.getAction4(), 4);
+                        return true;
                     }
                 });
 
@@ -229,13 +242,7 @@ public class CommunicateActivity extends AppCompatActivity {
             }
 
         } catch (Exception e) {}
-        act4.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction4(), 4);
-                return true;
-            }
-        });
+
 
 
         Button act5 = (Button) findViewById(R.id.btnNewActivity5);
@@ -246,9 +253,16 @@ public class CommunicateActivity extends AppCompatActivity {
                 act5.setBackgroundColor(Color.parseColor(action5.getColor()));
                 act5.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                    public void onClick(View v) {//Cuando hay actividad asociada al boton
                         Toast toast = Toast.makeText(getApplicationContext(), "Send" + action5.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
                         toast.show();
+                    }
+                });
+                act5.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        editDialog(currentGroup.getAction5(), 5);
+                        return true;
                     }
                 });
 
@@ -265,13 +279,7 @@ public class CommunicateActivity extends AppCompatActivity {
             }
 
         } catch (Exception e) {}
-        act5.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction5(), 5);
-                return true;
-            }
-        });
+
 
 
         Button act6 = (Button) findViewById(R.id.btnNewActivity6);
@@ -282,9 +290,16 @@ public class CommunicateActivity extends AppCompatActivity {
                 act6.setBackgroundColor(Color.parseColor(action6.getColor()));
                 act6.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {//Cuando no hay actividad asociada al boton (Añadir nueva)
+                    public void onClick(View v) {//Cuando hay actividad asociada al boton
                         Toast toast = Toast.makeText(getApplicationContext(), "Send" + action6.getAction() + " to bluetooth", Toast.LENGTH_SHORT);
                         toast.show();
+                    }
+                });
+                act6.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        editDialog(currentGroup.getAction6(), 6);
+                        return true;
                     }
                 });
 
@@ -301,13 +316,7 @@ public class CommunicateActivity extends AppCompatActivity {
             }
 
         } catch (Exception e) {}
-        act6.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                editDialog(currentGroup.getAction6(), 6);
-                return true;
-            }
-        });
+
 
 
     }

@@ -12,5 +12,7 @@ It is based on Bluetooth and by using a connection to an arduino (or a similar m
 
 The possiblities are endless as you can make it do whatever you want.
 
+# Demo
+
 You can watch a small demo here:
 https://www.youtube.com/watch?v=EnJHtApRAqA
